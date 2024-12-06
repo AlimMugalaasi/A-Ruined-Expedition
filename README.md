@@ -1,4 +1,4 @@
-# Hunter's Gauntlet
+# The Hunter's Gauntlet
 A fun text-based pythion game made as part of a school coding project.
 
 ## Storyline:
