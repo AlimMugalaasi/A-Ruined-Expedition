@@ -1,5 +1,5 @@
-# The Hunter's Gauntlet
+# A Ruined Expedition
 A fun text-based python game made as part of a school coding project.
 
 ## Storyline:
-In a lawless archipelago ruled by rival clans of smugglers and mercenaries, you are a bounty hunter competing to claim a legendary prize: control over the entire region. To win, you must take down the most dangerous bosses in each area while avoiding a relentless assassin hired to eliminate the competition. Spend too long in one area, and the assassin catches up... its over.
+You’re part of a rescue mission searching for a missing research team in the ruins of an ancient civilization. The ruins are split into dangerous zones, each guarded by rival treasure hunters and mechanized traps left behind by the ancient builders. As you piece together the researchers’ fate, a mysterious rogue member of your own team begins sabotaging the expedition, corrupting the ruins and forcing you into a final confrontation...
