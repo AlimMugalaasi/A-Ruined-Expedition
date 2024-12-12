@@ -1,4 +1,4 @@
-import os
+#import os;import questionary
 
 
 
@@ -46,6 +46,7 @@ while True:
     move_player(gg)
 '''
 
+'''
 game_world = {
     (0, 0): "Starting Point",
     (0, 1): "Forest",
@@ -55,3 +56,12 @@ game_world = {
 }
 
 game_world.append[(2,1):'lake']
+
+'''
+
+
+
+#---------------------------------------
+
+#first_name = questionary.text("What's your first name").ask()
+
