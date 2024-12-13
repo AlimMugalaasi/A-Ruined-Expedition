@@ -1,4 +1,12 @@
+import os; from time import sleep; import sys
+os.system('clear')
 
-import rich
+def type(line):
+    for char in line:
+        print(char, end='')
+        sys.stdout.flush()
+        sleep(0.03)
 
-rich.print("[bold green]Working on tasks...", spinner="material")
+type('This is a test')
+
+
