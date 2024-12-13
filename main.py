@@ -1,5 +1,5 @@
 import Area1.Area1_map as A1, Area2.Area2_map as A2, Area3.Area3_map as A3, Area4.Area4_map as A4, TheSummit.Area5 as summit
-import pyfiglet, os, sys
+import pyfiglet
 from time import sleep
 from rich.console import Console
 console = Console()
