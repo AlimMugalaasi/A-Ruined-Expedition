@@ -1,12 +1,8 @@
-import os; from time import sleep; import sys
+
+import time, os
 os.system('clear')
 
-def type(line):
-    for char in line:
-        print(char, end='')
-        sys.stdout.flush()
-        sleep(0.03)
-
-type('This is a test')
-
-
+for i in range(5):
+    print(f"\rCounting: {i}", end="", flush=True)
+    time.sleep(1)  # Pause for visibility
+    print("\r" + " " * 20, end="", flush=True)  # Clear the line
