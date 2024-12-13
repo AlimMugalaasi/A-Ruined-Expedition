@@ -1,5 +1,5 @@
 import Area1.Area1_map as A1, Area2.Area2_map as A2, Area3.Area3_map as A3, Area4.Area4_map as A4, TheSummit.Area5 as summit
-import pyfiglet
+import pyfiglet, keyboard
 from time import sleep
 from rich.console import Console
 console = Console()
@@ -18,10 +18,16 @@ that movement thingy
 
 clr()
 
-printc('[bold]Hello Player![/bold] Before we start, please Make sure you have the terminal opened in a seperate window.')
-print("in VS code, just click the terminal name and click the option 'move terminal into new window'")
-print('You may have to quit and reload the terminal again, then in the terminal you just type in python main.py to start the game again.')
-input('Set it to full screen (f11) and press Enter when ready!')
+#The user needs some things like pyfiglet installed via terminal before the game can run - this instructs them to do so
+printc('[bold]Hello Player![/bold] Before we start a few things need to be done for the game to run:')
+print('1. You must have the following installed:\n\nkeyboard\npyfiglet\nrich\nquestionary\n\nThese can be done in the terminal by running the pip install command.')
+print('\n2. Please Make sure you have the terminal opened in a seperate window.')
+print("In VS code, just click the terminal name and click the option 'move terminal into new window'")
+print('I recommend you run this on Visual Studio Code (can be done via GitHub) if you can, as some things might not work on other terminals.')
+print('\nYou may have to quit and reload the terminal again, then in the terminal you just type in python main.py to start the game again.')
+check = input('\nIf you need to quit the programme, type QUIT, or If all the above is done, set the window to full screen (f11) and press Enter to play!: ')
+if check == 'QUIT':
+    quit()
 
 clr()
 print('Loading...')
@@ -48,26 +54,20 @@ input(type('\nPress Enter to continue...', 'bold blue'))
 clrline()
 print(' ')
 
+if keyboard.is_pressed('x'):
+    skipStoryline = True
+else:
+    skipStoryline = False
 
-with open('storyline.txt', 'r') as file:
+if not skipStoryline:
+   with open('storyline.txt', 'r') as file:
     for line in file:
         type(line.strip(),None)
         input(type('\nPress Enter to continue...', 'bold blue', 0.01))
         clrline()
         print(' ')
-
-'''
-import keyboard
-
-# Example: Check if 'X' is pressed
-if keyboard.is_pressed('x'):
-    print("The 'X' key was pressed!")
-'''
-
-        
-        
-        
-
-
-
+        if keyboard.is_pressed('x'):
+            break
+        else:
+           continue
 
