@@ -31,6 +31,17 @@ def printc(string, style=None):
 def clrline():
     sys.stdout.write('\x1b[1A')
     sys.stdout.write('\x1b[2K')
+
 #clear console
 def clr():
     os.system('clear')
+
+def ld(time=None):
+    if time is None:
+        time = 1
+    else:
+        time = time
+    printc('LOADNG...', 'bold green')
+    sleep(time)
+    clrline()
+    sleep(0.3)
