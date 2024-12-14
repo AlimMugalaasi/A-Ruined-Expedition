@@ -41,7 +41,8 @@ def ld(time=None):
         time = 1
     else:
         time = time
-    printc('LOADNG...', 'bold green')
+    type('LOADNG...', 'bold green')
     sleep(time)
     clrline()
     sleep(0.3)
+    clrline()

@@ -62,7 +62,7 @@ if not skipStoryLine:
 
 clr()
 ld()
-
+clr()
 player_name = input(type('Enter a name for your player!: ',None, 0.01))
 
 #------------------------------------------------------------------------------------------
@@ -72,5 +72,3 @@ player_name = input(type('Enter a name for your player!: ',None, 0.01))
 ld(5)
 
 anv.areaNav_ulckA1()
-
-

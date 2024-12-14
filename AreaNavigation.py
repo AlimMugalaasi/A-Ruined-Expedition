@@ -124,7 +124,3 @@ def areaNav_ulckA4():
 
 
 ''', 'bold', 0.0007)
-    
-
-
-areaNav_ulckA1()
