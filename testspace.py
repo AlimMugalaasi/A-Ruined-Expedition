@@ -71,4 +71,3 @@ testList = ['CLOSE','a', 'b','c', 'd', 'e', 'f']
 
 questionary.select("Select An item to equip it, or select CLOSE to close inventory", choices=testList).ask()
 
-E
