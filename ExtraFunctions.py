@@ -45,4 +45,4 @@ def ld(time=None):
     sleep(time)
     clrline()
     sleep(0.3)
-    clrline()
+    clr()
