@@ -1,4 +1,4 @@
-#import os;import questionary
+import os;import questionary
 
 
 
@@ -63,5 +63,12 @@ game_world.append[(2,1):'lake']
 
 #---------------------------------------
 
-#first_name = questionary.text("What's your first name").ask()
+testList = ['CLOSE','a', 'b','c', 'd', 'e', 'f']
 
+    
+
+    
+
+questionary.select("Select An item to equip it, or select CLOSE to close inventory", choices=testList).ask()
+
+E
