@@ -3,6 +3,10 @@ console = Console()
 from rich.text import Text
 from time import sleep
 import sys, os
+import random
+from rich.progress import track
+
+#---------------------------------------------------------------------------------
 
 #Function that creates a typewriter animation for printing strings
 def type(line, style=None, speed=None):
@@ -36,13 +40,13 @@ def clrline():
 def clr():
     os.system('clear')
 
-def ld(time=None):
-    if time is None:
-        time = 1
-    else:
-        time = time
-    type('LOADNG...', 'bold green')
-    sleep(time)
-    clrline()
+def ld():
+    clr()
+    for i in track(range(20), description=printc('LOADING...', 'bold green' )):
+        timing = random.uniform(0.1, 0.9)
+        sleep(timing)
     sleep(0.3)
     clr()
+
+
+
