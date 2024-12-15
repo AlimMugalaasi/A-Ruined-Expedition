@@ -40,9 +40,11 @@ def clrline():
 def clr():
     os.system('clear')
 
-def ld():
+def ld(counts=None):
     clr()
-    for i in track(range(20), description=printc('LOADING...', 'bold green' )):
+    if counts is None:
+        counts = 20
+    for i in track(range(counts), description=printc('LOADING...', 'bold green' )):
         timing = random.uniform(0.1, 0.9)
         sleep(timing)
     sleep(0.3)

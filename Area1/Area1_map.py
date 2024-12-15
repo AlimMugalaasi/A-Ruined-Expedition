@@ -31,9 +31,6 @@ def A1Z1_lckSQ1():
                                                                                      
                                                                  
 ''')
-
-A1Z1_lckSQ1()
-  
                                                                                   
                                                                                   
                                                                                   

@@ -6,6 +6,7 @@ from rich.console import Console
 console = Console()
 from ExtraFunctions import type, printc, clrline, clr, ld
 import AreaNavigation as anv
+import questionary
 #----------------------------------------------------------------------------------
 clr()
 
@@ -38,35 +39,34 @@ print('\n')
 sleep(0.5)
 input(type('Press Enter to continue...', 'bold blue'))
 
+ld(5)
+
+clr()
+player_name = input(type('Enter a name for your player!: ',None, 0.01))
+clr()
+
 #Printing out the storyline from its file
 clr()
-type('STORYLINE: (X then ENTER to skip)', 'italic bold white')
-canc2 = input(type('\nPress Enter to continue...', 'bold blue'))
-skipStoryLine = False
-if canc2 == 'x' or canc2 == 'X':
-    skipStoryLine = True
-clrline()
-print(' ')
+type('STORYLINE', 'italic bold white')
+
+skipStoryLine = questionary.confirm('\nSkip Storyline? ').ask()
 
 if not skipStoryLine:
     with open('storyline.txt', 'r') as file:
         for line in file:
             type(line.strip(),None)
-            canc = input(type('\nPress Enter to continue...', 'bold blue', 0.01))
-            if canc == 'x' or canc == 'X':
-                break
-            else:
-                clrline()
-                print(' ')
-                continue
+            print(' ')
+            questionary.press_any_key_to_continue().ask()
+            clrline()
+            print(' ')
+            continue
+
 
 clr()
-ld()
-player_name = input(type('Enter a name for your player!: ',None, 0.01))
 
 #------------------------------------------------------------------------------------------
 
 #LOADING CLASSES AND ELEMENTS
 
-ld(5)
+ld()
 
