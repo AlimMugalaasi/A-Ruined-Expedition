@@ -1,6 +1,8 @@
 from ExtraFunctions import printc, clr, sleep, type, ld, clrline
 import questionary
 
+#-------------------------------------------------------PLAYER
+
 class player:
     def __init__(self, name, position):
         self.name = name
@@ -8,7 +10,7 @@ class player:
         self.current_area = 'A1'
         self.current_zone = 'Z1'
         self.inventoryENC = []
-        self.inventoryDEC = ['CLOSE']
+        self.inventoryDEC = ['<--BACK']
         self.inventoryMaxCapacity = 25 #not final
         self.item_equippedDEC = None
         self.item_equippedENC = None
@@ -28,18 +30,36 @@ class player:
         while True:
             clr()
             printc('INVENTORY', 'underline green bold italic')
-            item_select = questionary.select("Select An item to equip it, or select CLOSE to close inventory\n", choices=self.inventoryDEC, qmark='>').ask()
-            if item_select =='CLOSE':
+            item_select = questionary.select("Select An item to see further options, or select <--BACK to close inventory\n", choices=self.inventoryDEC, qmark='>').ask()
+            if item_select =='<--BACK':
                 break
             
             else:
-                item_confirm = questionary.confirm(f"Equip {item_select}?").ask()
-                if item_confirm:
-                    self.equip_item(item_select)
-                    printc(f'Item equipped: [bold green]{item_select}[/bold green]')
-                    questionary.press_any_key_to_continue().ask()
+                #Print details using fucntion made
+                options_choice = questionary.select('Options: ', choices=['<--BACK', 'Equip/Use item', 'Drop item'])
+
+                if options_choice == '<--BACK':
                     continue
-                else:
+
+                elif options_choice == 'Equip/Use item':
+                    item_confirm = questionary.confirm(f"Equip {item_select}?").ask()
+                    if item_confirm:
+                        self.equip_item(item_select)
+                        printc(f'Item equipped: [bold green]{item_select}[/bold green]')
+                        questionary.press_any_key_to_continue().ask()
+                        continue
+                    else:
+                        continue
+
+                elif options_choice == 'Drop item':
+                    #drop_confirm = questionary.confirm(f"Drop {item_select}?").ask()
+                        #if drop_confirm:
+                            #self.drop_item(item_select)
+                            #printc(f'{item_select} dropped in position {position of where it was dropped}.')
+                            #questionary.press_any_key_to_continue().ask()
+                            #continue
+                        #else:
+                            #continue
                     continue
 
         print(self.item_equippedDEC) # FOR TESTING ONLY
@@ -95,27 +115,14 @@ class player:
 
 
     def add_item(self, item):
-        self.inventoryENC.append(item)
-        printc(f'[bold green]New item: {item.name}[/bold green]')
-        #WHEN EQUIPPING ARMOUR IT SHOULD SAY WHAT EFFECT IT HAS
-        self.inventoryDEC.append(item.name)
-        print(' ')
-        questionary.press_any_key_to_continue(message='Press any key to dismiss...').ask()
-        clrline()
-        clrline()
-        clrline()
-    
-    def complete_area(self, area):
-        clr()
-        type('AREA COMPLETE!', 'bold green')
-        self.completed_areas.append(area.name)
-        self.current_area = None
-        print(' ')
-        questionary.press_any_key_to_continue().ask()
-        ld()
-
-    def new_area(self, area):
-        self.current_area = area.code
+            self.inventoryENC.append(item)
+            printc(f'[bold green]New item: {item.name}[/bold green]')
+            self.inventoryDEC.append(item.name)
+            print(' ')
+            questionary.press_any_key_to_continue(message='Press any key to dismiss...').ask()
+            clrline()
+            clrline()
+            clrline()
         
     def win(self):
         #WIN SEQENCE - PROGRAMME IS QUIT FROM HERE
@@ -153,6 +160,7 @@ class player:
     def update_active_SQ(self, SQ):
         self.activeSQ = SQ
 
+#-------------------------------------------------------ITEMS
 
 class item:
     def __init__(self, name, category):
@@ -165,6 +173,9 @@ class armour(item):
         self.healthProt = healthProt
         self.category = 'armour'
         
+    def give_details(self):
+        printc(f'ITEM: [bold white]{self.name}[/bold white]     CATEGORY: [bold blue]Armour[/bold blue]    PROTECTION: [bold green]{self.healthProt}[/bold green]')
+        
 
 class weapon(item):
     def __init__(self, name, category, damage):
@@ -172,12 +183,37 @@ class weapon(item):
         self.damage = damage
         self.category = 'weapon'
 
+    def give_details(self):
+        printc(f'ITEM: [bold white]{self.name}[/bold white]     CATEGORY: [bold red]Weapon[/bold red]    DAMAGE: [bold green]{self.damage}[/bold green]')
+
+class health(item):
+    def __init__(self, name, category, health):
+        super().__init__(name, category)
+        self.health = health
+        self.category = 'health'
+
+    def give_details(self):
+        printc(f'ITEM: [bold white]{self.name}[/bold white]     CATEGORY: [bold magenta]Health[/bold magenta]    HEALTH: [bold green]+{self.health}[/bold green]')
+
+#-------------------------------------------------------AREAS & NAVIGATION
+
+def complete_area(self, area):
+        clr()
+        type('AREA COMPLETE!', 'bold green')
+        self.completed_areas.append(area.name)
+        self.current_area = None
+        print(' ')
+        questionary.press_any_key_to_continue().ask()
+        ld()
+
+def new_area(self, area):
+    self.current_area = area.code
+
+
 class area:
     def __init__(self, name, code):
         self.name = name
         self.code = code
-
-    # def start(self): (Not needed i believe)
 
 class side_quest:
     def __init__(self, code):
@@ -197,6 +233,8 @@ class side_quest:
         self.complete = True
         self.active = False
         player.activeSQ = None
+
+#-------------------------------------------------------ENTITIES
 
 clr()
 
