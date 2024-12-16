@@ -43,12 +43,9 @@ def clr():
 def ld(counts=None):
     clr()
     if counts is None:
-        counts = 20
+        counts = 100
     for i in track(range(counts), description=printc('LOADING...', 'bold green' )):
-        timing = random.uniform(0.1, 0.9)
+        timing = random.uniform(0.01, 0.3)
         sleep(timing)
     sleep(0.3)
     clr()
-
-
-

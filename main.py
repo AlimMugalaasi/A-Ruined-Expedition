@@ -6,7 +6,8 @@ from rich.console import Console
 console = Console()
 from ExtraFunctions import type, printc, clrline, clr, ld
 import AreaNavigation as anv
-import questionary
+import questionary, random
+from rich.progress import track
 #----------------------------------------------------------------------------------
 clr()
 
@@ -68,5 +69,8 @@ clr()
 
 #LOADING CLASSES AND ELEMENTS
 
-ld()
+for i in track(range(100), description=printc('LOADING GAME ASSETS...', 'bold green' )):
+    timing = random.uniform(0.01, 0.3)
+    sleep(timing)
+sleep(0.1)
 
