@@ -35,21 +35,53 @@ class player:
                 break
             
             else:
-                #Print details using fucntion made
+                for itemENC in self.inventoryENC:
+                    if itemENC.name == item_select:
+                        itemENC.give_details()
+                        print(' ')
+
                 options_choice = questionary.select('Options: ', choices=['<--BACK', 'Equip/Use item', 'Drop item'])
 
                 if options_choice == '<--BACK':
                     continue
 
                 elif options_choice == 'Equip/Use item':
-                    item_confirm = questionary.confirm(f"Equip {item_select}?").ask()
-                    if item_confirm:
-                        self.equip_item(item_select)
-                        printc(f'Item equipped: [bold green]{item_select}[/bold green]')
-                        questionary.press_any_key_to_continue().ask()
-                        continue
-                    else:
-                        continue
+                    for itemENC in self.inventoryENC:
+                        if itemENC.name == item_select:
+
+                            if itemENC.category == 'item' or itemENC.category == 'weapon':
+                                item_confirm = questionary.confirm(f"Equip {item_select}?").ask()
+                                if item_confirm:
+                                    self.equip_item(item_select)
+                                    printc(f'Item equipped: [bold green]{item_select}[/bold green]')
+                                    questionary.press_any_key_to_continue().ask()
+                                    continue
+                                else:
+                                    continue
+
+
+                            elif itemENC.category == 'health':
+                                item_confirm = questionary.confirm(f"Use {item_select}?").ask()
+                                if item_confirm:
+                                    self.equip_item(item_select)
+                                    printc(f'Used: [bold white]{item_select}[/bold white] ---> [bold green]+{itemENC.health}HP[/bold green]')
+                                    questionary.press_any_key_to_continue().ask()
+                                    continue
+                                else:
+                                    continue
+                            '''
+                            elif itemENC.category == 'armour':
+                                item_confirm = questionary.confirm(f"equip {item_select}?").ask()
+                                if item_confirm:
+                                    self.equip_item(item_select)
+                                    printc(f'Equipped: [bold white]{item_select}[/bold white] ---> [bold green]{itemENC.healthProt}Protection[/bold green]')
+                                    questionary.press_any_key_to_continue().ask()
+                                    continue
+                                else:
+                                    continue
+                            '''
+
+
 
                 elif options_choice == 'Drop item':
                     #drop_confirm = questionary.confirm(f"Drop {item_select}?").ask()
@@ -65,6 +97,8 @@ class player:
         print(self.item_equippedDEC) # FOR TESTING ONLY
 
     def equip_item(self, item):
+        #Need to add the option for using health (that increases HP)
+        #need to make armour able to stack to i think like 3 pieces
         for itemENC in self.inventoryENC:
             if itemENC.name == item:
                 if itemENC.category != 'armour':
