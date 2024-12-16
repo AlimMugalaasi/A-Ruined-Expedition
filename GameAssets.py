@@ -40,7 +40,7 @@ class player:
                         itemENC.give_details()
                         print(' ')
 
-                options_choice = questionary.select('Options: ', choices=['<--BACK', 'Equip/Use item', 'Drop item'])
+                options_choice = questionary.select('Options: ', choices=['<--BACK', 'Equip/Use item', 'Drop item']).ask()
 
                 if options_choice == '<--BACK':
                     continue
@@ -79,7 +79,7 @@ class player:
                                     item_confirm = questionary.confirm(f"equip {item_select}?").ask()
                                     if item_confirm:
                                         self.equip_item(item_select)
-                                        printc(f'Equipped: [bold white]{item_select}[/bold white] ---> [bold green]{itemENC.healthProt}Protection[/bold green]')
+                                        printc(f'Equipped: [bold white]{item_select}[/bold white] ---> [bold green]Protection {itemENC.healthProt}[/bold green]')
                                         questionary.press_any_key_to_continue().ask()
                                         continue
                                     else:
@@ -201,6 +201,10 @@ class item:
     def __init__(self, name, category):
         self.name = name
         self.category = 'item'
+
+    def give_details(self):
+            printc(f'ITEM: [bold white]{self.name}[/bold white]     CATEGORY: [bold yellow]item[/bold yellow]')
+            
 
 class armour(item):
     def __init__(self, name, category, healthProt):
