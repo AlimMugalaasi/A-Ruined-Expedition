@@ -12,15 +12,16 @@ class player:
         self.inventoryENC = []
         self.inventoryDEC = ['<--BACK', 'EQUIPPED']
         self.inventoryMaxCapacity = 25 #not final
-        self.item_equippedDEC = None
-        self.item_equippedENC = None
+        self.item_equippedDEC = 'None'
+        self.item_equippedENC = 'None'
         self.armour_equippedDEC = []
         self.armour_equippedENC = []
+        self.total_equipped = ['<--BACK']
         self.HP = 100
         self.Alive = True
         self.completed_areas = []
         self.completed_zones = []
-        self.activeSQ = None
+        self.activeSQ = 'None'
 
 
     def move(self, position):
@@ -33,10 +34,17 @@ class player:
             item_select = questionary.select("Select An item to see further options. Select EQUIPPED to see options for equipped items.\n", choices=self.inventoryDEC, qmark='>').ask()
             if item_select =='<--BACK':
                 break
-            #elif item_select == 'EQUIPPED':
-                #output currently equipped item and give the choice to unequip it. also output the items of armour and give options to unequip them.
-                #Maybe show HP here too? or, when inventory is opened initially?
-            
+            elif item_select == 'EQUIPPED':
+                unequip_select = questionary.select("Select an Item to unequip it", choices=self.total_equipped, qmark='>').ask()
+                if unequip_select == '<--BACK':
+                    continue
+                else:
+                    unequip_confirm = questionary.confirm(f'Unequip {unequip_select}?').ask()
+                    if unequip_confirm:
+                        self.unequip_item(unequip_select)
+                        printc(f'Item unequipped: [bold green]{unequip_select}[/bold green]')
+                        questionary.press_any_key_to_continue().ask()
+                        continue
             else:
                 for itemENC in self.inventoryENC:
                     if itemENC.name == item_select:
@@ -85,7 +93,7 @@ class player:
                                     questionary.press_any_key_to_continue().ask()
                                     continue
                                 else:
-                                    item_confirm = questionary.confirm(f"equip {item_select}?").ask()
+                                    item_confirm = questionary.confirm(f"Equip {item_select}?").ask()
                                     if item_confirm:
                                         self.equip_item(item_select)
                                         printc(f'Equipped: [bold white]{item_select}[/bold white] ---> [bold green]Protection {itemENC.healthProt}[/bold green]')
@@ -94,10 +102,6 @@ class player:
                                     else:
                                         continue
     
-                            
-
-
-
                 elif options_choice == 'Drop item':
                     #drop_confirm = questionary.confirm(f"Drop {item_select}?").ask()
                         #if drop_confirm:
@@ -115,23 +119,27 @@ class player:
         for itemENC in self.inventoryENC:
             if itemENC.name == item:
                 if itemENC.category == 'item' or itemENC.category == 'weapon':
-                    if self.item_equippedDEC == None:
+                    if self.item_equippedDEC == 'None':
                         self.item_equippedDEC = itemENC.name
                         self.item_equippedENC = itemENC
                         self.inventoryENC.remove(itemENC)
                         self.inventoryDEC.remove(itemENC.name)
+                        self.total_equipped.append(self.item_equippedDEC)
 
                     else:
                         self.inventoryDEC.append(self.item_equippedDEC)
                         self.inventoryENC.append(self.item_equippedENC)
+                        self.total_equipped.remove(self.item_equippedDEC)
                         self.item_equippedDEC = itemENC.name
                         self.item_equippedENC = itemENC
                         self.inventoryENC.remove(itemENC)
                         self.inventoryDEC.remove(itemENC.name)
+                        self.total_equipped.append(self.item_equippedDEC)
 
                 elif itemENC.category == 'armour':
                         self.armour_equippedENC.append(itemENC)
                         self.armour_equippedDEC.append(itemENC.name)
+                        self.total_equipped.append(itemENC.name)
                         self.inventoryENC.remove(itemENC)
                         self.inventoryDEC.remove(itemENC.name)
 
@@ -146,17 +154,10 @@ class player:
                 continue
 
     def unequip_item(self, item):
-        for itemENC in self.inventoryENC:
-            if itemENC == item:
-                self.inventory.append(itemENC.name)
-                if itemENC.category == 'armour':
-                    self.armour_equippedDEC = None
-                else:
-                    self.item_equippedDEC = None
-
-            else:
-                continue
-
+        #add item back to both inventory ENC and DEC (do NOT use self.add_item, do it manually)
+        #remove equipped items from self.item_equippedENC and DEC (by making them equal to 'None')
+        #remove equipped armour from armour equipped list
+        pass
 
     def add_item(self, item):
             self.inventoryENC.append(item)
