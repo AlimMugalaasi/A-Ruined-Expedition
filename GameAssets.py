@@ -14,8 +14,8 @@ class player:
         self.inventoryMaxCapacity = 25 #not final
         self.item_equippedDEC = None
         self.item_equippedENC = None
-        self.armour_equippedDEC = None
-        self.armour_equippedENC = None
+        self.armour_equippedDEC = []
+        self.armour_equippedENC = []
         self.HP = 100
         self.Alive = True
         self.completed_areas = []
@@ -69,17 +69,22 @@ class player:
                                     continue
                                 else:
                                     continue
-                            '''
+                            
                             elif itemENC.category == 'armour':
-                                item_confirm = questionary.confirm(f"equip {item_select}?").ask()
-                                if item_confirm:
-                                    self.equip_item(item_select)
-                                    printc(f'Equipped: [bold white]{item_select}[/bold white] ---> [bold green]{itemENC.healthProt}Protection[/bold green]')
+                                if len(self.armour_equippedDEC) >=3:
+                                    printc('Cannot equip more than 3 items of armour. Please Unequip one first!', 'bold red')
                                     questionary.press_any_key_to_continue().ask()
                                     continue
                                 else:
-                                    continue
-                            '''
+                                    item_confirm = questionary.confirm(f"equip {item_select}?").ask()
+                                    if item_confirm:
+                                        self.equip_item(item_select)
+                                        printc(f'Equipped: [bold white]{item_select}[/bold white] ---> [bold green]{itemENC.healthProt}Protection[/bold green]')
+                                        questionary.press_any_key_to_continue().ask()
+                                        continue
+                                    else:
+                                        continue
+                            
 
 
 
@@ -97,11 +102,9 @@ class player:
         print(self.item_equippedDEC) # FOR TESTING ONLY
 
     def equip_item(self, item):
-        #Need to add the option for using health (that increases HP)
-        #need to make armour able to stack to i think like 3 pieces
         for itemENC in self.inventoryENC:
             if itemENC.name == item:
-                if itemENC.category != 'armour':
+                if itemENC.category == 'item' or itemENC.category == 'weapon':
                     if self.item_equippedDEC == None:
                         self.item_equippedDEC = itemENC.name
                         self.item_equippedENC = itemENC
@@ -117,21 +120,18 @@ class player:
                         self.inventoryDEC.remove(itemENC.name)
 
                 elif itemENC.category == 'armour':
-                    if self.armour_equippedDEC == None:
-                        self.armour_equippedDEC = itemENC.name
-                        self.armour_equippedENC = itemENC
+                        self.armour_equippedENC.append(itemENC)
+                        self.armour_equippedDEC.append(itemENC.name)
                         self.inventoryENC.remove(itemENC)
                         self.inventoryDEC.remove(itemENC.name)
 
-                    else:
-                        self.inventoryDEC.append(self.armour_equippedDEC)
-                        self.inventoryENC.append(self.armour_equippedENC)
-                        self.armour_equippedDEC = itemENC.name
-                        self.armour_equippedENC = itemENC
-                        self.inventoryENC.remove(itemENC)
-                        self.inventoryDEC.remove(itemENC.name)
-                for itemtest in self.inventoryENC:
-                    print(itemtest.name)
+                elif itemENC.category == 'health':
+                    self.heal(itemENC.health)
+                    self.inventoryENC.remove(itemENC)
+                    self.inventoryDEC.remove(itemENC.name)
+
+
+
             else:
                 continue
 
@@ -172,9 +172,9 @@ class player:
         
 
     def take_damage(self, damage):
-        if len(self.armour_equippedDEC) > 0:
+        if len(self.armour_equippedENC) > 0:
             damage_decrease = 0
-            for armour in self.armour_equippedDEC:
+            for armour in self.armour_equippedENC:
                 damage_decrease += armour.healthProt
 
             damage -= damage_decrease
@@ -186,10 +186,11 @@ class player:
             self.Alive = False
 
         self.kill_check()
-        pass
 
     def heal(self, health):
         self.HP += health
+        if self.HP > 100:
+            self.HP = 100
 
     def update_active_SQ(self, SQ):
         self.activeSQ = SQ
