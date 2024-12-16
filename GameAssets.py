@@ -10,7 +10,7 @@ class player:
         self.current_area = 'A1'
         self.current_zone = 'Z1'
         self.inventoryENC = []
-        self.inventoryDEC = ['<--BACK']
+        self.inventoryDEC = ['<--BACK', 'EQUIPPED']
         self.inventoryMaxCapacity = 25 #not final
         self.item_equippedDEC = None
         self.item_equippedENC = None
@@ -30,9 +30,12 @@ class player:
         while True:
             clr()
             printc('INVENTORY', 'underline green bold italic')
-            item_select = questionary.select("Select An item to see further options, or select <--BACK to close inventory\n", choices=self.inventoryDEC, qmark='>').ask()
+            item_select = questionary.select("Select An item to see further options. Select EQUIPPED to see options for equipped items.\n", choices=self.inventoryDEC, qmark='>').ask()
             if item_select =='<--BACK':
                 break
+            #elif item_select == 'EQUIPPED':
+                #output currently equipped item and give the choice to unequip it. also output the items of armour and give options to unequip them.
+                #Maybe show HP here too? or, when inventory is opened initially?
             
             else:
                 for itemENC in self.inventoryENC:
@@ -50,14 +53,20 @@ class player:
                         if itemENC.name == item_select:
 
                             if itemENC.category == 'item' or itemENC.category == 'weapon':
-                                item_confirm = questionary.confirm(f"Equip {item_select}?").ask()
-                                if item_confirm:
-                                    self.equip_item(item_select)
-                                    printc(f'Item equipped: [bold green]{item_select}[/bold green]')
+
+                                if len(self.inventoryDEC) >= self.inventoryMaxCapacity:
+                                    printc(f'Cannot equip more than {self.inventoryMaxCapacity} items of armour. Please Unequip one first!', 'bold red')
                                     questionary.press_any_key_to_continue().ask()
-                                    continue
+                                
                                 else:
-                                    continue
+                                    item_confirm = questionary.confirm(f"Equip {item_select}?").ask()
+                                    if item_confirm:
+                                        self.equip_item(item_select)
+                                        printc(f'Item equipped: [bold green]{item_select}[/bold green]')
+                                        questionary.press_any_key_to_continue().ask()
+                                        continue
+                                    else:
+                                        continue
 
 
                             elif itemENC.category == 'health':
@@ -84,6 +93,7 @@ class player:
                                         continue
                                     else:
                                         continue
+    
                             
 
 
