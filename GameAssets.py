@@ -9,9 +9,10 @@ class player:
         self.position = position
         self.current_area = 'A1'
         self.current_zone = 'Z1'
+        self.number_of_bandaids = 0
         self.inventoryENC = []
         self.inventoryDEC = ['<--BACK', 'EQUIPPED']
-        self.inventoryMaxCapacity = 25 #not final
+        self.inventoryMaxCapacity = 10
         self.item_equippedDEC = 'None'
         self.item_equippedENC = 'None'
         self.armour_equippedDEC = []
@@ -61,9 +62,8 @@ class player:
                         if itemENC.name == item_select:
 
                             if itemENC.category == 'item' or itemENC.category == 'weapon':
-
                                 if len(self.inventoryDEC) >= self.inventoryMaxCapacity:
-                                    printc(f'Cannot equip more than {self.inventoryMaxCapacity} items of armour. Please Unequip one first!', 'bold red')
+                                    printc(f'Cannot carry more than {self.inventoryMaxCapacity} items. Please drop/use one first!', 'bold red')
                                     questionary.press_any_key_to_continue().ask()
                                 
                                 else:
@@ -113,10 +113,10 @@ class player:
                             #continue
                     continue
 
-        print(self.item_equippedDEC) # FOR TESTING ONLY
-
     def equip_item(self, item):
+
         for itemENC in self.inventoryENC:
+            #TRYING TO DECREASE THE NUMBER OF BANDAIDS STATEMENT IN INVENTORY --> CODE IS IN TESTSPACE2
             if itemENC.name == item:
                 if itemENC.category == 'item' or itemENC.category == 'weapon':
                     if self.item_equippedDEC == 'None':
@@ -143,10 +143,10 @@ class player:
                         self.inventoryENC.remove(itemENC)
                         self.inventoryDEC.remove(itemENC.name)
 
-                elif itemENC.category == 'health':
-                    self.heal(itemENC.health)
-                    self.inventoryENC.remove(itemENC)
-                    self.inventoryDEC.remove(itemENC.name)
+                elif itemENC.category == 'health':  
+                        self.heal(itemENC.health)
+                        self.inventoryENC.remove(itemENC)
+                        self.inventoryDEC.remove(itemENC.name)
 
             else:
                 continue
@@ -170,6 +170,26 @@ class player:
         
 
     def add_item(self, item):
+        if item.name == 'BandAid':
+            if self.number_of_bandaids == 0:
+                self.number_of_bandaids = 1
+                self.inventoryDEC.append(f'BandAid ×{self.number_of_bandaids}')
+            else:
+                self.number_of_bandaids += 1
+                for i, inventory_item in enumerate(self.inventoryDEC):
+                    if inventory_item.startswith('BandAid'):
+                        self.inventoryDEC[i] = f'BandAid ×{self.number_of_bandaids}'
+                        break
+
+            printc(f'[bold green]+1 BandAid[/bold green]')
+            print(' ')
+            questionary.press_any_key_to_continue(message='Press any key to dismiss...').ask()
+            clrline()
+            clrline()
+            clrline()
+
+
+        else:
             self.inventoryENC.append(item)
             printc(f'[bold green]New item: {item.name}[/bold green]')
             self.inventoryDEC.append(item.name)
@@ -307,6 +327,11 @@ item4 = item('key5', 'item')
 item5 = item('key6', 'item')
 item6 = armour('Iron Chestplate', 'armour', 10)
 item7 = armour('Sheild', 'armour', 15)
+item8 = armour('Helmet', 'armour', 20)
+item9 = armour('chainmail chestplate', 'armour', 10)
+item10 = health('BandAid', 'health', 10)
+item11 = health('BandAid', 'health', 10)
+
 
 
 player1.add_item(item1)
@@ -316,5 +341,10 @@ player1.add_item(item4)
 player1.add_item(item5)
 player1.add_item(item6)
 player1.add_item(item7)
+player1.add_item(item8)
+player1.add_item(item9)
+player1.add_item(item10)
+player1.add_item(item11)
 
 player1.open_inventory()
+
