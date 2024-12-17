@@ -148,31 +148,26 @@ class player:
                     self.inventoryENC.remove(itemENC)
                     self.inventoryDEC.remove(itemENC.name)
 
-
-
             else:
                 continue
 
     def unequip_item(self, item):
-        input('hi brgin') #TST
-        if self.item_equippedENC != 'None':
-            if self.item_equippedENC.category != 'armour':
-                self.inventoryENC.append(self.item_equippedENC)
-                self.inventoryDEC.append(self.item_equippedDEC)
-                self.total_equipped.remove(self.item_equippedDEC)
-                self.item_equippedENC = 'None'
-                self.item_equippedDEC = 'None'
-                input('middle') #TST
-        else: #ERROR: Code doesnt go here!!
-            for armourENC in self.armour_equippedENC:
-                if armourENC == item:
-                    self.inventoryENC.append(armourENC)
-                    self.inventoryDEC.append(armourENC.name)
-                    self.total_equipped.remove(armourENC.name)
-                    self.armour_equippedENC.remove(armourENC)
-                    self.armour_equippedDEC.remove(armourENC.name)
+        for armourENC in self.armour_equippedENC:
+            if armourENC.name == item:
+                self.inventoryENC.append(armourENC)
+                self.inventoryDEC.append(armourENC.name)
+                self.total_equipped.remove(armourENC.name)
+                self.armour_equippedENC.remove(armourENC)
+                self.armour_equippedDEC.remove(armourENC.name)
+                return
 
-                    input('hi armour') #TST
+        if self.item_equippedENC.category != 'None':    
+            self.inventoryENC.append(self.item_equippedENC)
+            self.inventoryDEC.append(self.item_equippedDEC)
+            self.total_equipped.remove(self.item_equippedDEC)
+            self.item_equippedENC = 'None'
+            self.item_equippedDEC = 'None'
+        
 
     def add_item(self, item):
             self.inventoryENC.append(item)
