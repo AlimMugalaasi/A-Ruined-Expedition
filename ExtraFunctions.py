@@ -24,6 +24,7 @@ def type(line, style=None, speed=None):
             sleep(speed)
     return ''
 
+#Using rich to sylise text
 def printc(string, style=None):
     if style is None:
         console.print(string, style='white' )
@@ -40,6 +41,7 @@ def clrline():
 def clr():
     os.system('clear')
 
+#simulating loading
 def ld(counts=None):
     clr()
     if counts is None:
