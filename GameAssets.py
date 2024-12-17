@@ -32,7 +32,7 @@ class player:
         while True:
             clr()
             printc('INVENTORY', 'underline green bold italic')
-            item_select = questionary.select("Select An item to see further options. Select EQUIPPED to see options for equipped items.\n", choices=self.inventoryDEC, qmark='>').ask()
+            item_select = questionary.select("Select an item to see further options. Select EQUIPPED to see options for equipped items.\n", choices=self.inventoryDEC, qmark='>').ask()
             if item_select =='<--BACK':
                 break
             elif item_select == 'EQUIPPED':
@@ -56,11 +56,22 @@ class player:
 
                 if options_choice == '<--BACK':
                     continue
-
+#EQUIPPING BANDAIDS-----
                 elif options_choice == 'Equip/Use item':
+                    if item_select.startswith('BandAid'):
+                        item_confirm = questionary.confirm(f"Use a Band-Aid?").ask()
+                        if item_confirm:
+                            self.equip_item(item_select)
+                            printc(f'Used: [bold white]BandAid[/bold white] ---> [bold green]+10 HP[/bold green]')
+                            questionary.press_any_key_to_continue().ask()
+                            continue
+                        else:
+                            continue
+
+
                     for itemENC in self.inventoryENC:
                         if itemENC.name == item_select:
-
+#ITEMS AND WEAPONS-----
                             if itemENC.category == 'item' or itemENC.category == 'weapon':
                                 if len(self.inventoryDEC) >= self.inventoryMaxCapacity:
                                     printc(f'Cannot carry more than {self.inventoryMaxCapacity} items. Please drop/use one first!', 'bold red')
@@ -75,8 +86,7 @@ class player:
                                         continue
                                     else:
                                         continue
-
-
+#OTHER HEALTH ITEMS--------                                     
                             elif itemENC.category == 'health':
                                 item_confirm = questionary.confirm(f"Use {item_select}?").ask()
                                 if item_confirm:
@@ -86,7 +96,7 @@ class player:
                                     continue
                                 else:
                                     continue
-                            
+#ARMOUR ITEMS-------------------                           
                             elif itemENC.category == 'armour':
                                 if len(self.armour_equippedDEC) >=3:
                                     printc('Cannot equip more than 3 items of armour. Please Unequip one first!', 'bold red')
@@ -103,9 +113,10 @@ class player:
                                         continue
     
                 elif options_choice == 'Drop item':
+                    #DONT ALLOW TO DROP A BANDAID
                     #drop_confirm = questionary.confirm(f"Drop {item_select}?").ask()
                         #if drop_confirm:
-                            #self.drop_item(item_select)
+                            #self.drop_item(item_select) - will have to remove from inventory ENC + DEC
                             #printc(f'{item_select} dropped in position {position of where it was dropped}.')
                             #questionary.press_any_key_to_continue().ask()
                             #continue
@@ -114,9 +125,25 @@ class player:
                     continue
 
     def equip_item(self, item):
+        for itemDEC in self.inventoryDEC:
+            if itemDEC.startswith('BandAid'):
+                self.heal(10)
+                if self.number_of_bandaids > 0:
+                    self.number_of_bandaids -= 1
+
+                    for i, inventory_item in enumerate(self.inventoryDEC):
+                        if inventory_item.startswith('BandAid'):
+                            if self.number_of_bandaids == 0:
+                                self.inventoryDEC.pop(i)
+                            else:
+                                self.inventoryDEC[i] = f'BandAid ×{self.number_of_bandaids}'
+                            break
+                    
+                else: #Code shouldnt go here
+                    printc('[bold yellow]No BandAids left to use![/bold yellow]')
+                    questionary.press_any_key_to_continue(message='Press any key to dismiss...').ask()
 
         for itemENC in self.inventoryENC:
-            #TRYING TO DECREASE THE NUMBER OF BANDAIDS STATEMENT IN INVENTORY --> CODE IS IN TESTSPACE2
             if itemENC.name == item:
                 if itemENC.category == 'item' or itemENC.category == 'weapon':
                     if self.item_equippedDEC == 'None':
