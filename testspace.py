@@ -63,11 +63,52 @@ game_world.append[(2,1):'lake']
 
 #---------------------------------------
 
-testList = ['CLOSE','a', 'b','c', 'd', 'e', 'f']
+'''
 
-    
+from ExtraFunctions import type, clr, clrline
+import questionary, sys
 
-    
+clr()
 
-questionary.select("Select An item to equip it, or select CLOSE to close inventory", choices=testList).ask()
+line1 = 'CHARLIE: this is an example'
+line2 = 'are you sure?'
+line3 = 'yes. I am SURE this is an example'
+conversation = []
+conversation.append(line1)
+conversation.append(line2)
+conversation.append(line3)
+
+
+countA = 0
+countB = 1
+
+outOfRangeA = False
+outOfRangeB = False
+
+while True:
+    if outOfRangeA == True:
+        break
+    else:
+        type(conversation[countA])
+        countA += 2
+        print(' ')
+        questionary.press_any_key_to_continue().ask()
+        clrline()
+        print(' ')
+        if countA > (len(conversation) -1):
+            outOfRangeA = True
+
+    if outOfRangeB == True:
+        break
+    else:
+        type(conversation[countB])
+        countB += 2
+        print(' ')
+        questionary.press_any_key_to_continue().ask()
+        clrline()
+        print(' ')
+        if countB > (len(conversation) -1):
+            outOfRangeB = True
+
+            '''
 

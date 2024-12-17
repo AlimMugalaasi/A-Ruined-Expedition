@@ -3,7 +3,7 @@ console = Console()
 from rich.text import Text
 from time import sleep
 import sys, os
-import random
+import random, questionary
 from rich.progress import track
 
 #---------------------------------------------------------------------------------
@@ -51,3 +51,9 @@ def ld(counts=None):
         sleep(timing)
     sleep(0.3)
     clr()
+
+#Adding a new line in a conversation
+def newline():
+    questionary.press_any_key_to_continue().ask()
+    clrline()
+    print(' ')
