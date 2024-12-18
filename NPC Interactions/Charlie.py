@@ -7,7 +7,7 @@ from ExtraFunctions import type, newline, clr
 
 #------------------------------------------------------
 clr() #TST
-def start_interaction():
+def start_interaction1():
     type('CHARLIE: ', 'bold')
     type('Hey there! ', ' italic green')
     type('It seems you would like to pass over this ')
@@ -40,4 +40,28 @@ def start_interaction():
     type('Whatever...\n')
     newline()
 
-start_interaction()
+def start_interaction2(): #maybe re-write??
+    type('CHARLIE: ', 'bold')
+    type('Oh, you actually found it...\n')
+    newline()
+
+    type('CHARLIE: ', 'bold')
+    type('I really thought I had lost that key- No one was going over that bridge any time soon...\n')
+    newline()
+
+    type('YOU: ', 'bold')
+    type('Well there it is. Also, you should try not to misplace the key to the only way for people to navigate across this place...\n')
+    newline()
+
+    type('CHARLIE: ', 'bold')
+    type('Yeah... thanks again friend!\n')#NEEDS EDITING
+    newline()
+
+    type('YOU: ', 'bold')
+    type('(Confused) Sure...\n')
+    newline()
+
+
+start_interaction2()
+
+
