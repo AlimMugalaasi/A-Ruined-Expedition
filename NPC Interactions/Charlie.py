@@ -9,13 +9,13 @@ from ExtraFunctions import type, newline, clr
 clr() #TST
 def start_interaction1():
     type('CHARLIE: ', 'bold')
-    type('Hey there! ', ' italic green')
+    type('Hey there stranger! ', ' italic green')
     type('It seems you would like to pass over this ')
     type('bridge...\n', 'italic blue')
     newline()
 
     type('CHARLIE: ', 'bold')
-    type('Let me just look for the key- \n')
+    type("I'm the owner, Charlie. Let me just look for the key- \n")
     newline()
 
     type('CHARLIE: ', 'bold')
@@ -23,7 +23,7 @@ def start_interaction1():
     newline()
 
     type('CHARLIE: ', 'bold')
-    type("Do you think you could get it for me? I don't really feel like moving...\n")
+    type("Do you think you could get it for me?\n")
     newline()
 
     type('YOU: ', 'bold')
@@ -33,35 +33,38 @@ def start_interaction1():
     type('CHARLIE: ', 'bold')
     type('Oh yeah... Anyway, here is the ')
     type('key ', 'bold yellow')
-    type('to my house. Thanks very much!\n')
+    type('to my house.\n')
     newline()
 
-    type('YOU: ', 'bold')
-    type('Whatever...\n')
-    newline()
-
-def start_interaction2(): #maybe re-write??
+def start_interaction2():
     type('CHARLIE: ', 'bold')
     type('Oh, you actually found it...\n')
     newline()
 
     type('CHARLIE: ', 'bold')
-    type('I really thought I had lost that key- No one was going over that bridge any time soon...\n')
-    newline()
-
-    type('YOU: ', 'bold')
-    type('Well there it is. Also, you should try not to misplace the key to the only way for people to navigate across this place...\n')
+    type('I really thought I had lost that key- I would have been in deep trouble with the authorities had I not found it.\n')
     newline()
 
     type('CHARLIE: ', 'bold')
-    type('Yeah... thanks again friend!\n')#NEEDS EDITING
+    type('Thank you so much! I owe you one.\n')
+    newline()
+
+def start_interaction3():
+    type('CHARLIE: ', 'bold')
+    type('Hey stranger! ', 'italic')
+    type('Over here!\n')
     newline()
 
     type('YOU: ', 'bold')
-    type('(Confused) Sure...\n')
+    type('Charlie?\n', 'bold blue')
     newline()
 
+    type('CHARLIE: ', 'bold')
+    type('Yes, its me. Remember when I told you I owed you one?\n')
+    newline()
 
-start_interaction2()
+    type('CHARLIE: ', 'bold')
+    type('Yeah...\n')
+    newline()
 
-
+    #TBC
