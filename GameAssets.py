@@ -1,6 +1,6 @@
 from ExtraFunctions import printc, clr, sleep, type, ld, clrline
 import questionary
-
+import NPCInteractions.Charlie as Charlie
 #-------------------------------------------------------PLAYER
 
 class player:
@@ -217,15 +217,28 @@ class player:
 
 
         else:
-            self.inventoryENC.append(item)
-            printc(f'[bold green]New item: {item.name}[/bold green]')
-            self.inventoryDEC.append(item.name)
-            print(' ')
-            questionary.press_any_key_to_continue(message='Press any key to dismiss...').ask()
-            clrline()
-            clrline()
-            clrline()
-        
+            #if len(self.inventoryDEC) >= self.inventory_max_capacity:
+                self.inventoryENC.append(item)
+                printc(f'[bold green]New item: {item.name}[/bold green]')
+                self.inventoryDEC.append(item.name)
+                print(' ')
+                questionary.press_any_key_to_continue(message='Press any key to dismiss...').ask()
+                clrline()
+                clrline()
+                clrline()
+            #else:
+                '''
+                self.drop_item(item)
+                printc(f'[bold red]Dropped item: {item.name} (Inventory at max capacity)[/bold red]')
+                self.inventoryENC.append(item)
+                printc(f'[bold green]New item: {item.name}[/bold green]')
+                self.inventoryDEC.append(item.name)
+                print(' ')
+                questionary.press_any_key_to_continue(message='Press any key to dismiss...').ask()
+                clrline()
+                clrline()
+                clrline()
+                '''
     def win(self):
         #WIN SEQENCE - PROGRAMME IS QUIT FROM HERE
         pass
@@ -353,11 +366,14 @@ class entity:
         self.approachable = False
         
 class NPC(entity):
-    def __init__(self, name, position):
+    def __init__(self, name, position, interactions):
         super().__init__(name, position)
+        self.interactions = interactions
 
-    def interact(self):
-        #output interaction
-        pass
+    def interact(self, interact_number):
+        self.interactions[interact_number-1]()
 
 
+#TST
+
+NPC_Charlie = NPC('Charlie', 'POS', [Charlie.start_interaction1, Charlie.start_interaction2])

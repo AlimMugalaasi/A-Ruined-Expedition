@@ -19,22 +19,32 @@ def start_interaction1():
     newline()
 
     type('CHARLIE: ', 'bold')
-    type('Hmm... It seems like I may have left the key at my house...\n')
+    type("OH NO! I CAN'T FIND THE KEY!\n", 'bold yellow')
     newline()
 
     type('CHARLIE: ', 'bold')
-    type("Do you think you could get it for me?\n")
+    type("If that key is really lost I am going to be in deep trouble with the ")
+    type('authorities...\n', 'italic red')
     newline()
 
     type('YOU: ', 'bold')
-    type('Well... Its not like I have a choice, do I.\n')
+    type('Maybe I can help?\n')
     newline()
 
     type('CHARLIE: ', 'bold')
-    type('Oh yeah... Anyway, here is the ')
-    type('key ', 'bold yellow')
-    type('to my house.\n')
+    type("Really? I would be really grateful if you could. That key could be anywhere and I'm not as agile as you.\n")
     newline()
+
+    type('CHARLIE: ', 'bold')
+    type("Here is the ")
+    type('key ', 'bold yellow')
+    type('to my house. If it is anywhere, it should be somewhere in there.\n')
+    newline()
+
+    type('CHARLIE: ', 'bold')
+    type('Thanks again stranger!\n')
+    newline()
+
 
 def start_interaction2():
     type('CHARLIE: ', 'bold')
@@ -42,29 +52,17 @@ def start_interaction2():
     newline()
 
     type('CHARLIE: ', 'bold')
-    type('I really thought I had lost that key- I would have been in deep trouble with the authorities had I not found it.\n')
+    type('I really thought I had lost that key- I would have been in deep trouble with the ')
+    type('authorities ', 'italic red')
+    type('had I not found it. Thank you so much!\n')
     newline()
 
     type('CHARLIE: ', 'bold')
-    type('Thank you so much! I owe you one.\n')
-    newline()
-
-def start_interaction3():
-    type('CHARLIE: ', 'bold')
-    type('Hey stranger! ', 'italic')
-    type('Over here!\n')
+    type('Here. Take this ')
+    type('spear', 'bold green')
+    type(". There aren't many nice people around here...\n")
     newline()
 
     type('YOU: ', 'bold')
-    type('Charlie?\n', 'bold blue')
+    type("Thanks Charlie, I'm sure this will be of great use. Keep that key safe.\n")
     newline()
-
-    type('CHARLIE: ', 'bold')
-    type('Yes, its me. Remember when I told you I owed you one?\n')
-    newline()
-
-    type('CHARLIE: ', 'bold')
-    type('Yeah...\n')
-    newline()
-
-    #TBC
