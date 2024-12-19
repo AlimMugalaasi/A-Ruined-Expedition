@@ -15,7 +15,7 @@ def start_interaction1():
     newline()
 
     type('CHARLIE: ', 'bold')
-    type("I'm the owner, Charlie. Let me just look for the key- \n")
+    type("I'm the guard, Charlie. Let me just look for the key- \n")
     newline()
 
     type('CHARLIE: ', 'bold')
