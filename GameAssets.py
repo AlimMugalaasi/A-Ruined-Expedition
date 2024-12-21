@@ -376,4 +376,4 @@ class NPC(entity):
 
 #TST
 
-NPC_Charlie = NPC('Charlie', 'POS', [Charlie.start_interaction1, Charlie.start_interaction2])
+NPC_Charlie = NPC('Charlie', 'POS', [Charlie.interaction1, Charlie.interaction2])

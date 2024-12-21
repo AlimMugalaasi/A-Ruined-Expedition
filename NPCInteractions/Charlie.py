@@ -7,7 +7,7 @@ from ExtraFunctions import type, newline, clr
 
 #------------------------------------------------------
 clr() #TST
-def start_interaction1():
+def interaction1():
     type('CHARLIE: ', 'bold')
     type('Hey there stranger! ', ' italic green')
     type('It seems you would like to pass over this ')
@@ -46,7 +46,7 @@ def start_interaction1():
     newline()
 
 
-def start_interaction2():
+def interaction2():
     type('CHARLIE: ', 'bold')
     type('Oh, you actually found it...\n')
     newline()

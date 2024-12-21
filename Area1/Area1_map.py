@@ -21,7 +21,7 @@ def A1Z1_lckSQ1():
                              │      ┌ ┐                                              
                              │       [bold red]![/bold red]                                               
                              │      └ ┘                                              
-         [bold green]START[/bold green]├──────────────┴──────────  ─  ─  ─  ─  ─────┬────────────┤►           
+         [bold green]START[/bold green]├──────────────A──────────  ─  ─  ─  ─  ─────B────────────┤►           
                                                            │                         
                                                            │                         
                                                            │                         
@@ -30,7 +30,41 @@ def A1Z1_lckSQ1():
                                              [bold yellow]CHEST[/bold yellow]├────────┘                         
                                                                                      
                                                                  
-''')
+    ''')
+    
+def A1Z1_uckSQ1():
+    printc('''
+                                                                    
+                           HOUSE                                                     
+                             ┬                                                       
+                             │      ┌ ┐                                              
+                             │       [bold red]![/bold red]                                               
+                             │      └ ┘                                              
+         [bold green]START[/bold green]├──────────────A─────────────────────────────B────────────┤►           
+                                                           │                         
+                                                           │                         
+                                                           │                         
+                                                           │                         
+                                                           │                         
+                                             [bold yellow]CHEST[/bold yellow]├────────┘                         
+                                                                                     
+                                                                 
+    ''')
+    
+
+def A1Z1_House():
+    print('''
+    
+                                                     
+                      DESK                       
+                        ┬                        
+                        │                        
+                        │                 BED    
+ DOOR ►├────────────────A───────────────┤        
+                                          DRAWER 
+                                                 
+    
+    ''')
                                                                                   
                                                                                   
                                                                                   

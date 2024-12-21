@@ -2,10 +2,9 @@ from rich.console import Console
 console = Console()
 from rich.text import Text
 from time import sleep
-import sys, os
+import sys, os, termios, tty
 import random, questionary
 from rich.progress import track
-
 #---------------------------------------------------------------------------------
 
 #Function that creates a typewriter animation for printing strings
@@ -57,3 +56,24 @@ def newline():
     questionary.press_any_key_to_continue().ask()
     clrline()
     print(' ')
+
+#Detecting a keypress (Without causing problems related to OS - which is why I had to source this)
+def get_key_unix():
+    fd = sys.stdin.fileno()
+    old_settings = termios.tcgetattr(fd)
+    try:
+        tty.setraw(sys.stdin.fileno())
+        ch = sys.stdin.read(1)
+    finally:
+        termios.tcsetattr(fd, termios.TCSADRAIN, old_settings)
+    return ch
+
+def get_key_windows():
+    import msvcrt
+    return msvcrt.getch().decode('utf-8')
+
+def get_key():
+    if os.name == 'nt':
+        return get_key_windows()
+    else:
+        return get_key_unix()
