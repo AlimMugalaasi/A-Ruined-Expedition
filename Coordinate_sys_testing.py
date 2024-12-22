@@ -1,8 +1,10 @@
 import os;import questionary, GameAssets
 os.system('clear')
-from ExtraFunctions import get_key, clrline
+from Functions import get_key, clrline
 
-'''                                                          
+def test_map():
+    print(
+        '''                                                          
                    HOUSE                                           
                      ┬                                             
                      │      ┌ ┐                                    
@@ -16,6 +18,9 @@ from ExtraFunctions import get_key, clrline
                                                    │               
                                      CHEST├────────┘               
 '''                                      
+    )
+
+
 
 CRD_A1Z1lckSQ1 = {
     (0, 0): "Start",
@@ -47,7 +52,7 @@ def move_player(direction):
     else:
         return
 
-# Test the movement
+# TO BE MOVED TO EXTRA FUNCTIONS
 def move_input():
     print("-WASD to move-\n")
     print('Position: Start')

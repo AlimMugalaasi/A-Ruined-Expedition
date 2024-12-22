@@ -1,4 +1,4 @@
-from ExtraFunctions import type
+from Functions import type
 
 def areaNav_ulckA1():
     type('''

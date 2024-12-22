@@ -4,7 +4,7 @@ import pyfiglet
 from time import sleep
 from rich.console import Console
 console = Console()
-from ExtraFunctions import type, printc, clrline, clr, ld
+from Functions import type, printc, clrline, clr, ld
 import AreaNavigation as anv
 import questionary, random, GameAssets
 from rich.progress import track

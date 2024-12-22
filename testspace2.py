@@ -1,4 +1,4 @@
-from ExtraFunctions import get_key
+from Functions import get_key
 
 def move_input():
     print("-WASD to move-")
