@@ -354,7 +354,7 @@ class side_quest:
         self.active = False
         player.activeSQ = None
 
-#-------------------------------------------------------ENTITIES
+#-------------------------------------------------------ENTITIES & BOSSES
 
 class entity:
     def __init__(self, name, position):
@@ -373,7 +373,28 @@ class NPC(entity):
     def interact(self, interact_number):
         self.interactions[interact_number-1]()
 
+#---------------------------------------------------------POSITIONS
+
+class position:
+    def __init__(self, name, code):
+        self.name = name
+        self.code = code
+
+#---------------------------------------------------------LOADING ALL ASSETS
+Player = player('None', 'None')
+
+#AREA 1 POSITONS
+A1Z1_Start = position('Start', 'A1Z1-Start')
+A1Z1_House = position('House', 'A1Z1-House')
+A1Z1_a = position('A', 'A1Z1-A')
+A1Z1_BridgeLCK = position('[!]', 'A1Z1-BridgeLCK')
+A1Z1_b = position('B', 'A1Z1-B')
+A1Z1_c = position('C', 'A1Z1-C')
+A1Z1_Chest = position('Chest', 'A1Z1-Chest')
+
+
 
 #TST
 
-NPC_Charlie = NPC('Charlie', 'POS', [Charlie.interaction1, Charlie.interaction2])
+NPC_Charlie = NPC('Charlie', 'Bridge', [Charlie.interaction1, Charlie.interaction2])
+

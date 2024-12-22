@@ -6,7 +6,7 @@ from rich.console import Console
 console = Console()
 from Functions import type, printc, clrline, clr, ld
 import AreaNavigation as anv
-import questionary, random, GameAssets
+import questionary, random
 from rich.progress import track
 #----------------------------------------------------------------------------------TITLE SCREEN AND STORYLINE
 clr()
@@ -72,4 +72,6 @@ for i in track(range(100), description=printc('LOADING GAME ASSETS...', 'bold gr
     sleep(timing)
 sleep(0.1)
 
+import GameAssets
+GameAssets.Player.name = player_name
 #-----------------------------------------------------------------------------------------GAME SEQUENCE
