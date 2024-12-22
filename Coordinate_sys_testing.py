@@ -1,9 +1,9 @@
 import os;import questionary, GameAssets
 os.system('clear')
-from Functions import get_key, clrline
+from Functions import get_key, clrline, printc, clr
 
 def test_map():
-    print(
+    map = (
         '''                                                          
                    HOUSE                                           
                      ┬                                             
@@ -17,8 +17,9 @@ def test_map():
                                                    │               
                                                    │               
                                      CHEST├────────C               
-'''                                      
+'''                  
     )
+    return map
 
 
 
@@ -49,28 +50,46 @@ def move_player(direction, coordinate_sys):
     if new_position in coordinate_sys:
         player_position = new_position
         clrline()
-        print(f"Position: {coordinate_sys[new_position].name}")
-        GameAssets.Player.position = coordinate_sys[new_position].code
+        printc(f"Position: [bold]{coordinate_sys[new_position].name}[/bold]")
+        GameAssets.Player.positionENC = coordinate_sys[new_position]
+        GameAssets.Player.positionDEC = coordinate_sys[new_position].code
     else:
         return
 
 # TO BE MOVED TO FUNCTIONS
-def move_input(startPos):
-    print("-WASD to move-\n")
-    print(f'Position: {startPos}')
+def move_input(map, startPos):
+    global showing_options
+    showing_options = False
     while True:
-        key = get_key()
-        if key == 'W' or key == 'w' or key == 'A' or key == 'a' or key == 'S' or key == 's' or key == 'D' or key == 'd':
-            move_player(key, CRD_A1Z1lckSQ1)
-        elif key == 'E' or key == 'e':
-            GameAssets.player.open_inventory()
-        else:
-            #action check?
-            pass
+        print(map)
+        printc("-WASD to move-\n", 'bold')
+        printc('[bold]I[/bold] - Open inventory\n')
+        printc(f'Position: [bold]{startPos}[/bold]')
+        print(showing_options)
+        if showing_options:
+            print('TRUE') #Trying to sort out clrline so it desplays option neatly
+        
+        while True:
+            if GameAssets.Player.positionDEC != 'None':
+                showing_options = True
+                for action in GameAssets.Player.positionENC.actions:
+                        printc(action, 'bold')
+            key = get_key()
+            if key == 'W' or key == 'w' or key == 'A' or key == 'a' or key == 'S' or key == 's' or key == 'D' or key == 'd':
+                move_player(key, CRD_A1Z1lckSQ1)
+            elif key == 'I' or key == 'i':
+                startPos == GameAssets.Player.positionDEC
+                GameAssets.player.open_inventory(GameAssets.Player)
+                clr()
+                break
+            else:
+                #action check.
+                break
+        continue
 
-test_map()
-move_input('Start')
+move_input(test_map(),'Start')
 
 #game_world.append[(2,1):'lake']
 
 #Action check - function exclusive to each sequence that checks any available actions that the player can do.
+# have the an options attribute for player that is used here too?

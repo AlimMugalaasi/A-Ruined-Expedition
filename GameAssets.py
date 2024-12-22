@@ -6,7 +6,8 @@ import NPCInteractions.Charlie as Charlie
 class player:
     def __init__(self, name, position):
         self.name = name
-        self.position = position
+        self.positionENC = position
+        self.positionDEC = position
         self.current_area = 'A1'
         self.current_zone = 'Z1'
         self.number_of_bandaids = 0
@@ -373,24 +374,25 @@ class NPC(entity):
     def interact(self, interact_number):
         self.interactions[interact_number-1]()
 
-#---------------------------------------------------------POSITIONS
+#---------------------------------------------------------POSITION
 
 class position:
-    def __init__(self, name, code):
+    def __init__(self, name, code, actions):
         self.name = name
         self.code = code
+        self.actions = actions
 
 #---------------------------------------------------------LOADING ALL ASSETS
 Player = player('None', 'None')
 
 #AREA 1 POSITONS
-A1Z1_Start = position('Start', 'A1Z1-Start')
-A1Z1_House = position('House', 'A1Z1-House')
-A1Z1_a = position('A', 'A1Z1-A')
-A1Z1_BridgeLCK = position('[!]', 'A1Z1-BridgeLCK')
-A1Z1_b = position('B', 'A1Z1-B')
-A1Z1_c = position('C', 'A1Z1-C')
-A1Z1_Chest = position('Chest', 'A1Z1-Chest')
+A1Z1_Start = position('Start', 'A1Z1-Start', [])
+A1Z1_House = position('House', 'A1Z1-House', ['E - Enter House'])
+A1Z1_a = position('A', 'A1Z1-A', [])
+A1Z1_BridgeLCK = position('[!]', 'A1Z1-BridgeLCK', ['E - Interact'])
+A1Z1_b = position('B', 'A1Z1-B', [])
+A1Z1_c = position('C', 'A1Z1-C', [])
+A1Z1_Chest = position('Chest', 'A1Z1-Chest', ['E - Open Chest'])
 
 
 
