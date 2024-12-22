@@ -381,6 +381,7 @@ class position:
         self.name = name
         self.code = code
         self.actions = actions
+        self.dropped_items = []
 
 #---------------------------------------------------------LOADING ALL ASSETS
 Player = player('None', 'None')

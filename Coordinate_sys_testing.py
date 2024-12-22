@@ -65,15 +65,13 @@ def move_input(map, startPos):
         printc("-WASD to move-\n", 'bold')
         printc('[bold]I[/bold] - Open inventory\n')
         printc(f'Position: [bold]{startPos}[/bold]')
-        print(showing_options)
-        if showing_options:
-            print('TRUE') #Trying to sort out clrline so it desplays option neatly
         
         while True:
             if GameAssets.Player.positionDEC != 'None':
                 showing_options = True
                 for action in GameAssets.Player.positionENC.actions:
-                        printc(action, 'bold')
+                        printc(f'{action}', 'bold')
+                        clrline()
             key = get_key()
             if key == 'W' or key == 'w' or key == 'A' or key == 'a' or key == 'S' or key == 's' or key == 'D' or key == 'd':
                 move_player(key, CRD_A1Z1lckSQ1)
@@ -91,5 +89,8 @@ move_input(test_map(),'Start')
 
 #game_world.append[(2,1):'lake']
 
-#Action check - function exclusive to each sequence that checks any available actions that the player can do.
-# have the an options attribute for player that is used here too?
+#We have been able to format it so when we are at positions that have extra functions, it shows them.
+#Now we need to programme those extra fucntions for those specific positions
+#Action check was a way but it becomes difficult because its only one function that checks for possible actions for all positions that have actions.
+
+#We also need to be able to pick up dropped items from certain positions (there is a dropped_items attribute in positions)
