@@ -58,8 +58,6 @@ def move_player(direction, coordinate_sys):
 
 # TO BE MOVED TO FUNCTIONS
 def move_input(map, startPos):
-    global showing_options
-    showing_options = False
     while True:
         print(map)
         printc("-WASD to move-\n", 'bold')
@@ -68,7 +66,6 @@ def move_input(map, startPos):
         
         while True:
             if GameAssets.Player.positionDEC != 'None':
-                showing_options = True
                 for action in GameAssets.Player.positionENC.actions:
                         printc(f'{action}', 'bold')
                         clrline()
@@ -81,8 +78,7 @@ def move_input(map, startPos):
                 clr()
                 break
             else:
-                #action check.
-                break
+                pass
         continue
 
 move_input(test_map(),'Start')

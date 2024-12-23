@@ -24,6 +24,7 @@ class player:
         self.completed_areas = []
         self.completed_zones = []
         self.activeSQ = 'None'
+        self.stored_action = 'None'
 
 
     def move(self, position):
@@ -382,6 +383,10 @@ class position:
         self.code = code
         self.actions = actions
         self.dropped_items = []
+
+#---------------------------------------------------------ACTIONS
+
+#Here we will add all possible action functions, such as interactions so we can store them in the store actions attrbute and possibly run them in that way?
 
 #---------------------------------------------------------LOADING ALL ASSETS
 Player = player('None', 'None')
