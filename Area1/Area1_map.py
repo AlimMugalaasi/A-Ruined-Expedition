@@ -13,8 +13,7 @@ from Functions import printc, type
 #   lck/ulck - Barrier side quest locking/unlocking path
 #   SQ1 - Side Quest
 
-def A1Z1_lckSQ1():
-    printc('''
+A1Z1_lckSQ1 = '''
                                                                     
                            HOUSE                                                     
                              ┬                                                       
@@ -30,7 +29,7 @@ def A1Z1_lckSQ1():
                                              [bold yellow]CHEST[/bold yellow]├────────┘                         
                                                                                      
                                                                  
-    ''')
+    '''
     
 def A1Z1_ulckSQ1():
     printc('''

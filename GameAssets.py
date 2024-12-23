@@ -399,6 +399,7 @@ SQ1 = side_quest('SQ1')
 
 #ITEMS------------------
 Charlie_House_key = item("Charlie's House Key", 'item')
+Bridge_key_A1Z1 = item("Bridge Key", 'item')
 
 #NPCs---------------------
 NPC_Charlie = NPC('Charlie', 'Bridge', [Charlie.interaction1, Charlie.interaction2])
