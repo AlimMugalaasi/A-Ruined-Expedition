@@ -57,6 +57,7 @@ def game_A1Z1lckSQ1():
                             GameAssets.NPC_Charlie.interact(2)
                             #Here, bridge key and house key are removed from inventory (player dont need to know)
                             #This can be made as a remove_item function for future use. Player dont need to know!!^^
+                            #Dont forget - player gets a spear here to0! (yet to code this so do it - make the instance first)
                             GameAssets.SQ1.complete_sq(GameAssets.Player)
                         else:
                             GameAssets.NPC_Charlie.interact(3)
@@ -85,3 +86,4 @@ if GameAssets.Player.activeSQ == 'SQ1':
 elif GameAssets.SQ1.complete:
     print('Now Run full unlocked level (charlie goes, house cant go in)')
     
+#DROPPING ITEMS MUST BE DONE BEFORE WE MOVE ON EVEN IF IT WONT HAPPEN HERE
