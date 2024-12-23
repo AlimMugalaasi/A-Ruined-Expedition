@@ -25,10 +25,6 @@ class player:
         self.completed_zones = []
         self.activeSQ = 'None'
         self.stored_action = 'None'
-
-
-    def move(self, position):
-        self.position = position
     
     def open_inventory(self):
         while True:
@@ -344,7 +340,7 @@ class side_quest:
         self.complete = False
 
     def start_sq(self, player):
-        if player.activeSQ == None:
+        if player.activeSQ == 'None':
             player.update_active_SQ(self.code)
             self.active = True
 
@@ -354,7 +350,7 @@ class side_quest:
     def complete_sq(self, player):
         self.complete = True
         self.active = False
-        player.activeSQ = None
+        player.activeSQ = 'None'
 
 #-------------------------------------------------------ENTITIES & BOSSES
 
@@ -387,7 +383,9 @@ class position:
 #---------------------------------------------------------LOADING ALL ASSETS
 Player = player('None', 'None')
 
-#AREA 1 POSITONS
+#------AREA 1-------#
+ 
+#POSITONS----------------
 A1Z1_Start = position('Start', 'A1Z1-Start', [])
 A1Z1_House = position('House', 'A1Z1-House', ['E - Enter House'])
 A1Z1_a = position('A', 'A1Z1-A', [])
@@ -396,9 +394,13 @@ A1Z1_b = position('B', 'A1Z1-B', [])
 A1Z1_c = position('C', 'A1Z1-C', [])
 A1Z1_Chest = position('Chest', 'A1Z1-Chest', ['E - Open Chest'])
 
+#SIDE QUESTS--------------
+SQ1 = side_quest('SQ1')
 
+#ITEMS------------------
+Charlie_House_key = item("Charlie's House Key", 'item')
 
-#TST
+#NPCs---------------------
 NPC_Charlie = NPC('Charlie', 'Bridge', [Charlie.interaction1, Charlie.interaction2])
 
 

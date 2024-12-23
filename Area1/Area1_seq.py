@@ -1,6 +1,6 @@
 import os;import questionary, GameAssets
 os.system('clear')
-from Functions import get_key, clrline, printc, clr, move_player
+from Functions import get_key, clrline, printc, clr, move_player, type
 import Area1_map
 
 #-----------------------------------------------------------
@@ -14,7 +14,7 @@ CRD_A1Z1lckSQ1 = {
 
 player_position = (0, 0)
 
-def game_A1Z1(): #You might not actually have to put this in a function!!!!!!
+def game_A1Z1lckSQ1():
     while True:
         map = Area1_map.A1Z1_lckSQ1
         startPos = 'Start'
@@ -28,6 +28,8 @@ def game_A1Z1(): #You might not actually have to put this in a function!!!!!!
                 for action in GameAssets.Player.positionENC.actions:
                         printc(f'{action}', 'bold')
                         clrline()
+                        global Action
+                        Action = action
             key = get_key()
             if key == 'W' or key == 'w' or key == 'A' or key == 'a' or key == 'S' or key == 's' or key == 'D' or key == 'd':
                 move_player(key, CRD_A1Z1lckSQ1)
@@ -36,19 +38,33 @@ def game_A1Z1(): #You might not actually have to put this in a function!!!!!!
                 GameAssets.player.open_inventory(GameAssets.Player)
                 clr()
                 break
-            else:
-                if action == 'E - interact':
+            elif key == 'E' or key == 'e':
+                if Action == 'E - interact':
                     if GameAssets.Player.activeSQ == 'None':
                         GameAssets.NPC_Charlie.interact(1)
-                        GameAssets.Player.activeSQ = 'A1Z1_SQ1'
+                        GameAssets.Player.add_item(GameAssets.Charlie_House_key)
+                        GameAssets.SQ1.start_sq(GameAssets.Player)
                         return
-                    elif GameAssets.Player.activeSQ == 'A1Z1_SQ1':
+                    elif GameAssets.Player.activeSQ == 'SQ1':
                         GameAssets.NPC_Charlie.interact(2)
-                        GameAssets.Player.activeSQ == 'None'
+                        GameAssets.SQ1.complete_sq(GameAssets.Player)
                         return
+                    elif Action == 'E - Enter House':
+                        type('You need a ')
+                        type('key ', 'bold yellow')
+                        type('to do that!\n')
+                        questionary.press_any_key_to_continue().ask()
+                        clrline()
+                        clrline()
         continue
 
-move_input(Area1_map.A1Z1_lckSQ1, 'Start')
-if GameAssets.Player.activeSQ == 'A1Z1_SQ1':
+
+
+
+game_A1Z1lckSQ1()
+if GameAssets.Player.activeSQ == 'SQ1':
     player_position = (2,0)
+    print('Now we do A1Z1_ACTIVESQ1')
+elif GameAssets.SQ1.complete:
+    print('Now Run full unlocked level (charlie goes, house cant go in)')
     
