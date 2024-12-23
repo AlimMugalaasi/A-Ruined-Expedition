@@ -3,7 +3,7 @@ console = Console()
 from rich.text import Text
 from time import sleep
 import sys, os, termios, tty
-import random, questionary
+import random, questionary, GameAssets
 from rich.progress import track
 #---------------------------------------------------------------------------------
 
@@ -77,3 +77,28 @@ def get_key():
         return get_key_windows()
     else:
         return get_key_unix()
+    
+#Moving the player around a map
+
+def move_player(direction, coordinate_sys):
+    global player_position
+    x, y = player_position
+    if direction == "W" or direction =='w':
+        new_position = (x, y + 1)
+    elif direction == "A" or direction =='a':
+        new_position = (x - 1, y)
+    elif direction == "S" or direction =='s':
+        new_position = (x, y - 1)
+    elif direction == "D" or direction =='d':
+        new_position = (x + 1, y)
+    else:
+        return
+
+    if new_position in coordinate_sys:
+        player_position = new_position
+        clrline()
+        printc(f"Position: [bold]{coordinate_sys[new_position].name}[/bold]")
+        GameAssets.Player.positionENC = coordinate_sys[new_position]
+        GameAssets.Player.positionDEC = coordinate_sys[new_position].code
+    else:
+        return

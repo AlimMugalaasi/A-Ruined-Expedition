@@ -32,7 +32,7 @@ def A1Z1_lckSQ1():
                                                                  
     ''')
     
-def A1Z1_uckSQ1():
+def A1Z1_ulckSQ1():
     printc('''
                                                                     
                            HOUSE                                                     

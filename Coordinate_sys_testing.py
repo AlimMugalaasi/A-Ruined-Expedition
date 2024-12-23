@@ -78,7 +78,14 @@ def move_input(map, startPos):
                 clr()
                 break
             else:
-                pass
+                if action == 'E - interact':
+                    if GameAssets.Player.activeSQ == 'None':
+                        GameAssets.NPC_Charlie.interact(1)
+                        GameAssets.Player.activeSQ = 'A1Z1_SQ1'
+                    elif GameAssets.Player.activeSQ == 'A1Z1_SQ1':
+                        GameAssets.NPC_Charlie.interact(2)
+                        GameAssets.Player.activeSQ == 'None'
+                        return
         continue
 
 move_input(test_map(),'Start')

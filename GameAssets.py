@@ -384,10 +384,6 @@ class position:
         self.actions = actions
         self.dropped_items = []
 
-#---------------------------------------------------------ACTIONS
-
-#Here we will add all possible action functions, such as interactions so we can store them in the store actions attrbute and possibly run them in that way?
-
 #---------------------------------------------------------LOADING ALL ASSETS
 Player = player('None', 'None')
 
@@ -403,6 +399,6 @@ A1Z1_Chest = position('Chest', 'A1Z1-Chest', ['E - Open Chest'])
 
 
 #TST
-
 NPC_Charlie = NPC('Charlie', 'Bridge', [Charlie.interaction1, Charlie.interaction2])
+
 
