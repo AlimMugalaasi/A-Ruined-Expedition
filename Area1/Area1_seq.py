@@ -20,9 +20,11 @@ CRD_A1Z1lckSQ1 = {
 def game_A1Z1lckSQ1():
     global player_position
     player_position = (0,0)
+    global startPos
+    startPos = 'Start'
     while True:
+        clr()
         map = Area1_map.A1Z1_lckSQ1
-        startPos = 'Start'
         printc(map)
         printc("-WASD to move-\n", 'bold')
         printc('[bold]I[/bold] - Open inventory\n')
@@ -51,18 +53,22 @@ def game_A1Z1lckSQ1():
                         GameAssets.NPC_Charlie.interact(1)
                         GameAssets.Player.add_item(GameAssets.Charlie_House_key)
                         GameAssets.SQ1.start_sq(GameAssets.Player)
-                        return
+                        player_position = (2,0)
+                        startPos = '[!]'
+                        break
                     elif GameAssets.Player.activeSQ == 'SQ1':
                         if 'Bridge Key' in GameAssets.Player.inventoryDEC:
                             GameAssets.NPC_Charlie.interact(2)
-                            #Here, bridge key and house key are removed from inventory (player dont need to know)
-                            #This can be made as a remove_item function for future use. Player dont need to know!!^^
-                            #Dont forget - player gets a spear here to0! (yet to code this so do it - make the instance first)
+                            GameAssets.Player.remove_item('Bridge Key')
+                            GameAssets.Player.remove_item("Charlie's House Key")
+                            GameAssets.Player.add_item('Spear')
                             GameAssets.SQ1.complete_sq(GameAssets.Player)
+                            return
                         else:
                             GameAssets.NPC_Charlie.interact(3)
-                            continue #might do wierd things - test this
-                        return
+                            player_position = (2,0)
+                            startPos = '[!]'
+                            break
                 elif Action == 'E - Enter House':
                     if "Charlie's House Key" not in GameAssets.Player.inventoryDEC: #EDIT THIS - KEY MUST BE EQUIPPED
                         type('You need a ')
@@ -71,19 +77,24 @@ def game_A1Z1lckSQ1():
                         questionary.press_any_key_to_continue().ask()
                         clrline()
                         clrline()
-                    else:
-                        #LOAD THE HOUSE MAP AND CARRY IT ON FROM HERE
-                        pass
+                    elif GameAssets.Player.item_equippedDEC != "Charlie's House Key":
+                        type('You need to ')
+                        type('equip', 'blue')
+                        type('the key to use it!\n')
+                        questionary.press_any_key_to_continue().ask()
+                        clrline()
+                        clrline()
+                    elif GameAssets.Player.item_equippedDEC == "Charlie's House Key":
+                        input('IN HOUSE')
+                        player_position = (1,1)
+                        startPos = 'House'
+                        break
         continue
 
 
 
 
 game_A1Z1lckSQ1()
-if GameAssets.Player.activeSQ == 'SQ1':
-    player_position = (2,0)
-    print('Now we do A1Z1_ACTIVESQ1')
-elif GameAssets.SQ1.complete:
-    print('Now Run full unlocked level (charlie goes, house cant go in)')
+print('Done')
     
 #DROPPING ITEMS MUST BE DONE BEFORE WE MOVE ON EVEN IF IT WONT HAPPEN HERE

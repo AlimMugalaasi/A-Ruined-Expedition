@@ -66,3 +66,10 @@ def interaction2():
     type('YOU: ', 'bold')
     type("Thanks Charlie, I'm sure this will be of great use. Keep that key safe.\n")
     newline()
+
+def interaction3():
+    type('CHARLIE: ', 'bold')
+    type('Hurry up!, the ')
+    type('authorities ', 'red')
+    type("can't find out i've lost the key!\n")
+    newline()

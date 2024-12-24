@@ -193,6 +193,21 @@ class player:
             self.item_equippedENC = 'None'
             self.item_equippedDEC = 'None'
         
+    def remove_item(self, item):
+        if self.item_equippedDEC == 'None':
+            for itemENC in self.inventoryENC:
+                if itemENC.name == item:
+                    self.inventoryENC.remove(itemENC)
+                    self.inventoryDEC.remove(itemENC.name)
+        else:
+            self.item_equippedDEC = 'None'
+            for itemENC in self.inventoryENC:
+                if itemENC.name == item:
+                    self.inventoryENC.remove(itemENC)
+                    self.inventoryDEC.remove(itemENC.name)
+            
+        
+        
 
     def add_item(self, item):
         if item.name == 'BandAid':
@@ -400,8 +415,9 @@ SQ1 = side_quest('SQ1')
 #ITEMS------------------
 Charlie_House_key = item("Charlie's House Key", 'item')
 Bridge_key_A1Z1 = item("Bridge Key", 'item')
+spear = item('Spear', 'weapon')
 
 #NPCs---------------------
-NPC_Charlie = NPC('Charlie', 'Bridge', [Charlie.interaction1, Charlie.interaction2])
+NPC_Charlie = NPC('Charlie', 'Bridge', [Charlie.interaction1, Charlie.interaction2, Charlie.interaction3])
 
 
