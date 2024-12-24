@@ -70,25 +70,29 @@ def game_A1Z1lckSQ1():
                             startPos = '[!]'
                             break
                 elif Action == 'E - Enter House':
-                    if "Charlie's House Key" not in GameAssets.Player.inventoryDEC: #EDIT THIS - KEY MUST BE EQUIPPED
+                    if GameAssets.Player.item_equippedDEC == "Charlie's House Key":
+                        input('IN HOUSE')
+                        player_position = (1,1)
+                        startPos = 'House'
+                        break
+
+                    elif GameAssets.Player.item_equippedDEC != "Charlie's House Key":
+                        type('You need to ')
+                        type('equip ', 'blue')
+                        type('the key to use it!\n')
+                        questionary.press_any_key_to_continue().ask()
+                        clrline()
+                        clrline()
+
+                    elif "Charlie's House Key" not in GameAssets.Player.inventoryDEC: #EDIT THIS - KEY MUST BE EQUIPPED
                         type('You need a ')
                         type('key ', 'bold yellow')
                         type('to do that!\n')
                         questionary.press_any_key_to_continue().ask()
                         clrline()
                         clrline()
-                    elif GameAssets.Player.item_equippedDEC != "Charlie's House Key":
-                        type('You need to ')
-                        type('equip', 'blue')
-                        type('the key to use it!\n')
-                        questionary.press_any_key_to_continue().ask()
-                        clrline()
-                        clrline()
-                    elif GameAssets.Player.item_equippedDEC == "Charlie's House Key":
-                        input('IN HOUSE')
-                        player_position = (1,1)
-                        startPos = 'House'
-                        break
+                    
+                    
         continue
 
 
