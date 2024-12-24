@@ -10,6 +10,10 @@ import Area1_map
 
 #-----------------------------------------------------------
 
+
+
+
+
 CRD_A1Z1lckSQ1 = {
     (0, 0): GameAssets.A1Z1_Start,
     (1, 0): GameAssets.A1Z1_a,
@@ -91,8 +95,6 @@ def game_A1Z1lckSQ1():
                         questionary.press_any_key_to_continue().ask()
                         clrline()
                         clrline()
-                    
-                    
         continue
 
 
