@@ -51,7 +51,7 @@ def A1Z1_ulckSQ1():
     ''')
     
 
-def A1Z1_House():
+def Charlie_House():
     print('''
     
                                                      
@@ -63,11 +63,7 @@ def A1Z1_House():
                                         
                                                  
     
-    ''')
-
-CRD_Charlie_House = {
-    (0,0)
-}                                             
+    ''')                          
                                                                                   
                                                                                   
                                                                                   

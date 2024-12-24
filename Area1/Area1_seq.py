@@ -10,10 +10,53 @@ import Area1_map
 
 #-----------------------------------------------------------
 
+CRD_Charlie_House = {
+    (0,0) : GameAssets.Charlie_House_Door,
+    (1,0) : GameAssets.Charlie_House_a,
+    (1,1) : GameAssets.Charlie_House_Desk,
+    (2,1) : GameAssets.Charlie_House_Bed
+}   
+
+def game_Charlie_House():
+    global player_position
+    player_position = (0,0)
+    while True:
+        map = Area1_map.Charlie_House
+        startPos = 'Door'
+        printc(map)
+        printc("-WASD to move-\n", 'bold')
+        printc('[bold]I[/bold] - Open inventory\n')
+        printc(f'Position: [bold]{startPos}[/bold]')
+        
+        while True:
+            if GameAssets.Player.positionDEC != 'None':
+                for action in GameAssets.Player.positionENC.actions:
+                        printc(f'{action}', 'bold')
+                        clrline()
+                        global Action
+                        Action = action
+            key = get_key()
+            if key == 'W' or key == 'w' or key == 'A' or key == 'a' or key == 'S' or key == 's' or key == 'D' or key == 'd':
+                player_position = move_player(key, CRD_Charlie_House, player_position)
+                
+            elif key == 'I' or key == 'i':
+                startPos == GameAssets.Player.positionDEC
+                GameAssets.player.open_inventory(GameAssets.Player)
+                clr()
+                break
+            elif key == 'E' or key == 'e':
+                if Action == 'E - Read Note':
+                    #if an NPC interaction happens here, then code for that interaction goes here. note that some interactions
+                    #happen without having to press E (in that case some sort of position check system for that Zone is required)
+                        return
+                elif Action == 'E - ANY OTHER ACTION':
+                    #if any other action happens here, the code for that action goes here. Delete if not needed.
+                    return
+        continue
 
 
 
-
+#-------------------------------------------------------------
 CRD_A1Z1lckSQ1 = {
     (0, 0): GameAssets.A1Z1_Start,
     (1, 0): GameAssets.A1Z1_a,
@@ -88,7 +131,7 @@ def game_A1Z1lckSQ1():
                         clrline()
                         clrline()
 
-                    elif "Charlie's House Key" not in GameAssets.Player.inventoryDEC: #EDIT THIS - KEY MUST BE EQUIPPED
+                    elif "Charlie's House Key" not in GameAssets.Player.inventoryDEC:
                         type('You need a ')
                         type('key ', 'bold yellow')
                         type('to do that!\n')
@@ -97,7 +140,7 @@ def game_A1Z1lckSQ1():
                         clrline()
         continue
 
-
+#---------------------------------------------------------
 
 
 game_A1Z1lckSQ1()
