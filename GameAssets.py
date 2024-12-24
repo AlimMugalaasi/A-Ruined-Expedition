@@ -396,7 +396,7 @@ class position:
         self.dropped_items = []
 
 #---------------------------------------------------------LOADING ALL ASSETS
-Player = player('None', 'None')
+Player = player('ALIM', 'None') #PLAYER NAME TST
 
 #------AREA 1-------#
  
@@ -409,7 +409,7 @@ A1Z1_b = position('B', 'A1Z1-B', [])
 A1Z1_c = position('C', 'A1Z1-C', [])
 A1Z1_Chest = position('Chest', 'A1Z1-Chest', ['E - Open Chest'])
 
-Charlie_House_Door = position('Door', 'Charlie_House_Door', [])
+Charlie_House_Door = position('Door', 'Charlie_House_Door', ['E - Exit'])
 Charlie_House_a = position('A', 'Charlie_House_a', [])
 Charlie_House_Desk = position('Desk', 'Charlie_House_Desk', ['E - Read Note'])
 Charlie_House_Bed = position('Bed', 'Charlie_House_Bed', ['E - Check Under Bed'])

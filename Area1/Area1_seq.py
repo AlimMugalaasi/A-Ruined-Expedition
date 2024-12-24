@@ -20,9 +20,13 @@ CRD_Charlie_House = {
 def game_Charlie_House():
     global player_position
     player_position = (0,0)
+    global ReadNote
+    ReadNote = False
+    global startPos
+    startPos = 'Door'
     while True:
+        clr()
         map = Area1_map.Charlie_House
-        startPos = 'Door'
         printc(map)
         printc("-WASD to move-\n", 'bold')
         printc('[bold]I[/bold] - Open inventory\n')
@@ -46,12 +50,31 @@ def game_Charlie_House():
                 break
             elif key == 'E' or key == 'e':
                 if Action == 'E - Read Note':
-                    #if an NPC interaction happens here, then code for that interaction goes here. note that some interactions
-                    #happen without having to press E (in that case some sort of position check system for that Zone is required)
-                        return
-                elif Action == 'E - ANY OTHER ACTION':
-                    #if any other action happens here, the code for that action goes here. Delete if not needed.
-                    return
+                    if not ReadNote:
+                        clr()
+                        with open('Note.txt', 'r') as file:
+                            for line in file:
+                                type(line.strip(),None)
+                                print(' ')
+                                questionary.press_any_key_to_continue().ask()
+                                clrline()
+                                print(' ')
+                                player_position = (1,1)
+                                startPos = ('Desk')
+                                ReadNote = True
+                                break
+                    elif ReadNote:
+                        type('I need to find out who wrote this...\n')
+                        questionary.press_any_key_to_continue().ask()
+                        clrline()
+                        clrline()
+                elif Action == 'E - Check Under Bed':
+                    type('Really? out of all places, this guy leaves the key to a public bridge under the bed. Ridiculous.')
+                    GameAssets.Player.add_item('Bridge Key')
+                    break
+                elif Action == 'E - Exit':
+                    #EXIT THE HOUSE
+                    pass
         continue
 
 
