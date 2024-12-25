@@ -9,6 +9,8 @@ from Functions import get_key, clrline, printc, clr, move_player, type,sleep
 import Area1_map
 
 #-----------------------------------------------------------
+global ReadNote
+ReadNote = False
 
 CRD_Charlie_House = {
     (0,0) : GameAssets.Charlie_House_Door,
@@ -17,11 +19,10 @@ CRD_Charlie_House = {
     (2,0) : GameAssets.Charlie_House_Bed
 }   
 
+
 def game_Charlie_House():
     global player_position
     player_position = (0,0)
-    global ReadNote
-    ReadNote = False
     global startPos
     startPos = 'Door'
     global Action
@@ -47,7 +48,7 @@ def game_Charlie_House():
                 player_position = move_player(key, CRD_Charlie_House, player_position)
                 
             elif key == 'I' or key == 'i':
-                startPos == GameAssets.Player.positionDEC
+                startPos = GameAssets.Player.positionDEC
                 GameAssets.player.open_inventory(GameAssets.Player)
                 clr()
                 break

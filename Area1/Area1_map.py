@@ -26,7 +26,7 @@ A1Z1_lckSQ1 = '''
                                                            │                         
                                                            │                         
                                                            │                         
-                                             [bold yellow]CHEST[/bold yellow]├────────┘                         
+                                             [bold yellow]CHEST[/bold yellow]├────────C                         
                                                                                      
                                                                  
     '''
@@ -45,7 +45,7 @@ def A1Z1_ulckSQ1():
                                                            │                         
                                                            │                         
                                                            │                         
-                                             [bold yellow]CHEST[/bold yellow]├────────┘                         
+                                             [bold yellow]CHEST[/bold yellow]├────────C                         
                                                                                      
                                                                  
     ''')
