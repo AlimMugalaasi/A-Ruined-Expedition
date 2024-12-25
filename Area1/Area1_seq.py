@@ -36,7 +36,7 @@ def game_Charlie_House():
         
         while True:
             if GameAssets.Player.positionDEC != 'None':
-                for action in GameAssets.Player.positionENC.actions:
+                for action in GameAssets.Player.positionENC.actions: #wring action displayed here at first
                         printc(f'{action}', 'bold')
                         clrline()
                         Action = action
