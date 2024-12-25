@@ -9,8 +9,7 @@ from Functions import get_key, clrline, printc, clr, move_player, type,sleep
 import Area1_map
 
 #-----------------------------------------------------------
-global ReadNote
-ReadNote = False
+
 
 CRD_Charlie_House = {
     (0,0) : GameAssets.Charlie_House_Door,
@@ -21,6 +20,8 @@ CRD_Charlie_House = {
 
 
 def game_Charlie_House():
+    global ReadNote
+    ReadNote = False
     global player_position
     player_position = (0,0)
     global startPos
@@ -48,7 +49,7 @@ def game_Charlie_House():
                 player_position = move_player(key, CRD_Charlie_House, player_position)
                 
             elif key == 'I' or key == 'i':
-                startPos = GameAssets.Player.positionDEC
+                startPos = GameAssets.Player.positionENC.name
                 GameAssets.player.open_inventory(GameAssets.Player)
                 clr()
                 break
@@ -66,6 +67,7 @@ def game_Charlie_House():
                             player_position = (1,1)
                             startPos = ('Desk')
                             ReadNote = True
+                            GameAssets.Charlie_House_Desk = GameAssets.position('Desk', 'Charlie_House_Desk', [])
                             break
                     elif ReadNote:
                         type('I need to find out who wrote this...\n')
@@ -127,9 +129,8 @@ def game_A1Z1lckSQ1():
             if key == 'W' or key == 'w' or key == 'A' or key == 'a' or key == 'S' or key == 's' or key == 'D' or key == 'd':
                 player_position = move_player(key, CRD_A1Z1lckSQ1, player_position)
                 
-                
             elif key == 'I' or key == 'i':
-                startPos == GameAssets.Player.positionDEC
+                startPos = GameAssets.Player.positionENC.name
                 GameAssets.player.open_inventory(GameAssets.Player)
                 clr()
                 break
