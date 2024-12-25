@@ -427,4 +427,16 @@ spear = item('Spear', 'weapon')
 #NPCs---------------------
 NPC_Charlie = NPC('Charlie', 'Bridge', [Charlie.interaction1, Charlie.interaction2, Charlie.interaction3])
 
+'''
+def add_location(position, name, game):
+    if position in game:
+        input('ERROR')
+        return
+    else:
+        game[position] = name
+        print(f"Added {name} at {position}.")
+        '''
+
+# Adding a new place
+add_location((2, 1), "Lake")
 

@@ -31,8 +31,7 @@ A1Z1_lckSQ1 = '''
                                                                  
     '''
     
-def A1Z1_ulckSQ1():
-    printc('''
+A1Z1_ulckSQ1 = '''
                                                                     
                            HOUSE                                                     
                              ┬                                                       
@@ -48,8 +47,8 @@ def A1Z1_ulckSQ1():
                                              [bold yellow]CHEST[/bold yellow]├────────C                         
                                                                                      
                                                                  
-    ''')
-    
+    '''
+
 
 Charlie_House = '''
     
@@ -64,6 +63,6 @@ Charlie_House = '''
     
     '''                          
                                                                                   
-                                                                                  
+                                                              
                                                                                   
                                                                                   

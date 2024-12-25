@@ -91,7 +91,7 @@ def game_Charlie_House():
                     return
         continue
 
-
+#-------------------------------------------------------------
 
 #-------------------------------------------------------------
 CRD_A1Z1lckSQ1 = {
@@ -180,6 +180,6 @@ def game_A1Z1lckSQ1():
 
 
 game_A1Z1lckSQ1()
-print('Done')
+
     
 #DROPPING ITEMS MUST BE DONE BEFORE WE MOVE ON EVEN IF IT WONT HAPPEN HERE
