@@ -26,6 +26,8 @@ def game_Charlie_House():
     startPos = 'Door'
     global Action
     Action = 'None'
+    GameAssets.Player.positionENC = GameAssets.Charlie_House_Door
+    GameAssets.Player.positionDEC = GameAssets.Charlie_House_Door.name
     while True:
         clr()
         map = Area1_map.Charlie_House
@@ -36,7 +38,7 @@ def game_Charlie_House():
         
         while True:
             if GameAssets.Player.positionDEC != 'None':
-                for action in GameAssets.Player.positionENC.actions: #wring action displayed here at first
+                for action in GameAssets.Player.positionENC.actions:
                         printc(f'{action}', 'bold')
                         clrline()
                         Action = action
@@ -60,20 +62,32 @@ def game_Charlie_House():
                                 questionary.press_any_key_to_continue().ask()
                                 clrline()
                                 print(' ')
-                                player_position = (1,1)
-                                startPos = ('Desk')
-                                ReadNote = True
-                                break
+                            player_position = (1,1)
+                            startPos = ('Desk')
+                            ReadNote = True
+                            break
                     elif ReadNote:
                         type('I need to find out who wrote this...\n')
                         questionary.press_any_key_to_continue().ask()
                         clrline()
                         clrline()
                 elif Action == 'E - Check Under Bed':
-                    type('Really? out of all places, this guy leaves the key to a public bridge under the bed?')
-                    GameAssets.Player.add_item('Bridge Key')
-                    break
+                    if GameAssets.Bridge_key_A1Z1.name not in GameAssets.Player.inventoryDEC:
+                        GameAssets.Player.add_item(GameAssets.Bridge_key_A1Z1)
+                        type('YOU: ', 'bold')
+                        type('Really? out of all places, this guy leaves the key to a public bridge under the bed?\n')
+                        questionary.press_any_key_to_continue().ask()
+                        player_position = (2,0)
+                        startPos = ('Bed')
+                        break
+
+                    else:
+                        player_position = (2,0)
+                        startPos = ('Bed')
+                        break
                 elif Action == 'E - Exit':
+                    GameAssets.Player.positionENC = GameAssets.A1Z1_House
+                    GameAssets.Player.positionDEC = GameAssets.A1Z1_House.name
                     return
         continue
 
