@@ -20,8 +20,6 @@ CRD_Charlie_House = {
 
 
 def game_Charlie_House():
-    global ReadNote
-    ReadNote = False
     global player_position
     player_position = (0,0)
     global startPos
@@ -55,7 +53,7 @@ def game_Charlie_House():
                 break
             elif key == 'E' or key == 'e':
                 if Action == 'E - Read Note':
-                    if not ReadNote:
+                    if not GameAssets.Player.ReadNote:
                         clr()
                         with open('Note.txt', 'r') as file:
                             for line in file:
@@ -66,10 +64,9 @@ def game_Charlie_House():
                                 print(' ')
                             player_position = (1,1)
                             startPos = ('Desk')
-                            ReadNote = True
-                            GameAssets.Charlie_House_Desk = GameAssets.position('Desk', 'Charlie_House_Desk', [])
+                            GameAssets.Player.ReadNote = True
                             break
-                    elif ReadNote:
+                    elif GameAssets.Player.ReadNote:
                         type('I need to find out who wrote this...\n')
                         questionary.press_any_key_to_continue().ask()
                         clrline()
@@ -148,7 +145,7 @@ def game_A1Z1lckSQ1():
                             GameAssets.NPC_Charlie.interact(2)
                             GameAssets.Player.remove_item('Bridge Key')
                             GameAssets.Player.remove_item("Charlie's House Key")
-                            GameAssets.Player.add_item('Spear')
+                            GameAssets.Player.add_item(GameAssets.spear)
                             GameAssets.SQ1.complete_sq(GameAssets.Player)
                             return
                         else:

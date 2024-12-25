@@ -53,6 +53,7 @@ def start_interaction():
     type(' a spy?!\n', 'yellow')
     newline()
 
+    #THIS ONLY PLAYS IF PLAYER HAS READ NOte
     type('YOU: ', 'bold')
     type('You', 'italic')
     type(" wrote that note, didn't you?\n")

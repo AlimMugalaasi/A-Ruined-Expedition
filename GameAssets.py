@@ -25,6 +25,8 @@ class player:
         self.completed_zones = []
         self.activeSQ = 'None'
         self.stored_action = 'None'
+        #-------------------------NECESSARY ONE-TIME ATTRIBUTES
+        self.ReadNote = False
     
     def open_inventory(self):
         while True:
