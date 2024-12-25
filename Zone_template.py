@@ -4,9 +4,12 @@ from Functions import printc, type, clrline, clr, move_player, get_key
 def game_COORDINATE_SYSTEM_WITHOUT_CRD_PART():
     global player_position
     player_position = (0,0)
+    global startPos
+    startPos = 'Start' #<-- usually this
+    global Action
+    Action = 'None'
     while True:
         map = '''Map in Areax_map'''
-        startPos = 'Start' #<-- usually this
         printc(map)
         printc("-WASD to move-\n", 'bold')
         printc('[bold]I[/bold] - Open inventory\n')
@@ -17,7 +20,6 @@ def game_COORDINATE_SYSTEM_WITHOUT_CRD_PART():
                 for action in GameAssets.Player.positionENC.actions:
                         printc(f'{action}', 'bold')
                         clrline()
-                        global Action
                         Action = action
             key = get_key()
             if key == 'W' or key == 'w' or key == 'A' or key == 'a' or key == 'S' or key == 's' or key == 'D' or key == 'd':

@@ -5,7 +5,7 @@ sys.path.append(parent_dir)
 
 import questionary, GameAssets
 os.system('clear')
-from Functions import get_key, clrline, printc, clr, move_player, type
+from Functions import get_key, clrline, printc, clr, move_player, type,sleep
 import Area1_map
 
 #-----------------------------------------------------------
@@ -14,7 +14,7 @@ CRD_Charlie_House = {
     (0,0) : GameAssets.Charlie_House_Door,
     (1,0) : GameAssets.Charlie_House_a,
     (1,1) : GameAssets.Charlie_House_Desk,
-    (2,1) : GameAssets.Charlie_House_Bed
+    (2,0) : GameAssets.Charlie_House_Bed
 }   
 
 def game_Charlie_House():
@@ -24,6 +24,8 @@ def game_Charlie_House():
     ReadNote = False
     global startPos
     startPos = 'Door'
+    global Action
+    Action = 'None'
     while True:
         clr()
         map = Area1_map.Charlie_House
@@ -37,7 +39,6 @@ def game_Charlie_House():
                 for action in GameAssets.Player.positionENC.actions:
                         printc(f'{action}', 'bold')
                         clrline()
-                        global Action
                         Action = action
             key = get_key()
             if key == 'W' or key == 'w' or key == 'A' or key == 'a' or key == 'S' or key == 's' or key == 'D' or key == 'd':
@@ -69,12 +70,11 @@ def game_Charlie_House():
                         clrline()
                         clrline()
                 elif Action == 'E - Check Under Bed':
-                    type('Really? out of all places, this guy leaves the key to a public bridge under the bed. Ridiculous.')
+                    type('Really? out of all places, this guy leaves the key to a public bridge under the bed?')
                     GameAssets.Player.add_item('Bridge Key')
                     break
                 elif Action == 'E - Exit':
-                    #EXIT THE HOUSE
-                    pass
+                    return
         continue
 
 
@@ -92,6 +92,8 @@ def game_A1Z1lckSQ1():
     player_position = (0,0)
     global startPos
     startPos = 'Start'
+    global Action
+    Action = 'None'
     while True:
         clr()
         map = Area1_map.A1Z1_lckSQ1
@@ -105,7 +107,6 @@ def game_A1Z1lckSQ1():
                 for action in GameAssets.Player.positionENC.actions:
                         printc(f'{action}', 'bold')
                         clrline()
-                        global Action
                         Action = action
             key = get_key()
             if key == 'W' or key == 'w' or key == 'A' or key == 'a' or key == 'S' or key == 's' or key == 'D' or key == 'd':
@@ -135,29 +136,28 @@ def game_A1Z1lckSQ1():
                             GameAssets.SQ1.complete_sq(GameAssets.Player)
                             return
                         else:
-                            GameAssets.NPC_Charlie.interact(3)
-                            player_position = (2,0)
-                            startPos = '[!]'
-                            break
+                            if CRD_A1Z1lckSQ1[player_position].name == '[!]':
+                                GameAssets.NPC_Charlie.interact(3)
+                                break
                 elif Action == 'E - Enter House':
                     if GameAssets.Player.item_equippedDEC == "Charlie's House Key":
-                        input('IN HOUSE')
+                        game_Charlie_House()
                         player_position = (1,1)
                         startPos = 'House'
                         break
-
-                    elif GameAssets.Player.item_equippedDEC != "Charlie's House Key":
-                        type('You need to ')
-                        type('equip ', 'blue')
-                        type('the key to use it!\n')
-                        questionary.press_any_key_to_continue().ask()
-                        clrline()
-                        clrline()
 
                     elif "Charlie's House Key" not in GameAssets.Player.inventoryDEC:
                         type('You need a ')
                         type('key ', 'bold yellow')
                         type('to do that!\n')
+                        questionary.press_any_key_to_continue().ask()
+                        clrline()
+                        clrline()
+
+                    elif GameAssets.Player.item_equippedDEC != "Charlie's House Key":
+                        type('You need to ')
+                        type('equip ', 'blue')
+                        type('the key to use it!\n')
                         questionary.press_any_key_to_continue().ask()
                         clrline()
                         clrline()

@@ -51,8 +51,7 @@ def A1Z1_ulckSQ1():
     ''')
     
 
-def Charlie_House():
-    print('''
+Charlie_House = '''
     
                                                      
                       DESK                       
@@ -63,7 +62,7 @@ def Charlie_House():
                                         
                                                  
     
-    ''')                          
+    '''                          
                                                                                   
                                                                                   
                                                                                   
