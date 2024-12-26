@@ -1,5 +1,6 @@
 import GameAssets, questionary
 from Functions import printc, type, clrline, clr, get_key
+from ExtraFunctions import move_player
 
 #This Zone template was a thing I developed to have a quick way to make a coordinate system for any map.
 #Of course, at first I tried just making it a function but too many things had to be different inside the funtion (specifically different
