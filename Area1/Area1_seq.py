@@ -144,7 +144,7 @@ def game_A1Z1_ulckSQ1():
                         clrline()
 
                 elif Action == 'E - Open Chest':
-                    #code this
+                    
                     return
         continue
 #-------------------------------------------------------------

@@ -77,3 +77,17 @@ def get_key():
         return get_key_windows()
     else:
         return get_key_unix()
+
+#small puzzle to open chest
+
+def open_chest(code, speed):
+    type('Look carefully And Enter the Code Shown. Code is case sensitive.\n', 'yellow', 0.004)
+    questionary.press_any_key_to_continue().ask()
+    clrline()
+    type(code, 'bold green', speed)
+    clrline()
+    user_code = input('Enter Code: ')
+    if user_code == code:
+        return True
+    else:
+        return False

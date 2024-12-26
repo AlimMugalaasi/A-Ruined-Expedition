@@ -1,20 +1,3 @@
-from Functions import printc
-test = '''
-                                                                    
-                           HOUSE                                                     
-                             ┬                                                       
-                             │                                                    
-                             │                                                   
-                             │                                                   
-         [bold green]START[/bold green]├──────────────A─────────────────────────────B────────────┤►           
-                                                           │                         
-                                                           │                         
-                                                           │                         
-                                                           │                         
-                                                           │                         
-                                             [bold yellow]CHEST[/bold yellow]├────────C                         
-                                                                                     
-                                                                 
-    '''
+from Functions import open_chest
 
-printc(test)
+print(open_chest('E9'))
