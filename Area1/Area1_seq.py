@@ -135,12 +135,16 @@ def game_A1Z1_ulckSQ1():
                 clr()
                 break
             elif key == 'E' or key == 'e':
-                if Action == 'E - Interact':
-                    #if an NPC interaction happens here, then code for that interaction goes here. note that some interactions
-                    #happen without having to press E (in that case some sort of position check system for that Zone is required)
-                        return
-                elif Action == 'E - ANY OTHER ACTION':
-                    #if any other action happens here, the code for that action goes here. Delete if not needed.
+                if Action == 'E - Enter House':
+                        type('You need a ')
+                        type('key ', 'bold yellow')
+                        type('to do that!\n')
+                        questionary.press_any_key_to_continue().ask()
+                        clrline()
+                        clrline()
+
+                elif Action == 'E - Open Chest':
+                    #code this
                     return
         continue
 #-------------------------------------------------------------
