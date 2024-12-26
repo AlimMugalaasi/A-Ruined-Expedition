@@ -5,7 +5,8 @@ sys.path.append(parent_dir)
 
 import questionary, GameAssets
 os.system('clear')
-from Functions import get_key, clrline, printc, clr, move_player, type,sleep
+from Functions import get_key, clrline, printc, clr, type,sleep
+from ExtraFunctions import move_player
 import Area1_map
 
 #-----------------------------------------------------------
@@ -93,6 +94,55 @@ def game_Charlie_House():
 
 #-------------------------------------------------------------
 
+#Requires testing, but finish of working on making the keybinds do the right thing first.
+
+CRD_A1Z1_ulckSQ1 = {
+    (0,0) : GameAssets.A1Z1_Start,
+    (1,0) : GameAssets.A1Z1_a,
+    (1,1) : GameAssets.A1Z1_House,
+    (2,0) : GameAssets.A1Z1_b,
+    (2,-1) : GameAssets.A1Z1_c,
+    (1,-1) : GameAssets.A1Z1_Chest
+}
+
+def game_A1Z1_ulckSQ1():
+    global player_position
+    player_position = (0,0)
+    global startPos
+    startPos = 'B'
+    global Action
+    Action = 'None'
+    while True:
+        map = Area1_map.A1Z1_ulckSQ1
+        printc(map)
+        printc("-WASD to move-\n", 'bold')
+        printc('[bold]I[/bold] - Open inventory\n')
+        printc(f'Position: [bold]{startPos}[/bold]')
+        
+        while True:
+            if GameAssets.Player.positionDEC != 'None':
+                for action in GameAssets.Player.positionENC.actions:
+                        printc(f'{action}', 'bold')
+                        clrline()
+                        Action = action
+            key = get_key()
+            if key == 'W' or key == 'w' or key == 'A' or key == 'a' or key == 'S' or key == 's' or key == 'D' or key == 'd':
+                player_position = move_player(key, CRD_A1Z1_ulckSQ1, player_position)
+                
+            elif key == 'I' or key == 'i':
+                startPos == GameAssets.Player.positionENC.name
+                GameAssets.player.open_inventory(GameAssets.Player)
+                clr()
+                break
+            elif key == 'E' or key == 'e':
+                if Action == 'E - Interact':
+                    #if an NPC interaction happens here, then code for that interaction goes here. note that some interactions
+                    #happen without having to press E (in that case some sort of position check system for that Zone is required)
+                        return
+                elif Action == 'E - ANY OTHER ACTION':
+                    #if any other action happens here, the code for that action goes here. Delete if not needed.
+                    return
+        continue
 #-------------------------------------------------------------
 CRD_A1Z1lckSQ1 = {
     (0, 0): GameAssets.A1Z1_Start,
@@ -180,7 +230,8 @@ def game_A1Z1lckSQ1():
 
 
 game_A1Z1lckSQ1()
-#ADDING FINAL YYS
+game_A1Z1_ulckSQ1()
+
 
     
 #DROPPING ITEMS MUST BE DONE BEFORE WE MOVE ON EVEN IF IT WONT HAPPEN HERE

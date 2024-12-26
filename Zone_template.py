@@ -1,5 +1,10 @@
 import GameAssets, questionary
-from Functions import printc, type, clrline, clr, move_player, get_key
+from Functions import printc, type, clrline, clr, get_key
+
+#This Zone template was a thing I developed to have a quick way to make a coordinate system for any map.
+#Of course, at first I tried just making it a function but too many things had to be different inside the funtion (specifically different
+#things that would happen when you press E for example) that I couldn't rely soley on parameters. This template made the job much easier
+#And quicker because alot of it is the same for every map and it is only the keybinds I have to change.
 
 def game_COORDINATE_SYSTEM_WITHOUT_CRD_PART():
     global player_position

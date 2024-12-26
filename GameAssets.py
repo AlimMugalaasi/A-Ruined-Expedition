@@ -1,4 +1,4 @@
-from Functions import printc, clr, sleep, type, ld, clrline
+from Functions import printc, clr, type, ld, clrline
 import questionary
 import NPCInteractions.Charlie as Charlie
 #-------------------------------------------------------PLAYER

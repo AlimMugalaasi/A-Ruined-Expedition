@@ -35,9 +35,9 @@ A1Z1_ulckSQ1 = '''
                                                                     
                            HOUSE                                                     
                              ┬                                                       
-                             │      ┌ ┐                                              
-                             │       [bold red]![/bold red]                                               
-                             │      └ ┘                                              
+                             │                                                    
+                             │                                                   
+                             │                                                   
          [bold green]START[/bold green]├──────────────A─────────────────────────────B────────────┤►           
                                                            │                         
                                                            │                         
