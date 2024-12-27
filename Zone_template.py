@@ -15,6 +15,7 @@ def game_COORDINATE_SYSTEM_WITHOUT_CRD_PART():
     global Action
     Action = 'None'
     while True:
+        clr()
         map = '''Map in Areax_map'''
         printc(map)
         printc("-WASD to move-\n", 'bold')

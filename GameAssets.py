@@ -408,7 +408,6 @@ A1Z1_House = position('House', 'A1Z1-House', ['E - Enter House'])
 A1Z1_a = position('A', 'A1Z1-A', [])
 A1Z1_BridgeLCK = position('[!]', 'A1Z1-BridgeLCK', ['E - Interact'])
 A1Z1_b = position('B', 'A1Z1-B', [])
-A1Z1_c = position('C', 'A1Z1-C', [])
 A1Z1_Chest = position('Chest', 'A1Z1-Chest', ['E - Open Chest'])
 
 Charlie_House_Door = position('Door', 'Charlie_House_Door', ['E - Exit'])
@@ -423,6 +422,7 @@ SQ1 = side_quest('SQ1')
 Charlie_House_key = item("Charlie's House Key", 'item')
 Bridge_key_A1Z1 = item("Bridge Key", 'item')
 spear = weapon('Spear', 'weapon', '20')
+shield = armour('Sheild', 'armour', '10')
 
 #NPCs---------------------
 NPC_Charlie = NPC('Charlie', 'Bridge', [Charlie.interaction1, Charlie.interaction2, Charlie.interaction3])

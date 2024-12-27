@@ -5,7 +5,7 @@ sys.path.append(parent_dir)
 
 import questionary, GameAssets
 os.system('clear')
-from Functions import get_key, clrline, printc, clr, type,sleep
+from Functions import get_key, clrline, printc, clr, type, sleep, open_chest
 from ExtraFunctions import move_player
 import Area1_map
 
@@ -101,18 +101,19 @@ CRD_A1Z1_ulckSQ1 = {
     (1,0) : GameAssets.A1Z1_a,
     (1,1) : GameAssets.A1Z1_House,
     (2,0) : GameAssets.A1Z1_b,
-    (2,-1) : GameAssets.A1Z1_c,
-    (1,-1) : GameAssets.A1Z1_Chest
+    (2,-1) : GameAssets.A1Z1_Chest
 }
 
 def game_A1Z1_ulckSQ1():
     global player_position
-    player_position = (0,0)
+    player_position = (1,0)
     global startPos
-    startPos = 'B'
+    startPos = 'A'
     global Action
     Action = 'None'
+    clrline()
     while True:
+        clr()
         map = Area1_map.A1Z1_ulckSQ1
         printc(map)
         printc("-WASD to move-\n", 'bold')
@@ -144,8 +145,15 @@ def game_A1Z1_ulckSQ1():
                         clrline()
 
                 elif Action == 'E - Open Chest':
-                    
-                    return
+                    if 'Sheild' in GameAssets.Player.inventoryDEC:
+                        break
+                    else:
+                        A1Z1Chest = open_chest()
+                        if A1Z1Chest:
+                            GameAssets.Player.add_item(GameAssets.shield)
+                            break
+                        else:
+                            break
         continue
 #-------------------------------------------------------------
 CRD_A1Z1lckSQ1 = {

@@ -60,7 +60,7 @@ def interaction2():
     type('CHARLIE: ', 'bold')
     type('Here. Take this ')
     type('spear', 'bold green')
-    type(". There aren't many nice people around here...\n")
+    type(" as a form of gratitude. There aren't many nice people around here...\n")
     newline()
 
     type('YOU: ', 'bold')

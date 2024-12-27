@@ -78,16 +78,35 @@ def get_key():
     else:
         return get_key_unix()
 
-#small puzzle to open chest
+#small puzzle to open chests
+codes = [
+    "ab2c3", "f4d5e", "gh6i7", "j8k9l", "mn0op",
+    "1qrs2", "3tuv4", "5wxy6", "7zab8", "9cdef",
+    "gh0ij", "k1lmn", "2opqr", "s3tuv", "4wxyz",
+    "5abcd", "ef6gh", "7ijkl", "mn8no", "p9qrs",
+    "tuvwx", "y0zab", "1cdef", "gh2ij", "kl3mn",
+    "o4pqr", "s5tuv", "wx6yz", "ab7cd", "ef8gh",
+    "9ijkl", "mn0no", "p1qrs", "t2uvw", "x3yza",
+    "4cdef", "gh5ij", "kl6mn", "o7pqr", "s8tuv",
+    "wx9yz", "ab0cd", "ef1gh", "ij2kl", "mn3no",
+    "p4qrs", "t5uvw", "x6yza", "7cdef", "gh8ij"
+]
 
-def open_chest(code, speed):
-    type('Look carefully And Enter the Code Shown. Code is case sensitive.\n', 'yellow', 0.004)
-    questionary.press_any_key_to_continue().ask()
+
+def open_chest():
+    type('Repeat the code to open the chest. You have one chance.\n', 'yellow', 0.004)
+    questionary.press_any_key_to_continue('Press any key to begin...').ask()
     clrline()
-    type(code, 'bold green', speed)
+    code = random.choice(codes)
+    codes.remove(code)
+    type(f'{code}\n', 'bold green', 0.2)
     clrline()
     user_code = input('Enter Code: ')
     if user_code == code:
+        printc('-ACCEPTED-', 'bold green')
+        sleep(0.7)
         return True
     else:
+        printc('-DENIED-', 'bold red')
+        sleep(0.7)
         return False
