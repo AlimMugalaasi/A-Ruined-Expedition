@@ -124,13 +124,14 @@ def game_A1Z1_ulckSQ1():
             if GameAssets.Player.positionDEC != 'None':
                 for action in GameAssets.Player.positionENC.actions:
                     if action == 'E - Continue to Zone 2':
-                        print('E - Continue to Zone 2')
+                        printc(f'{action}', 'bold green')
                         clrline()
-                        Action = 'E - Continue to Zone 2'
+                        Action = action
                     else:
                         printc(f'{action}', 'bold')
                         clrline()
                         Action = action
+                    
             key = get_key()
             if key == 'W' or key == 'w' or key == 'A' or key == 'a' or key == 'S' or key == 's' or key == 'D' or key == 'd':
                 player_position = move_player(key, CRD_A1Z1_ulckSQ1, player_position)
