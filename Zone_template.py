@@ -46,3 +46,26 @@ def game_COORDINATE_SYSTEM_WITHOUT_CRD_PART():
                     #if any other action happens here, the code for that action goes here. Delete if not needed.
                     return
         continue
+
+
+#Opening chest template
+
+'''
+if Action == 'E - Open Chest':
+    if ''item name (not item.name)'' in GameAssets.Player.inventoryDEC:
+        #break
+    else:
+        A1Z1Chest = open_chest()
+        if A1Z1Chest:
+            GameAssets.Player.add_item(GameAssets.''item'')
+            GameAssets.A1Z1_Chest.actions = []
+            GameAssets.Player.positionENC.actions = []
+            startPos = 'Chest'
+            #break
+        else:
+            GameAssets.A1Z1_Chest.actions = []
+            GameAssets.Player.positionENC.actions = []
+            startPos = 'Chest'
+            #break
+
+'''

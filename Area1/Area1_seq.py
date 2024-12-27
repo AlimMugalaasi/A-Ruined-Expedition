@@ -9,7 +9,7 @@ from Functions import get_key, clrline, printc, clr, type, sleep, open_chest
 from ExtraFunctions import move_player
 import Area1_map
 
-#-----------------------------------------------------------
+#-----------------------------------------------------------AREA 1 SEQUENCE (i.e GAMEPLAY)
 
 
 CRD_Charlie_House = {
@@ -94,13 +94,13 @@ def game_Charlie_House():
 
 #-------------------------------------------------------------
 
-#Requires testing, but finish of working on making the keybinds do the right thing first.
 
 CRD_A1Z1_ulckSQ1 = {
     (0,0) : GameAssets.A1Z1_Start,
     (1,0) : GameAssets.A1Z1_a,
     (1,1) : GameAssets.A1Z1_House,
     (2,0) : GameAssets.A1Z1_b,
+    (3,0) : GameAssets.A1Z1_End,
     (2,-1) : GameAssets.A1Z1_Chest
 }
 
@@ -111,7 +111,7 @@ def game_A1Z1_ulckSQ1():
     startPos = 'A'
     global Action
     Action = 'None'
-    clrline()
+    GameAssets.Player.positionENC.actions = []
     while True:
         clr()
         map = Area1_map.A1Z1_ulckSQ1
@@ -123,6 +123,11 @@ def game_A1Z1_ulckSQ1():
         while True:
             if GameAssets.Player.positionDEC != 'None':
                 for action in GameAssets.Player.positionENC.actions:
+                    if action == 'E - Continue to Zone 2':
+                        print('E - Continue to Zone 2')
+                        clrline()
+                        Action = 'E - Continue to Zone 2'
+                    else:
                         printc(f'{action}', 'bold')
                         clrline()
                         Action = action
@@ -151,9 +156,17 @@ def game_A1Z1_ulckSQ1():
                         A1Z1Chest = open_chest()
                         if A1Z1Chest:
                             GameAssets.Player.add_item(GameAssets.shield)
+                            GameAssets.A1Z1_Chest.actions = []
+                            GameAssets.Player.positionENC.actions = []
+                            startPos = 'Chest'
                             break
                         else:
+                            GameAssets.A1Z1_Chest.actions = []
+                            GameAssets.Player.positionENC.actions = []
+                            startPos = 'Chest'
                             break
+                elif Action == 'E - Continue to Zone 2':
+                    return
         continue
 #-------------------------------------------------------------
 CRD_A1Z1lckSQ1 = {

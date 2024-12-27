@@ -1,3 +1,4 @@
-from Functions import open_chest
+test = 'E - Continue to Zone 2'
 
-print(open_chest('E9'))
+
+print(test)

@@ -409,6 +409,7 @@ A1Z1_a = position('A', 'A1Z1-A', [])
 A1Z1_BridgeLCK = position('[!]', 'A1Z1-BridgeLCK', ['E - Interact'])
 A1Z1_b = position('B', 'A1Z1-B', [])
 A1Z1_Chest = position('Chest', 'A1Z1-Chest', ['E - Open Chest'])
+A1Z1_End = position('End', 'A1Z1_End', 'E - Continue to Zone 2')
 
 Charlie_House_Door = position('Door', 'Charlie_House_Door', ['E - Exit'])
 Charlie_House_a = position('A', 'Charlie_House_a', [])
