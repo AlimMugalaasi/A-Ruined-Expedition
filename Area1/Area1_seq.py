@@ -261,3 +261,6 @@ game_A1Z1_ulckSQ1()
 
     
 #DROPPING ITEMS MUST BE DONE BEFORE WE MOVE ON EVEN IF IT WONT HAPPEN HERE
+
+#next is seeing if dropping items is possibe, if not we find a way round (i really dont want to code dropping items icl)
+#designing and coding zone 2
