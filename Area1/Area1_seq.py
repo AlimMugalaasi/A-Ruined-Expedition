@@ -25,8 +25,8 @@ def game_Charlie_House():
     player_position = (0,0)
     global startPos
     startPos = 'Door'
-    global Action
-    Action = 'None'
+    global Actions
+    Actions = []
     GameAssets.Player.positionENC = GameAssets.Charlie_House_Door
     GameAssets.Player.positionDEC = GameAssets.Charlie_House_Door.name
     while True:
@@ -36,24 +36,36 @@ def game_Charlie_House():
         printc("-WASD to move-\n", 'bold')
         printc('[bold]I[/bold] - Open inventory\n')
         printc(f'Position: [bold]{startPos}[/bold]')
+        Actions = []
         
         while True:
             if GameAssets.Player.positionDEC != 'None':
                 for action in GameAssets.Player.positionENC.actions:
                         printc(f'{action}', 'bold')
-                        clrline()
-                        Action = action
+                        Actions.append(action)
+                clrlines(len(Actions))
+
             key = get_key()
             if key == 'W' or key == 'w' or key == 'A' or key == 'a' or key == 'S' or key == 's' or key == 'D' or key == 'd':
                 player_position = move_player(key, CRD_Charlie_House, player_position)
+                Actions = []
                 
+            elif key == 'T' or key == 't':
+                for action in GameAssets.Player.positionENC.actions:
+                    if action.startswith('T - Pick up '):
+                        pickup_item = action[12:]
+                        for item in GameAssets.Player.dropped_items:
+                            if pickup_item == item.name:
+                                GameAssets.Player.add_item(item)
+                break
+
             elif key == 'I' or key == 'i':
                 startPos = GameAssets.Player.positionENC.name
                 GameAssets.player.open_inventory(GameAssets.Player)
                 clr()
                 break
             elif key == 'E' or key == 'e':
-                if Action == 'E - Read Note':
+                if 'E - Read Note' in Actions:
                     if not GameAssets.Player.ReadNote:
                         clr()
                         with open('Note.txt', 'r') as file:
@@ -71,7 +83,8 @@ def game_Charlie_House():
                         type('I need to find out who wrote this...\n')
                         questionary.press_any_key_to_continue().ask()
                         clrlines(2)
-                elif Action == 'E - Check Under Bed':
+
+                elif 'E - Check Under Bed' in Actions:
                     if GameAssets.Bridge_key_A1Z1.name not in GameAssets.Player.inventoryDEC:
                         GameAssets.Player.add_item(GameAssets.Bridge_key_A1Z1)
                         type('YOU: ', 'bold')
@@ -85,7 +98,7 @@ def game_Charlie_House():
                         player_position = (2,0)
                         startPos = ('Bed')
                         break
-                elif Action == 'E - Exit':
+                elif 'E - Exit' in Actions:
                     GameAssets.Player.positionENC = GameAssets.A1Z1_House
                     GameAssets.Player.positionDEC = GameAssets.A1Z1_House.name
                     return
@@ -108,8 +121,8 @@ def game_A1Z1_ulckSQ1():
     player_position = (1,0)
     global startPos
     startPos = 'A'
-    global Action
-    Action = 'None'
+    global Actions
+    Actions = []
     GameAssets.Player.positionENC.actions = []
     while True:
         clr()
@@ -118,37 +131,48 @@ def game_A1Z1_ulckSQ1():
         printc("-WASD to move-\n", 'bold')
         printc('[bold]I[/bold] - Open inventory\n')
         printc(f'Position: [bold]{startPos}[/bold]')
+        Actions = []
         
         while True:
             if GameAssets.Player.positionDEC != 'None':
                 for action in GameAssets.Player.positionENC.actions:
                     if action == 'E - Continue to Zone 2':
                         printc(f'{action}', 'bold green')
-                        clrline()
-                        Action = action
+                        Actions.append(action)
                     else:
-                        printc(f'{action}', 'bold')
-                        clrline()
-                        Action = action
+                        for action in GameAssets.Player.positionENC.actions:
+                            printc(f'{action}', 'bold')
+                            Actions.append(action)
+                clrlines(len(Actions))
                     
             key = get_key()
             if key == 'W' or key == 'w' or key == 'A' or key == 'a' or key == 'S' or key == 's' or key == 'D' or key == 'd':
                 player_position = move_player(key, CRD_A1Z1_ulckSQ1, player_position)
+                Actions = []
                 
+            elif key == 'T' or key == 't':
+                for action in GameAssets.Player.positionENC.actions:
+                    if action.startswith('T - Pick up '):
+                        pickup_item = action[12:]
+                        for item in GameAssets.Player.dropped_items:
+                            if pickup_item == item.name:
+                                GameAssets.Player.add_item(item)
+                break
+
             elif key == 'I' or key == 'i':
                 startPos == GameAssets.Player.positionENC.name
                 GameAssets.player.open_inventory(GameAssets.Player)
                 clr()
                 break
             elif key == 'E' or key == 'e':
-                if Action == 'E - Enter House':
+                if 'E - Enter House' in Actions:
                         type('You need a ')
                         type('key ', 'bold yellow')
                         type('to do that!\n')
                         questionary.press_any_key_to_continue().ask()
                         clrlines(2)
 
-                elif Action == 'E - Open Chest':
+                elif 'E - Open Chest' in Actions:
                     if 'Sheild' in GameAssets.Player.inventoryDEC:
                         break
                     else:
@@ -164,7 +188,7 @@ def game_A1Z1_ulckSQ1():
                             GameAssets.Player.positionENC.actions = []
                             startPos = 'Chest'
                             break
-                elif Action == 'E - Continue to Zone 2':
+                elif 'E - Continue to Zone 2' in Actions:
                     return
         continue
 #-------------------------------------------------------------
