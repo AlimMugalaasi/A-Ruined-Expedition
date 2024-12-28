@@ -1,4 +1,5 @@
-test = 'E - Continue to Zone 2'
+test = 'T - Pick up lolol'
 
 
-print(test)
+if 'up'in test:
+    print(True)

@@ -5,13 +5,13 @@ sys.path.append(parent_dir)
 
 import questionary, GameAssets
 os.system('clear')
-from Functions import get_key, clrline, printc, clr, type, sleep, open_chest
+from Functions import get_key, clrline, printc, clr, type, sleep, open_chest, clrlines
 from ExtraFunctions import move_player
 import Area1_map
 
 #-----------------------------------------------------------AREA 1 SEQUENCE (i.e GAMEPLAY)
 
-
+#----------------------ZONE 1
 CRD_Charlie_House = {
     (0,0) : GameAssets.Charlie_House_Door,
     (1,0) : GameAssets.Charlie_House_a,
@@ -70,8 +70,7 @@ def game_Charlie_House():
                     elif GameAssets.Player.ReadNote:
                         type('I need to find out who wrote this...\n')
                         questionary.press_any_key_to_continue().ask()
-                        clrline()
-                        clrline()
+                        clrlines(2)
                 elif Action == 'E - Check Under Bed':
                     if GameAssets.Bridge_key_A1Z1.name not in GameAssets.Player.inventoryDEC:
                         GameAssets.Player.add_item(GameAssets.Bridge_key_A1Z1)
@@ -92,7 +91,7 @@ def game_Charlie_House():
                     return
         continue
 
-#-------------------------------------------------------------
+#---------------------------------------------------------------------------
 
 
 CRD_A1Z1_ulckSQ1 = {
@@ -147,8 +146,7 @@ def game_A1Z1_ulckSQ1():
                         type('key ', 'bold yellow')
                         type('to do that!\n')
                         questionary.press_any_key_to_continue().ask()
-                        clrline()
-                        clrline()
+                        clrlines(2)
 
                 elif Action == 'E - Open Chest':
                     if 'Sheild' in GameAssets.Player.inventoryDEC:
@@ -182,8 +180,8 @@ def game_A1Z1lckSQ1():
     player_position = (0,0)
     global startPos
     startPos = 'Start'
-    global Action
-    Action = 'None'
+    global Actions
+    Actions = []
     while True:
         clr()
         map = Area1_map.A1Z1_lckSQ1
@@ -191,24 +189,36 @@ def game_A1Z1lckSQ1():
         printc("-WASD to move-\n", 'bold')
         printc('[bold]I[/bold] - Open inventory\n')
         printc(f'Position: [bold]{startPos}[/bold]')
+        Actions = []
         
         while True:
             if GameAssets.Player.positionDEC != 'None':
                 for action in GameAssets.Player.positionENC.actions:
                         printc(f'{action}', 'bold')
-                        clrline()
-                        Action = action
+                        Actions.append(action)
+                clrlines(len(Actions))
+
             key = get_key()
             if key == 'W' or key == 'w' or key == 'A' or key == 'a' or key == 'S' or key == 's' or key == 'D' or key == 'd':
                 player_position = move_player(key, CRD_A1Z1lckSQ1, player_position)
+                Actions = []
                 
+            elif key == 'T' or key == 't':
+                for action in GameAssets.Player.positionENC.actions:
+                    if action.startswith('T - Pick up '):
+                        pickup_item = action[12:]
+                        for item in GameAssets.Player.dropped_items:
+                            if pickup_item == item.name:
+                                GameAssets.Player.add_item(item)
+                break
+
             elif key == 'I' or key == 'i':
                 startPos = GameAssets.Player.positionENC.name
                 GameAssets.player.open_inventory(GameAssets.Player)
                 clr()
                 break
             elif key == 'E' or key == 'e':
-                if Action == 'E - Interact':
+                if 'E - Interact' in Actions:
                     if GameAssets.Player.activeSQ == 'None':
                         GameAssets.NPC_Charlie.interact(1)
                         GameAssets.Player.add_item(GameAssets.Charlie_House_key)
@@ -228,7 +238,7 @@ def game_A1Z1lckSQ1():
                             if CRD_A1Z1lckSQ1[player_position].name == '[!]':
                                 GameAssets.NPC_Charlie.interact(3)
                                 break
-                elif Action == 'E - Enter House':
+                elif 'E - Enter House' in Actions:
                     if GameAssets.Player.item_equippedDEC == "Charlie's House Key":
                         game_Charlie_House()
                         player_position = (1,1)
@@ -240,19 +250,19 @@ def game_A1Z1lckSQ1():
                         type('key ', 'bold yellow')
                         type('to do that!\n')
                         questionary.press_any_key_to_continue().ask()
-                        clrline()
-                        clrline()
+                        clrlines(2)
 
                     elif GameAssets.Player.item_equippedDEC != "Charlie's House Key":
                         type('You need to ')
                         type('equip ', 'blue')
                         type('the key to use it!\n')
                         questionary.press_any_key_to_continue().ask()
-                        clrline()
-                        clrline()
+                        clrlines(2)
         continue
 
-#---------------------------------------------------------
+#-----------------------ZONE 2
+
+
 
 
 game_A1Z1lckSQ1()

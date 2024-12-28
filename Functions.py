@@ -110,3 +110,10 @@ def open_chest():
         printc('-DENIED-', 'bold red')
         sleep(0.7)
         return False
+
+
+#clearing multiple lines
+
+def clrlines(lines):
+    for i in range(lines):
+        clrline()

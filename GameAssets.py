@@ -25,6 +25,7 @@ class player:
         self.completed_zones = []
         self.activeSQ = 'None'
         self.stored_action = 'None'
+        self.dropped_items = []
         #-------------------------NECESSARY ONE-TIME ATTRIBUTES
         self.ReadNote = False
     
@@ -74,9 +75,9 @@ class player:
 #ITEMS AND WEAPONS-----
                             if itemENC.category == 'item' or itemENC.category == 'weapon':
                                 if len(self.inventoryDEC) >= self.inventoryMaxCapacity:
-                                    printc(f'Cannot carry more than {self.inventoryMaxCapacity} items. Please drop/use one first!', 'bold red')
+                                    printc("Inventory space is at max capacity. (10) Try dropping unwanted items!\n", 'bold yellow')
                                     questionary.press_any_key_to_continue().ask()
-                                
+                            
                                 else:
                                     item_confirm = questionary.confirm(f"Equip {item_select}?").ask()
                                     if item_confirm:
@@ -111,18 +112,21 @@ class player:
                                         continue
                                     else:
                                         continue
-    
+#DROPPING ITEMS-----------------------   
                 elif options_choice == 'Drop item':
-                    #DONT ALLOW TO DROP A BANDAID
-                    #drop_confirm = questionary.confirm(f"Drop {item_select}?").ask()
-                        #if drop_confirm:
-                            #self.drop_item(item_select) - will have to remove from inventory ENC + DEC
-                            #printc(f'{item_select} dropped in position {position of where it was dropped}.')
-                            #questionary.press_any_key_to_continue().ask()
-                            #continue
-                        #else:
-                            #continue
-                    continue
+                    if item_select.startswith('BandAid'):
+                        printc('You cannot drop this item.\n', 'bold red')
+                        questionary.press_any_key_to_continue('Press any key to dismiss...').ask()
+                        continue
+                    else:
+                        drop_confirm = questionary.confirm(f"Drop {item_select}?").ask()
+                        if drop_confirm:
+                            self.drop_item(item_select)
+                            printc(f"{item_select} dropped in position '{self.positionENC.name}'.")
+                            questionary.press_any_key_to_continue().ask()
+                            continue
+                        else:
+                            continue
 
     def equip_item(self, item):
         for itemDEC in self.inventoryDEC:
@@ -207,6 +211,24 @@ class player:
                 if itemENC.name == item:
                     self.inventoryENC.remove(itemENC)
                     self.inventoryDEC.remove(itemENC.name)
+
+    def drop_item(self, item):
+        if self.item_equippedDEC == 'None':
+            for itemENC in self.inventoryENC:
+                if itemENC.name == item:
+                    self.inventoryENC.remove(itemENC)
+                    self.inventoryDEC.remove(itemENC.name)
+                    self.positionENC.actions.append(f'T - Pick up {itemENC.name}')
+                    self.dropped_items.append(itemENC)
+        else:
+            self.item_equippedDEC = 'None'
+            for itemENC in self.inventoryENC:
+                if itemENC.name == item:
+                    self.inventoryENC.remove(itemENC)
+                    self.inventoryDEC.remove(itemENC.name)
+                    self.positionENC.actions.append(f'T - Pick up {itemENC.name}')
+                    self.dropped_items.append(itemENC)
+                    
             
         
         
@@ -232,28 +254,24 @@ class player:
 
 
         else:
-            #if len(self.inventoryDEC) >= self.inventory_max_capacity:
-                self.inventoryENC.append(item)
-                printc(f'[bold green]New item: {item.name}[/bold green]')
-                self.inventoryDEC.append(item.name)
-                print(' ')
-                questionary.press_any_key_to_continue(message='Press any key to dismiss...').ask()
-                clrline()
-                clrline()
-                clrline()
-            #else:
-                '''
-                self.drop_item(item)
-                printc(f'[bold red]Dropped item: {item.name} (Inventory at max capacity)[/bold red]')
-                self.inventoryENC.append(item)
-                printc(f'[bold green]New item: {item.name}[/bold green]')
-                self.inventoryDEC.append(item.name)
-                print(' ')
-                questionary.press_any_key_to_continue(message='Press any key to dismiss...').ask()
-                clrline()
-                clrline()
-                clrline()
-                '''
+            for drop in self.dropped_items:
+                if drop.name == item.name:
+                    self.dropped_items.remove(drop)
+                    
+                    for pos in self.positionENC.actions:
+                        if 'T - Pick up'in pos:
+                            if item.name in pos:
+                                self.positionENC.actions.remove(pos)
+            self.inventoryENC.append(item)
+            printc(f'[bold green]New item: {item.name}[/bold green]')
+            self.inventoryDEC.append(item.name)
+            print(' ')
+            questionary.press_any_key_to_continue(message='Press any key to dismiss...').ask()
+            clrline()
+            clrline()
+            clrline()
+
+                
     def win(self):
         #WIN SEQENCE - PROGRAMME IS QUIT FROM HERE
         pass
