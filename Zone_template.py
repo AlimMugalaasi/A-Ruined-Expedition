@@ -45,7 +45,7 @@ def game_COORDINATE_SYSTEM_WITHOUT_CRD_PART():
                 break
 
             elif key == 'I' or key == 'i':
-                startPos == GameAssets.Player.positionENC.name
+                startPos = GameAssets.Player.positionENC.name
                 GameAssets.player.open_inventory(GameAssets.Player)
                 clr()
                 break

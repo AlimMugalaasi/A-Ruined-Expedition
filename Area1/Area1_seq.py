@@ -160,7 +160,7 @@ def game_A1Z1_ulckSQ1():
                 break
 
             elif key == 'I' or key == 'i':
-                startPos == GameAssets.Player.positionENC.name
+                startPos = GameAssets.Player.positionENC.name
                 GameAssets.player.open_inventory(GameAssets.Player)
                 clr()
                 break
@@ -294,7 +294,7 @@ game_A1Z1_ulckSQ1()
 
 
     
-#DROPPING ITEMS MUST BE DONE BEFORE WE MOVE ON EVEN IF IT WONT HAPPEN HERE
-
-#next is seeing if dropping items is possibe, if not we find a way round (i really dont want to code dropping items icl)
-#designing and coding zone 2
+#NEXT STEPS
+#fix the bug which causes the actions in A1Z1_ulckSQ1 to print twice when an item is dropped
+#Zone 1 will (officially) be done once that happens
+#Design + code zone 2
