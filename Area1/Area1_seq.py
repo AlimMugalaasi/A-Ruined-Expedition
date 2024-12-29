@@ -185,7 +185,14 @@ def game_A1Z1_ulckSQ1():
                             startPos = 'Chest'
                             break
                 elif 'E - Continue to Zone 2' in Actions:
-                    return
+                    if 'Spear' in GameAssets.Player.inventoryDEC or 'Spear' in GameAssets.Player.item_equippedDEC:
+                        return
+                    else:
+                        printc('The following item(s) are required to continue:\n', 'bold red')
+                        printc('Spear\n', 'bold red')
+                        questionary.press_any_key_to_continue('Press any key to dismiss...').ask()
+                        clrlines(2)
+                        break
         continue
 #-------------------------------------------------------------
 CRD_A1Z1lckSQ1 = {
@@ -284,6 +291,7 @@ def game_A1Z1lckSQ1():
 
 
 
+#------------------------RUNNING THE SEQUENCE
 game_A1Z1lckSQ1()
 game_A1Z1_ulckSQ1()
 
