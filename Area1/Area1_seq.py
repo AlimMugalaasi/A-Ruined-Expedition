@@ -39,6 +39,7 @@ def game_Charlie_House():
         Actions = []
         
         while True:
+            Actions = []
             if GameAssets.Player.positionDEC != 'None':
                 for action in GameAssets.Player.positionENC.actions:
                         printc(f'{action}', 'bold')
@@ -121,9 +122,9 @@ def game_A1Z1_ulckSQ1():
     player_position = (1,0)
     global startPos
     startPos = 'A'
+    GameAssets.Player.positionENC.actions = []
     global Actions
     Actions = []
-    GameAssets.Player.positionENC.actions = []
     while True:
         clr()
         map = Area1_map.A1Z1_ulckSQ1
@@ -140,9 +141,8 @@ def game_A1Z1_ulckSQ1():
                         printc(f'{action}', 'bold green')
                         Actions.append(action)
                     else:
-                        for action in GameAssets.Player.positionENC.actions:
-                            printc(f'{action}', 'bold')
-                            Actions.append(action)
+                        printc(f'{action}', 'bold')
+                        Actions.append(action)
                 clrlines(len(Actions))
                     
             key = get_key()
@@ -166,9 +166,7 @@ def game_A1Z1_ulckSQ1():
                 break
             elif key == 'E' or key == 'e':
                 if 'E - Enter House' in Actions:
-                        type('You need a ')
-                        type('key ', 'bold yellow')
-                        type('to do that!\n')
+                        type('You cannot do that right now!\n')
                         questionary.press_any_key_to_continue().ask()
                         clrlines(2)
 

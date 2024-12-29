@@ -206,7 +206,7 @@ class player:
                     self.inventoryENC.remove(itemENC)
                     self.inventoryDEC.remove(itemENC.name)
         else:
-            self.item_equippedDEC = 'None'
+            self.unequip_item(self.item_equippedDEC)
             for itemENC in self.inventoryENC:
                 if itemENC.name == item:
                     self.inventoryENC.remove(itemENC)

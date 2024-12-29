@@ -1,5 +1,13 @@
-test = 'T - Pick up lolol'
+from Functions import printc
 
+print('''
 
-if 'up'in test:
-    print(True)
+      W     
+      ▲     
+      │     
+A ◄───┼───► D
+      │     
+      ▼     
+      S      
+
+''')
