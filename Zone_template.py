@@ -1,5 +1,5 @@
 import GameAssets, questionary
-from Functions import printc, type, clrline, clr, get_key, clrlines
+from Functions import printc, type, clrline, clr, get_key, clrlines, nav
 from ExtraFunctions import move_player
 
 #This Zone template was a thing I developed to have a quick way to make a coordinate system for any map.
@@ -11,14 +11,14 @@ def game_COORDINATE_SYSTEM_WITHOUT_CRD_PART():
     global player_position
     player_position = (0,0)
     global startPos
-    startPos = 'Start' #<-- usually this
+    startPos = '''START POSITION'''
     global Actions
     Actions = []
     while True:
         clr()
         map = '''Map in Areax_map'''
         printc(map)
-        printc("-WASD to move-\n", 'bold')
+        nav()
         printc('[bold]I[/bold] - Open inventory\n')
         printc(f'Position: [bold]{startPos}[/bold]')
         Actions = []

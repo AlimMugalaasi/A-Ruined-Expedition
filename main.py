@@ -1,5 +1,4 @@
-import Area1.Area1_map as A1, Area2.Area2_map as A2, Area3.Area3_map as A3, Area4.Area4_map as A4, TheSummit.Area5 as summit #MAPS WILL BE USED IN SEQUENCE SO MAY NOT HAVE TO IMPORT THERE
-import Area1.Area1_seq as A1s, Area2.Area2_seq as A2s, Area3.Area3_seq as A3s, Area4.Area4_seq as A4s
+import Area1.Area1_seq as A1, Area2.Area2_seq as A2, Area3.Area3_seq as A3, Area4.Area4_seq as A4
 import pyfiglet
 from time import sleep
 from rich.console import Console
@@ -74,4 +73,6 @@ sleep(0.1)
 
 import GameAssets
 GameAssets.Player.name = player_name
+
+#SHOW THE CONTROLS USING nav() BEFORE ALLOWING THE PLAYER TO CONTINUE TO A1Z1
 #-----------------------------------------------------------------------------------------GAME SEQUENCE

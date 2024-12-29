@@ -117,3 +117,16 @@ def open_chest():
 def clrlines(lines):
     for i in range(lines):
         clrline()
+
+#printing navigation help (made it here just to decrease amount of lines used)
+
+def nav():
+    printc('''
+          
+      W     
+      ▲      
+ A ◄──┼──► D | Use the 'Position: ' indicator to determine your position relative to the map.
+      ▼     
+      S     
+           
+''')

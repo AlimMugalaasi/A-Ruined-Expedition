@@ -26,13 +26,10 @@ A1Z1_lckSQ1 = '''
                                                            │                         
                                                            │                         
                                                            ┴                         
-                                                         [bold yellow]CHEST[/bold yellow]                         
-                                                                                     
-                                                                 
+                                                         [bold yellow]CHEST[/bold yellow]                                                                                                                                                
     '''
    
   
-printc(A1Z1_lckSQ1)
     
 A1Z1_ulckSQ1 = '''
                                                                     
@@ -47,9 +44,7 @@ A1Z1_ulckSQ1 = '''
                                                            │                         
                                                            │                         
                                                            ┴                         
-                                                         [bold yellow]CHEST[/bold yellow]                         
-                                                                                     
-                                                                 
+                                                         [bold yellow]CHEST[/bold yellow]                                                       
     '''
 
    
@@ -61,10 +56,7 @@ Charlie_House = '''
                         ┬                        
                         │                        
                         │                 
- DOOR ►├────────────────A───────────────┤BED      
-                                        
-                                                 
-    
+ DOOR ►├────────────────A───────────────┤BED
     '''                          
                                                                                   
                                                               

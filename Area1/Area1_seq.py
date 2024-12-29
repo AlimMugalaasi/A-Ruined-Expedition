@@ -5,7 +5,7 @@ sys.path.append(parent_dir)
 
 import questionary, GameAssets
 os.system('clear')
-from Functions import get_key, clrline, printc, clr, type, sleep, open_chest, clrlines
+from Functions import get_key, clrline, printc, clr, type, sleep, open_chest, clrlines, nav
 from ExtraFunctions import move_player
 import Area1_map
 
@@ -33,7 +33,6 @@ def game_Charlie_House():
         clr()
         map = Area1_map.Charlie_House
         printc(map)
-        printc("-WASD to move-\n", 'bold')
         printc('[bold]I[/bold] - Open inventory\n')
         printc(f'Position: [bold]{startPos}[/bold]')
         Actions = []
@@ -129,7 +128,6 @@ def game_A1Z1_ulckSQ1():
         clr()
         map = Area1_map.A1Z1_ulckSQ1
         printc(map)
-        printc("-WASD to move-\n", 'bold')
         printc('[bold]I[/bold] - Open inventory\n')
         printc(f'Position: [bold]{startPos}[/bold]')
         Actions = []
@@ -208,7 +206,6 @@ def game_A1Z1lckSQ1():
         clr()
         map = Area1_map.A1Z1_lckSQ1
         printc(map)
-        printc("-WASD to move-\n", 'bold')
         printc('[bold]I[/bold] - Open inventory\n')
         printc(f'Position: [bold]{startPos}[/bold]')
         Actions = []
