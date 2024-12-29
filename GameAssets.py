@@ -409,11 +409,12 @@ class NPC(entity):
 #---------------------------------------------------------POSITION
 
 class position:
-    def __init__(self, name, code, actions):
+    def __init__(self, name, code, actions, options):
         self.name = name
         self.code = code
         self.actions = actions
         self.dropped_items = []
+        self.options = options
 
 #---------------------------------------------------------LOADING ALL ASSETS
 Player = player('ALIM', 'None') #PLAYER NAME TST
@@ -421,18 +422,18 @@ Player = player('ALIM', 'None') #PLAYER NAME TST
 #------AREA 1-------#
  
 #POSITONS----------------
-A1Z1_Start = position('Start', 'A1Z1-Start', [])
-A1Z1_House = position('House', 'A1Z1-House', ['E - Enter House'])
-A1Z1_a = position('A', 'A1Z1-A', [])
-A1Z1_BridgeLCK = position('[!]', 'A1Z1-BridgeLCK', ['E - Interact'])
-A1Z1_b = position('B', 'A1Z1-B', [])
-A1Z1_Chest = position('Chest', 'A1Z1-Chest', ['E - Open Chest'])
-A1Z1_End = position('End', 'A1Z1_End', ['E - Continue to Zone 2'])
+A1Z1_Start = position('Start', 'A1Z1-Start', [], 'ALL')
+A1Z1_House = position('House', 'A1Z1-House', ['E - Enter House'], 'ALL')
+A1Z1_a = position('A', 'A1Z1-A', [], 'ALL')
+A1Z1_BridgeLCK = position('[!]', 'A1Z1-BridgeLCK', ['E - Interact'], 'ALL')
+A1Z1_b = position('B', 'A1Z1-B', [], 'ALL')
+A1Z1_Chest = position('Chest', 'A1Z1-Chest', ['E - Open Chest'],' ALL')
+A1Z1_End = position('End', 'A1Z1_End', ['E - Continue to Zone 2'], 'ALL')
 
-Charlie_House_Door = position('Door', 'Charlie_House_Door', ['E - Exit'])
-Charlie_House_a = position('A', 'Charlie_House_a', [])
-Charlie_House_Desk = position('Desk', 'Charlie_House_Desk', ['E - Read Note'])
-Charlie_House_Bed = position('Bed', 'Charlie_House_Bed', ['E - Check Under Bed'])
+Charlie_House_Door = position('Door', 'Charlie_House_Door', ['E - Exit'], 'ALL')
+Charlie_House_a = position('A', 'Charlie_House_a', [], 'ALL')
+Charlie_House_Desk = position('Desk', 'Charlie_House_Desk', ['E - Read Note'], 'ALL')
+Charlie_House_Bed = position('Bed', 'Charlie_House_Bed', ['E - Check Under Bed'], 'ALL')
 
 #SIDE QUESTS--------------
 SQ1 = side_quest('SQ1')

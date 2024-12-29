@@ -1,11 +1,3 @@
 from Functions import printc
 
-print('''
-      W     
-      ▲     
-      │     
-A ◄───┼───► D
-      │     
-      ▼     
-      S      
-''')
+printc('Hi', 'purple')

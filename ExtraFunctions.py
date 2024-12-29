@@ -9,13 +9,37 @@ import GameAssets
 def move_player(direction, coordinate_sys, player_position):
     x, y = player_position
     if direction == "W" or direction =='w':
-        new_position = (x, y + 1)
+        if coordinate_sys[player_position].options == 'ALL':
+            new_position = (x, y + 1)
+        else:
+            for char in coordinate_sys[player_position].options:
+                if char == 'W':
+                    new_position = (x, y + 1)
+
     elif direction == "A" or direction =='a':
-        new_position = (x - 1, y)
+        if coordinate_sys[player_position].options == 'ALL':
+            new_position = (x - 1, y)
+        else:
+            for char in coordinate_sys[player_position].options:
+                if char == 'A':
+                    new_position = (x - 1, y)
+
     elif direction == "S" or direction =='s':
-        new_position = (x, y - 1)
+        if coordinate_sys[player_position].options == 'ALL':
+            new_position = (x, y - 1)
+        else:
+            for char in coordinate_sys[player_position].options:
+                if char == 'S':
+                    new_position = (x, y - 1)
+
     elif direction == "D" or direction =='d':
-        new_position = (x + 1, y)
+        if coordinate_sys[player_position].options == 'ALL':
+            new_position = (x + 1, y)
+        else:
+            for char in coordinate_sys[player_position].options:
+                if char == 'D':
+                    new_position = (x + 1, y)
+
     else:
         return player_position
 
@@ -28,3 +52,6 @@ def move_player(direction, coordinate_sys, player_position):
         return player_position
     else:
         return player_position
+    
+
+    
