@@ -449,17 +449,18 @@ A1Z2_lckgt2 = position('Gate 2', 'A1Z2_lckgt2', [], 'A')
 A1Z2_ulckgt1 = position('Gate 1', 'A1Z2_ulckgt1', [], 'AD')
 A1Z2_ulckgt2 = position('Gate 2', 'A1Z2_ulckgt2', [], 'AD')
 A1Z2_g = position('G', 'A1Z2_G', [], 'ADS')
-A1Z2_chest = position('Chest', 'A1Z2_Chest', ['E - Open Chest'], 'ALL')
+A1Z2_Chest = position('Chest', 'A1Z2_Chest', ['E - Open Chest'], 'ALL')
 A1Z2_End = position('End', 'A1Z2_End', ['E - Continue to Zone 3'], 'ALL')
 
 #SIDE QUESTS--------------
 SQ1 = side_quest('SQ1')
 
 #ITEMS------------------
+BandAid = health('BandAid', 'health', 10)
 Charlie_House_key = item("Charlie's House Key", 'item')
 Bridge_key_A1Z1 = item("Bridge Key", 'item')
-spear = weapon('Spear', 'weapon', '20')
-shield = armour('Sheild', 'armour', '10')
+spear = weapon('Spear', 'weapon', 20)
+shield = armour('Sheild', 'armour', 10)
 
 #NPCs---------------------
 NPC_Charlie = NPC('Charlie', 'Bridge', [Charlie.interaction1, Charlie.interaction2, Charlie.interaction3])

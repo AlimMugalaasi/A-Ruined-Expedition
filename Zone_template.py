@@ -18,7 +18,6 @@ def game_COORDINATE_SYSTEM_WITHOUT_CRD_PART():
         clr()
         map = '''Map in Areax_map'''
         printc(map)
-        nav()
         printc('[bold]I[/bold] - Open inventory\n')
         printc(f'Position: [bold]{startPos}[/bold]')
         Actions = []
@@ -50,11 +49,7 @@ def game_COORDINATE_SYSTEM_WITHOUT_CRD_PART():
                 clr()
                 break
             elif key == 'E' or key == 'e':
-                if 'E - Interact' in Actions:
-                    #if an NPC interaction happens here, then code for that interaction goes here. note that some interactions
-                    #happen without having to press E (in that case some sort of position check system for that Zone is required)
-                        return
-                elif 'E - ANY OTHER ACTION' in Actions:
+                if 'E - ANY OTHER ACTION' in Actions:
                     #if any other action happens here, the code for that action goes here. Delete if not needed.
                     return
         continue
@@ -67,15 +62,15 @@ if 'E - Open Chest' in Actions:
     if ''item name (not item.name)'' in GameAssets.Player.inventoryDEC:
         #break
     else:
-        A1Z1Chest = open_chest()
-        if A1Z1Chest:
+        AXZYChest = open_chest()
+        if AXZXChest:
             GameAssets.Player.add_item(GameAssets.''item'')
-            GameAssets.A1Z1_Chest.actions = []
+            GameAssets.AXZY_Chest.actions = []
             GameAssets.Player.positionENC.actions = []
             startPos = 'Chest'
             #break
         else:
-            GameAssets.A1Z1_Chest.actions = []
+            GameAssets.AXZY_Chest.actions = []
             GameAssets.Player.positionENC.actions = []
             startPos = 'Chest'
             #break

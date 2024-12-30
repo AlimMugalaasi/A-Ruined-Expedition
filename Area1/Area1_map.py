@@ -6,7 +6,6 @@ parent_dir = os.path.abspath(os.path.join(os.path.dirname(__file__), '..'))
 sys.path.append(parent_dir)
 from Functions import printc, type
 
-
 #KEY:
 #   A1 - Area 1
 #   Z1 - Zone 1
@@ -131,7 +130,7 @@ A1Z2_ulckGT12 = '''
                            ┴                          │                         
                          [bold purple]LEVER 1[/bold purple]                        ┴                         
                                                     [bold yellow]CHEST[/bold yellow]                  
-'''           
+'''
 printc(A1Z2_lckGT2)                                                          
 
 #Next steps:
