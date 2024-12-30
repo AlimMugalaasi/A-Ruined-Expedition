@@ -7,6 +7,7 @@ import GameAssets
 #Moving the player around a map
 
 def move_player(direction, coordinate_sys, player_position):
+    global new_position
     x, y = player_position
     if direction == "W" or direction =='w':
         if coordinate_sys[player_position].options == 'ALL':

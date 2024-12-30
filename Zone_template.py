@@ -65,13 +65,11 @@ if 'E - Open Chest' in Actions:
         AXZYChest = open_chest()
         if AXZXChest:
             GameAssets.Player.add_item(GameAssets.''item'')
-            GameAssets.AXZY_Chest.actions = []
-            GameAssets.Player.positionENC.actions = []
+            GameAssets.AXZY_Chest.actions.remove('E - Open Chest')
             startPos = 'Chest'
             #break
         else:
-            GameAssets.AXZY_Chest.actions = []
-            GameAssets.Player.positionENC.actions = []
+            GameAssets.AXZY_Chest.actions.remove('E - Open Chest')
             startPos = 'Chest'
             #break
 

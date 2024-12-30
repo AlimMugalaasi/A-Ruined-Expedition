@@ -74,7 +74,7 @@ A1Z2_lckGT12 = '''
                            │                          │                         
                            │                          │                         
                            ┴                          │                         
-                         [bold blue]LEVER 1[/bold blue]                        ┴                         
+                         [bold blue]LEVER 1[/bold blue]                      ┴                         
                                                     [bold yellow]CHEST[/bold yellow]                  
 '''
 A1Z2_lckGT1 = '''
@@ -92,7 +92,7 @@ A1Z2_lckGT1 = '''
                            │                          │                         
                            │                          │                         
                            ┴                          │                         
-                         [bold blue]LEVER 1[/bold blue]                        ┴                         
+                         [bold blue]LEVER 1[/bold blue]                      ┴                         
                                                     [bold yellow]CHEST[/bold yellow]                  
 '''                                                            
 A1Z2_lckGT2 = '''
@@ -110,7 +110,7 @@ A1Z2_lckGT2 = '''
                            │                          │                         
                            │                          │                         
                            ┴                          │                         
-                        [bold purple]LEVER 1[/bold purple]                        ┴                         
+                         [bold purple]LEVER 1[/bold purple]                      ┴                         
                                                     [bold yellow]CHEST[/bold yellow]                  
 '''
 A1Z2_ulckGT12 = '''
@@ -128,10 +128,9 @@ A1Z2_ulckGT12 = '''
                            │                          │                         
                            │                          │                         
                            ┴                          │                         
-                         [bold purple]LEVER 1[/bold purple]                        ┴                         
+                         [bold purple]LEVER 1[/bold purple]                      ┴                         
                                                     [bold yellow]CHEST[/bold yellow]                  
-'''
-printc(A1Z2_lckGT2)                                                          
+'''                                                         
 
 #Next steps:
 

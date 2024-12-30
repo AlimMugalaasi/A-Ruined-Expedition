@@ -5,7 +5,7 @@ sys.path.append(parent_dir)
 
 import questionary, GameAssets
 os.system('clear')
-from Functions import get_key, clrline, printc, clr, type, sleep, open_chest, clrlines
+from Functions import get_key, clrline, printc, clr, type, sleep, open_chest, clrlines,ld
 from ExtraFunctions import move_player
 import Area1_map
 
@@ -175,17 +175,18 @@ def game_A1Z1_ulckSQ1():
                         A1Z1Chest = open_chest()
                         if A1Z1Chest:
                             GameAssets.Player.add_item(GameAssets.shield)
-                            GameAssets.A1Z1_Chest.actions = []
-                            GameAssets.Player.positionENC.actions = []
+                            GameAssets.A1Z1_Chest.actions.remove('E - Open Chest')
                             startPos = 'Chest'
+                            player_position = (2,-1)
                             break
                         else:
-                            GameAssets.A1Z1_Chest.actions = []
-                            GameAssets.Player.positionENC.actions = []
+                            GameAssets.A1Z1_Chest.actions.remove('E - Open Chest')
+                            player_position = (2,-1)
                             startPos = 'Chest'
                             break
                 elif 'E - Continue to Zone 2' in Actions:
                     if 'Spear' in GameAssets.Player.inventoryDEC or 'Spear' in GameAssets.Player.item_equippedDEC:
+                        
                         return
                     else:
                         printc('The following item(s) are required to continue:\n', 'bold red')
@@ -301,7 +302,7 @@ CRD_A1Z2_ulckGT12 = {
     (3,0) : GameAssets.A1Z2_ulckgt1,
     (4,0) : GameAssets.A1Z2_g,
     (4,-1): GameAssets.A1Z2_Chest,
-    (5,0) : GameAssets.A1Z2_lckgt2,
+    (5,0) : GameAssets.A1Z2_ulckgt2,
     (6,0) : GameAssets.A1Z2_End
 }      
 
@@ -351,13 +352,11 @@ def game_A1Z2_ulckGT12(startPos, player_position):
                     A1Z2Chest = open_chest()
                     if A1Z2Chest:
                         GameAssets.Player.add_item(GameAssets.BandAid)
-                        GameAssets.A1Z2_Chest.actions = []
-                        GameAssets.Player.positionENC.actions = []
+                        GameAssets.A1Z2_Chest.actions.remove('E - Open Chest')
                         startPos = 'Chest'
                         break
                     else:
-                        GameAssets.A1Z2_Chest.actions = []
-                        GameAssets.Player.positionENC.actions = []
+                        GameAssets.A1Z2_Chest.actions.remove('E - Open Chest')
                         startPos = 'Chest'
                         break
 
@@ -434,7 +433,7 @@ def game_A1Z2_lckGT2():
                 break
             elif key == 'E' or key == 'e':
                 if 'E - Pull Lever' in Actions:
-                    GameAssets.A1Z2_lvr2.actions = []
+                    GameAssets.A1Z2_lvr2.actions.remove('E - Pull Lever')
                     game_A1Z2_ulckGT12('Lever 2', (4,2))
                     return
                 
@@ -442,13 +441,11 @@ def game_A1Z2_lckGT2():
                     A1Z2Chest = open_chest()
                     if A1Z2Chest:
                         GameAssets.Player.add_item(GameAssets.BandAid)
-                        GameAssets.A1Z2_Chest.actions = []
-                        GameAssets.Player.positionENC.actions = []
+                        GameAssets.A1Z2_Chest.actions.remove('E - Open Chest')
                         startPos = 'Chest'
                         break
                     else:
-                        GameAssets.A1Z2_Chest.actions = []
-                        GameAssets.Player.positionENC.actions = []
+                        GameAssets.A1Z2_Chest.actions.remove('E - Open Chest')
                         startPos = 'Chest'
                         break
 
@@ -512,10 +509,9 @@ def game_A1Z2_lckGT1():
                 break
             elif key == 'E' or key == 'e':
                 if 'E - Pull Lever' in Actions:
-                    if GameAssets.Player.positionDEC == 'Lever 1':
-                        GameAssets.A1Z2_lvr1.actions = []
-                        game_A1Z2_ulckGT12('Lever 1', (2,-1))
-                    return
+                    GameAssets.A1Z2_lvr1.actions.remove('E - Pull Lever')
+                    game_A1Z2_ulckGT12('Lever 1', (2,-1))
+                return
                 
         continue
 
@@ -531,6 +527,7 @@ def game_A1Z2_lckGT12():
     startPos = 'Start'
     global Actions
     Actions = []
+    GameAssets.Player.positionENC.actions = []
     while True:
         clr()
         map = Area1_map.A1Z2_lckGT12
@@ -567,12 +564,12 @@ def game_A1Z2_lckGT12():
                 break
             elif key == 'E' or key == 'e':
                 if 'E - Pull Lever' in Actions:
-                    if GameAssets.Player.positionDEC == 'Lever 1':
-                        GameAssets.A1Z2_lvr1.actions = []
+                    if GameAssets.Player.positionDEC == 'A1Z2_lvr1':
+                        GameAssets.A1Z2_lvr1.actions.remove('E - Pull Lever')
                         game_A1Z2_lckGT2()
                         
-                    elif GameAssets.Player.positionDEC == 'Lever 2':
-                        GameAssets.A1Z2_lvr1.actions = []
+                    elif GameAssets.Player.positionDEC == 'A1Z2_lvr2':
+                        GameAssets.A1Z2_lvr2.actions.remove('E - Pull Lever')
                         game_A1Z2_lckGT1()
                         
                     return
@@ -580,6 +577,12 @@ def game_A1Z2_lckGT12():
 
 
 
-#------------------------RUNNING THE SEQUENCE
+#------------------------RUNNING THE SEQUENCE (un-comment all function calls when finished area)
 game_A1Z1lckSQ1()
 game_A1Z1_ulckSQ1()
+ld(5)
+game_A1Z2_lckGT12()
+
+#Next steps:
+#Error on lines 175 to 186 (chest section - cannot move after chest part is done for some rsn)
+#design + code Zn3 
