@@ -61,7 +61,7 @@ Charlie_House = '''
     '''                          
 
 A1Z2_lckGT12 = '''
-                                                     F───────────────┤[bold blue]LEVER[/bold blue]               
+                                                     F───────────────┤[bold blue]LEVER 2[/bold blue]               
                                                      │                          
                                                      │                          
                                                      │                          
@@ -75,11 +75,11 @@ A1Z2_lckGT12 = '''
                            │                          │                         
                            │                          │                         
                            ┴                          │                         
-                         [bold blue]LEVER[/bold blue]                        ┴                         
+                         [bold blue]LEVER 1[/bold blue]                        ┴                         
                                                     [bold yellow]CHEST[/bold yellow]                  
 '''
 A1Z2_lckGT1 = '''
-                                                     F───────────────┤[bold purple]LEVER[/bold purple]               
+                                                     F───────────────┤[bold purple]LEVER 2[/bold purple]               
                                                      │                          
                                                      │                          
                                                      │                          
@@ -93,11 +93,11 @@ A1Z2_lckGT1 = '''
                            │                          │                         
                            │                          │                         
                            ┴                          │                         
-                         [bold blue]LEVER[/bold blue]                        ┴                         
+                         [bold blue]LEVER 1[/bold blue]                        ┴                         
                                                     [bold yellow]CHEST[/bold yellow]                  
 '''                                                            
 A1Z2_lckGT2 = '''
-                                                     F───────────────┤[bold blue]LEVER[/bold blue]               
+                                                     F───────────────┤[bold blue]LEVER 2[/bold blue]               
                                                      │                          
                                                      │                          
                                                      │                          
@@ -111,11 +111,11 @@ A1Z2_lckGT2 = '''
                            │                          │                         
                            │                          │                         
                            ┴                          │                         
-                         [bold purple]LEVER[/bold purple]                        ┴                         
+                        [bold purple]LEVER 1[/bold purple]                        ┴                         
                                                     [bold yellow]CHEST[/bold yellow]                  
 '''
 A1Z2_ulckGT12 = '''
-                                                     F───────────────┤[bold purple]LEVER[/bold purple]               
+                                                     F───────────────┤[bold purple]LEVER 2[/bold purple]               
                                                      │                          
                                                      │                          
                                                      │                          
@@ -129,7 +129,7 @@ A1Z2_ulckGT12 = '''
                            │                          │                         
                            │                          │                         
                            ┴                          │                         
-                         [bold purple]LEVER[/bold purple]                        ┴                         
+                         [bold purple]LEVER 1[/bold purple]                        ┴                         
                                                     [bold yellow]CHEST[/bold yellow]                  
 '''           
 printc(A1Z2_lckGT2)                                                          

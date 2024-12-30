@@ -422,18 +422,35 @@ Player = player('ALIM', 'None') #PLAYER NAME TST
 #------AREA 1-------#
  
 #POSITONS----------------
-A1Z1_Start = position('Start', 'A1Z1-Start', [], 'ALL')
-A1Z1_House = position('House', 'A1Z1-House', ['E - Enter House'], 'ALL')
-A1Z1_a = position('A', 'A1Z1-A', [], 'ALL')
-A1Z1_BridgeLCK = position('[!]', 'A1Z1-BridgeLCK', ['E - Interact'], 'ALL')
-A1Z1_b = position('B', 'A1Z1-B', [], 'ALL')
-A1Z1_Chest = position('Chest', 'A1Z1-Chest', ['E - Open Chest'],' ALL')
+A1Z1_Start = position('Start', 'A1Z1_Start', [], 'ALL')
+A1Z1_House = position('House', 'A1Z1_House', ['E - Enter House'], 'ALL')
+A1Z1_a = position('A', 'A1Z1_A', [], 'ALL')
+A1Z1_BridgeLCK = position('[!]', 'A1Z1_BridgeLCK', ['E - Interact'], 'ALL')
+A1Z1_b = position('B', 'A1Z1_B', [], 'ALL')
+A1Z1_Chest = position('Chest', 'A1Z1_Chest', ['E - Open Chest'],' ALL')
 A1Z1_End = position('End', 'A1Z1_End', ['E - Continue to Zone 2'], 'ALL')
 
 Charlie_House_Door = position('Door', 'Charlie_House_Door', ['E - Exit'], 'ALL')
 Charlie_House_a = position('A', 'Charlie_House_a', [], 'ALL')
 Charlie_House_Desk = position('Desk', 'Charlie_House_Desk', ['E - Read Note'], 'ALL')
 Charlie_House_Bed = position('Bed', 'Charlie_House_Bed', ['E - Check Under Bed'], 'ALL')
+
+A1Z2_Start = position('Start', 'A1Z2_Start', [], 'ALL')
+A1Z2_a = position('A', 'A1Z2_A', [], 'WA')
+A1Z2_b = position('B', 'A1Z2_B',[], 'ALL')
+A1Z2_c = position('C', 'A1Z2_C', [], 'ALL')
+A1Z2_d = position('D', 'A1Z2_D', [], 'WSD')
+A1Z2_lvr1 = position('Lever 1', 'A1Z2_lvr1', ['E - Pull Lever'], 'ALL')
+A1Z2_e = position('E', 'A1Z2_E', [], 'ADW')
+A1Z2_f = position('F', 'A1Z2_F', [], 'ALL')
+A1Z2_lvr2 = position('Lever 2', 'A1Z2_lvr2', ['E - Pull Lever'], 'ALL')
+A1Z2_lckgt1 = position('Gate 1', 'A1Z2_lckgt1', [], 'A')
+A1Z2_lckgt2 = position('Gate 2', 'A1Z2_lckgt2', [], 'A')
+A1Z2_ulckgt1 = position('Gate 1', 'A1Z2_ulckgt1', [], 'AD')
+A1Z2_ulckgt2 = position('Gate 2', 'A1Z2_ulckgt2', [], 'AD')
+A1Z2_g = position('G', 'A1Z2_G', [], 'ADS')
+A1Z2_chest = position('Chest', 'A1Z2_Chest', ['E - Open Chest'], 'ALL')
+A1Z2_End = position('End', 'A1Z2_End', ['E - Continue to Zone 3'], 'ALL')
 
 #SIDE QUESTS--------------
 SQ1 = side_quest('SQ1')

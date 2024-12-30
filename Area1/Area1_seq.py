@@ -294,10 +294,3 @@ def game_A1Z1lckSQ1():
 #------------------------RUNNING THE SEQUENCE
 game_A1Z1lckSQ1()
 game_A1Z1_ulckSQ1()
-
-
-    
-#NEXT STEPS
-#fix the bug which causes the actions in A1Z1_ulckSQ1 to print twice when an item is dropped
-#Zone 1 will (officially) be done once that happens
-#Design + code zone 2
