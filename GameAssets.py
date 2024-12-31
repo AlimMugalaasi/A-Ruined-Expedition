@@ -461,11 +461,9 @@ A1Z3_b = position('B', 'A1Z3_B' ,[], 'ALL')
 A1Z3_d = position('D', 'A1Z3_D', [], 'ALL')
 A1Z3_lcke = position('E', 'A1Z3_lckE', [], 'AW')
 A1Z3_ulcke = position('E', 'A1Z3_ulckE', [], 'AWD')
-A1Z3_f = position('F', 'A1Z3_F', [], 'DS')
-A1Z3_Chest = position('Chest', 'A1Z3_Chest', ['E - Open Chest'], 'W')
-A1Z3_g = position('Chest', 'A1Z3_G', [], 'ALL')
+A1Z3_Chest = position('Chest', 'A1Z3_Chest', ['E - Open Chest'], 'D')
+A1Z3_f = position('F', 'A1Z3_F', [], 'ALL')
 A1Z3_m = position('M', 'A1Z3_M', [], 'DA')
-A1Z3_n = position('N', 'A1Z3_N', [], 'DA')
 A1Z3_End = position('End', 'A1Z3_End', ['E - Continue to Zone 4'], 'WDS')
 
 A1Z4_Start = position('Start', 'A1Z4_Start', [], 'ALL')
@@ -483,6 +481,7 @@ Charlie_House_key = item("Charlie's House Key", 'item')
 Bridge_key_A1Z1 = item("Bridge Key", 'item')
 spear = weapon('Spear', 'weapon', 20)
 shield = armour('Sheild', 'armour', 10)
+arcane_rune = armour('Arcane Rune', 'armour', 60) #SINGLE USE
 
 #NPCs---------------------
 NPC_Charlie = NPC('Charlie', 'Bridge', [Charlie.interaction1, Charlie.interaction2, Charlie.interaction3])

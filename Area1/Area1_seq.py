@@ -439,6 +439,8 @@ def game_A1Z2_lckGT2():
                     A1Z2Chest = open_chest()
                     if A1Z2Chest:
                         GameAssets.Player.add_item(GameAssets.BandAid)
+                        if 'Sheild' in GameAssets.Player.inventoryDEC or 'Sheild' in GameAssets.Player.item_equippedDEC:
+                            GameAssets.Player.add_item(GameAssets.shield)
                         GameAssets.A1Z2_Chest.actions.remove('E - Open Chest')
                         startPos = 'Chest'
                         break
@@ -573,10 +575,188 @@ def game_A1Z2_lckGT12():
                     return
         continue
 
+#-----------------ZONE 3
+
+CRD_A1Z3_ulckGT = {
+    (0,0) : GameAssets.A1Z3_Start,
+    (1,0) : GameAssets.A1Z3_a,
+    (1,1) : GameAssets.A1Z3_b,
+    (1,-1) : GameAssets.A1Z3_c,
+    (2,1) : GameAssets.A1Z3_m,
+    (3,1) : GameAssets.A1Z3_d,
+    (3,0) : GameAssets.A1Z3_ulcke,
+    (2,0) : GameAssets.A1Z3_Chest,
+    (2,-1) : GameAssets.A1Z3_lvr,
+    (4,0) : GameAssets.A1Z3_f,
+    (4,-1) : GameAssets.A1Z3_End
+}
+
+def game_A1Z3_ulckGT():
+    global player_position
+    player_position = (0,0)
+    global startPos
+    startPos = 'Start'
+    global Actions
+    Actions = []
+    while True:
+        clr()
+        map = Area1_map.A1Z3_ulckGT
+        printc(map)
+        printc('[bold]I[/bold] - Open inventory\n')
+        printc(f'Position: [bold]{startPos}[/bold]')
+        Actions = []
+
+        while True:
+            if GameAssets.Player.positionDEC != 'None':
+                for action in GameAssets.Player.positionENC.actions:
+                        printc(f'{action}', 'bold')
+                        Actions.append(action)
+                clrlines(len(Actions))
+
+            key = get_key()
+            if key == 'W' or key == 'w' or key == 'A' or key == 'a' or key == 'S' or key == 's' or key == 'D' or key == 'd':
+                player_position = move_player(key, CRD_A1Z3_ulckGT, player_position)
+                Actions = []
+                
+            elif key == 'T' or key == 't':
+                for action in GameAssets.Player.positionENC.actions:
+                    if action.startswith('T - Pick up '):
+                        pickup_item = action[12:]
+                        for item in GameAssets.Player.dropped_items:
+                            if pickup_item == item.name:
+                                GameAssets.Player.add_item(item)
+                break
+
+            elif key == 'I' or key == 'i':
+                startPos = GameAssets.Player.positionENC.name
+                GameAssets.player.open_inventory(GameAssets.Player)
+                clr()
+                break
+            elif key == 'E' or key == 'e':
+                if 'E - Open Chest' in Actions:
+                    if 'Arcane Rune' in GameAssets.Player.inventoryDEC:
+                        break
+                    else:
+                        A1Z3Chest = open_chest()
+                        if A1Z3Chest:
+                            GameAssets.Player.add_item(GameAssets.BandAid)
+                            GameAssets.Player.add_item(GameAssets.BandAid)
+                            GameAssets.Player.add_item(GameAssets.arcane_rune)
+                            GameAssets.A1Z3_Chest.actions.remove('E - Open Chest')
+                            startPos = 'Chest'
+                            break
+                        else:
+                            GameAssets.A1Z3_Chest.actions.remove('E - Open Chest')
+                            startPos = 'Chest'
+                            break
+
+                elif 'E - Continue to Zone 4' in Actions:
+                    if 'Spear' in GameAssets.Player.inventoryDEC or 'Spear' in GameAssets.Player.item_equippedDEC:
+                        return
+                    else:
+                        printc('The following item(s) are required to continue:\n', 'bold red')
+                        printc('Spear\n', 'bold red')
+                        questionary.press_any_key_to_continue('Press any key to dismiss...').ask()
+                        clrlines(2)
+                        break
+
+                    
+        continue
+#-----------------------------------------------------------
+
+CRD_A1Z3_lckGT = {
+    (0,0) : GameAssets.A1Z3_Start,
+    (1,0) : GameAssets.A1Z3_a,
+    (1,1) : GameAssets.A1Z3_b,
+    (1,-1) : GameAssets.A1Z3_c,
+    (2,1) : GameAssets.A1Z3_m,
+    (3,1) : GameAssets.A1Z3_d,
+    (3,0) : GameAssets.A1Z3_lcke,
+    (2,0) : GameAssets.A1Z3_Chest,
+    (2,-1) : GameAssets.A1Z3_lvr
+}
+
+def game_A1Z3_lckGT():
+    global player_position
+    player_position = (0,0)
+    global startPos
+    startPos = 'Start'
+    global Actions
+    Actions = []
+    while True:
+        clr()
+        map = Area1_map.A1Z3_lckGT
+        printc(map)
+        printc('[bold]I[/bold] - Open inventory\n')
+        printc(f'Position: [bold]{startPos}[/bold]')
+        Actions = []
+
+        while True:
+            if GameAssets.Player.positionDEC != 'None':
+                for action in GameAssets.Player.positionENC.actions:
+                    if action == 'E - Continue to Zone 4':
+                        printc(f'{action}', 'bold green')
+                        Actions.append(action)
+                    else:
+                        printc(f'{action}', 'bold')
+                        Actions.append(action)
+                clrlines(len(Actions))
+
+            key = get_key()
+            if key == 'W' or key == 'w' or key == 'A' or key == 'a' or key == 'S' or key == 's' or key == 'D' or key == 'd':
+                player_position = move_player(key, CRD_A1Z3_lckGT, player_position)
+                Actions = []
+                
+            elif key == 'T' or key == 't':
+                for action in GameAssets.Player.positionENC.actions:
+                    if action.startswith('T - Pick up '):
+                        pickup_item = action[12:]
+                        for item in GameAssets.Player.dropped_items:
+                            if pickup_item == item.name:
+                                GameAssets.Player.add_item(item)
+                break
+
+            elif key == 'I' or key == 'i':
+                startPos = GameAssets.Player.positionENC.name
+                GameAssets.player.open_inventory(GameAssets.Player)
+                clr()
+                break
+            elif key == 'E' or key == 'e':
+                if 'E - Pull Lever' in Actions:
+                    if GameAssets.Player.positionDEC == 'A1Z3_lvr':
+                        GameAssets.A1Z3_lvr.actions.remove('E - Pull Lever')
+                        game_A1Z3_ulckGT()
+                    return
+                
+                elif 'E - Open Chest' in Actions:
+                    if 'Arcane Rune' in GameAssets.Player.inventoryDEC:
+                        break
+                    else:
+                        A1Z3Chest = open_chest()
+                        if A1Z3Chest:
+                            GameAssets.Player.add_item(GameAssets.BandAid)
+                            GameAssets.Player.add_item(GameAssets.BandAid)
+                            GameAssets.Player.add_item(GameAssets.arcane_rune)
+                            GameAssets.A1Z3_Chest.actions.remove('E - Open Chest')
+                            startPos = 'Chest'
+                            break
+                        else:
+                            GameAssets.A1Z3_Chest.actions.remove('E - Open Chest')
+                            startPos = 'Chest'
+                            break
+        continue
+
+
 
 
 #------------------------RUNNING THE SEQUENCE (un-comment all function calls when finished area)
-game_A1Z1lckSQ1()
-game_A1Z1_ulckSQ1()
-ld(5)
-game_A1Z2_lckGT12()
+#game_A1Z1lckSQ1()
+#game_A1Z1_ulckSQ1()
+#ld(5)
+#game_A1Z2_lckGT12()
+
+GameAssets.Player.add_item(GameAssets.spear)
+game_A1Z3_lckGT()
+
+#bug - position resets to start when lever pulled
+#Conversation not added in.

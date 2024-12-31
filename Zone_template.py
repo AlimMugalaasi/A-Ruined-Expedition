@@ -49,8 +49,8 @@ def game_COORDINATE_SYSTEM_WITHOUT_CRD_PART():
                 clr()
                 break
             elif key == 'E' or key == 'e':
-                if 'E - ANY OTHER ACTION' in Actions:
-                    #if any other action happens here, the code for that action goes here. Delete if not needed.
+                if 'E - ACTION' in Actions:
+                    #Action code goes here
                     return
         continue
 
@@ -58,7 +58,7 @@ def game_COORDINATE_SYSTEM_WITHOUT_CRD_PART():
 #Opening chest template
 
 '''
-if 'E - Open Chest' in Actions:
+elif 'E - Open Chest' in Actions:
     if ''item name (not item.name)'' in GameAssets.Player.inventoryDEC:
         #break
     else:

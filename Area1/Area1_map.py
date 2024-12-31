@@ -5,7 +5,6 @@ import os, sys
 parent_dir = os.path.abspath(os.path.join(os.path.dirname(__file__), '..'))
 sys.path.append(parent_dir)
 from Functions import printc, type
-import GameAssets
 
 #KEY:
 #   A1 - Area 1
@@ -139,56 +138,41 @@ A1Z3_lckGT = '''
                    │                         │              
                    │                         │              
                    │                         │              
-                   │          F──────────────E─[bold red]─/─[/bold red]─────────G
-                   │          │                            │
-[bold green]START[/bold green]├─────────────A          │                            │
-                   │          │                            │
-                   │          ┴                            │
-                   │        [bold yellow]CHEST[/bold yellow]                          │
+                   │     [bold yellow]CHEST[/bold yellow]├──────────────E─[bold red]─/─[/bold red]─────────F
+                   │                                       │
+[bold green]START[/bold green]├─────────────A                                       │
+                   │                                       │
+                   │                                       │
+                   │                                       │
                    │                      ┌ ┐              │
                    │                       [bold red]![/bold red]               │
                    │                      └ ┘              │
-                   C────────────N────────────┤[bold blue]LEVER[/bold blue]        │
+                   C─────────────────────────┤[bold blue]LEVER[/bold blue]        │
                                                            │
                                                            ┴
                                                            ▼
 '''
 
-CRD_A1Z3_lck = {
-    (0,0) : GameAssets.A1Z3_Start,
-    (1,0) : GameAssets.A1Z3_a,
-    (1,1) : GameAssets.A1Z3_b,
-    (1,-1) : GameAssets.A1Z3_c,
-    (2,1) : GameAssets.A1Z3_m,
-    (3,1) : GameAssets.A1Z3_d,
-    (3,0) : GameAssets.A1Z3_lcke,
-    (2,0) : GameAssets.A1Z3_f,
-    (2,-1) : GameAssets.A1Z3_Chest,
-    (2,-1) : GameAssets.A1Z3_n#Coordinates clash - fix before moving on
-
-}
-
-A1Z3_ulck = '''
+A1Z3_ulckGT = '''
                    B────────────M────────────D              
                    │                         │              
                    │                         │              
                    │                         │              
                    │                         │              
-                   │          F──────────────E─[bold green]───[/bold green]─────────G
-                   │          │                            │
-[bold green]START[/bold green]├─────────────A          │                            │
-                   │          │                            │
-                   │          ┴                            │
-                   │        [bold yellow]CHEST[/bold yellow]                          │
+                   │     [bold yellow]CHEST[/bold yellow]├──────────────E─[bold green]───[/bold green]─────────F
+                   │                                       │
+[bold green]START[/bold green]├─────────────A                                       │
                    │                                       │
                    │                                       │
                    │                                       │
-                   C─────────────N───────────┤[bold purple]LEVER[/bold purple]        │
+                   │                      ┌ ┐              │
+                   │                       [bold red]![/bold red]               │
+                   │                      └ ┘              │
+                   C─────────────────────────┤[bold purple]LEVER[/bold purple]        │
                                                            │
                                                            ┴
                                                            ▼
 '''
-
 A1Z4 = '''
                                 [bold red]┌  ┐[/bold red]  
                                  [bold red]!![/bold red]   
