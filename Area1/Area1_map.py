@@ -134,7 +134,7 @@ A1Z2_ulckGT12 = '''
 '''                                                         
 
 A1Z3_lckGT = '''
-                   B─────────────────────────D              
+                   B────────────M────────────D              
                    │                         │              
                    │                         │              
                    │                         │              
@@ -148,16 +148,28 @@ A1Z3_lckGT = '''
                    │                      ┌ ┐              │
                    │                       [bold red]![/bold red]               │
                    │                      └ ┘              │
-                   C─────────────────────────┤[bold blue]LEVER[/bold blue]        │
+                   C────────────N────────────┤[bold blue]LEVER[/bold blue]        │
                                                            │
                                                            ┴
                                                            ▼
 '''
 
-CRD_A1Z3_lckGT = 'HEHEE'
+CRD_A1Z3_lck = {
+    (0,0) : GameAssets.A1Z3_Start,
+    (1,0) : GameAssets.A1Z3_a,
+    (1,1) : GameAssets.A1Z3_b,
+    (1,-1) : GameAssets.A1Z3_c,
+    (2,1) : GameAssets.A1Z3_m,
+    (3,1) : GameAssets.A1Z3_d,
+    (3,0) : GameAssets.A1Z3_lcke,
+    (2,0) : GameAssets.A1Z3_f,
+    (2,-1) : GameAssets.A1Z3_Chest,
+    (2,-1) : GameAssets.A1Z3_n#Coordinates clash - fix before moving on
 
-A1Z3_ulckGT = '''
-                   B─────────────────────────D              
+}
+
+A1Z3_ulck = '''
+                   B────────────M────────────D              
                    │                         │              
                    │                         │              
                    │                         │              
@@ -171,7 +183,7 @@ A1Z3_ulckGT = '''
                    │                                       │
                    │                                       │
                    │                                       │
-                   C─────────────────────────┤[bold purple]LEVER[/bold purple]        │
+                   C─────────────N───────────┤[bold purple]LEVER[/bold purple]        │
                                                            │
                                                            ┴
                                                            ▼
@@ -192,5 +204,3 @@ A1Z4 = '''
                  ┴                    
                [bold yellow]CHEST[/bold yellow]                  
 '''
-
-printc(A1Z3_lckGT)

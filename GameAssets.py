@@ -464,6 +464,8 @@ A1Z3_ulcke = position('E', 'A1Z3_ulckE', [], 'AWD')
 A1Z3_f = position('F', 'A1Z3_F', [], 'DS')
 A1Z3_Chest = position('Chest', 'A1Z3_Chest', ['E - Open Chest'], 'W')
 A1Z3_g = position('Chest', 'A1Z3_G', [], 'ALL')
+A1Z3_m = position('M', 'A1Z3_M', [], 'DA')
+A1Z3_n = position('N', 'A1Z3_N', [], 'DA')
 A1Z3_End = position('End', 'A1Z3_End', ['E - Continue to Zone 4'], 'WDS')
 
 A1Z4_Start = position('Start', 'A1Z4_Start', [], 'ALL')
