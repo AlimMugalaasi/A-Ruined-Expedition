@@ -5,6 +5,7 @@ import os, sys
 parent_dir = os.path.abspath(os.path.join(os.path.dirname(__file__), '..'))
 sys.path.append(parent_dir)
 from Functions import printc, type
+import GameAssets
 
 #KEY:
 #   A1 - Area 1
@@ -132,8 +133,64 @@ A1Z2_ulckGT12 = '''
                                                     [bold yellow]CHEST[/bold yellow]                  
 '''                                                         
 
-#Next steps:
+A1Z3_lckGT = '''
+                   B─────────────────────────D              
+                   │                         │              
+                   │                         │              
+                   │                         │              
+                   │                         │              
+                   │          F──────────────E─[bold red]─/─[/bold red]─────────G
+                   │          │                            │
+[bold green]START[/bold green]├─────────────A          │                            │
+                   │          │                            │
+                   │          ┴                            │
+                   │        [bold yellow]CHEST[/bold yellow]                          │
+                   │                      ┌ ┐              │
+                   │                       [bold red]![/bold red]               │
+                   │                      └ ┘              │
+                   C─────────────────────────┤[bold blue]LEVER[/bold blue]        │
+                                                           │
+                                                           ┴
+                                                           ▼
+'''
 
-#Create coordinate sytems for all
-#create all required positions
-#Code and test for Zone 2
+CRD_A1Z3_lckGT = 'HEHEE'
+
+A1Z3_ulckGT = '''
+                   B─────────────────────────D              
+                   │                         │              
+                   │                         │              
+                   │                         │              
+                   │                         │              
+                   │          F──────────────E─[bold green]───[/bold green]─────────G
+                   │          │                            │
+[bold green]START[/bold green]├─────────────A          │                            │
+                   │          │                            │
+                   │          ┴                            │
+                   │        [bold yellow]CHEST[/bold yellow]                          │
+                   │                                       │
+                   │                                       │
+                   │                                       │
+                   C─────────────────────────┤[bold purple]LEVER[/bold purple]        │
+                                                           │
+                                                           ┴
+                                                           ▼
+'''
+
+A1Z4 = '''
+                                [bold red]┌  ┐[/bold red]  
+                                 [bold red]!![/bold red]   
+                                [bold red]└  ┘[/bold red]  
+[bold green]START[/bold green]├───────────A──────────────────┤►
+                 │                    
+                 │                    
+                 │                    
+                 │                    
+                 │                    
+                 │                    
+                 │                    
+                 ┴                    
+               [bold yellow]CHEST[/bold yellow]                  
+'''
+
+printc(A1Z3_lckGT)

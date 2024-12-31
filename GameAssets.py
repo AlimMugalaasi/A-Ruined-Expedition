@@ -416,10 +416,11 @@ class position:
         self.dropped_items = []
         self.options = options
 
-#---------------------------------------------------------LOADING ALL ASSETS
+#---------------------------------------------------------CREATING ALL NECESSARY INSTANCES
 Player = player('ALIM', 'None') #PLAYER NAME TST
+BandAid = health('BandAid', 'health', 10)
 
-#------AREA 1-------#
+#--------------------------AREA 1--------------------------#
  
 #POSITONS----------------
 A1Z1_Start = position('Start', 'A1Z1_Start', [], 'ALL')
@@ -452,11 +453,30 @@ A1Z2_g = position('G', 'A1Z2_G', [], 'ADS')
 A1Z2_Chest = position('Chest', 'A1Z2_Chest', ['E - Open Chest'], 'ALL')
 A1Z2_End = position('End', 'A1Z2_End', ['E - Continue to Zone 3'], 'ALL')
 
+A1Z3_Start = position('Start', 'A1Z3_Start', [], 'ALL')
+A1Z3_a = position('A', 'A1Z3_A', [], 'WSA')
+A1Z3_c = position('C', 'A1Z3_C', [], 'ALL')
+A1Z3_lvr = position('Lever', 'A1Z3_lvr', ['E - Pull Lever'], 'A')
+A1Z3_b = position('B', 'A1Z3_B' ,[], 'ALL')
+A1Z3_d = position('D', 'A1Z3_D', [], 'ALL')
+A1Z3_lcke = position('E', 'A1Z3_lckE', [], 'AW')
+A1Z3_ulcke = position('E', 'A1Z3_ulckE', [], 'AWD')
+A1Z3_f = position('F', 'A1Z3_F', [], 'DS')
+A1Z3_Chest = position('Chest', 'A1Z3_Chest', ['E - Open Chest'], 'W')
+A1Z3_g = position('Chest', 'A1Z3_G', [], 'ALL')
+A1Z3_End = position('End', 'A1Z3_End', ['E - Continue to Zone 4'], 'WDS')
+
+A1Z4_Start = position('Start', 'A1Z4_Start', [], 'ALL')
+A1Z4_a = position('A', 'A1Z4_A', [], 'ALL')
+A1Z4_Chest = position('Chest', 'A1Z4_Chest', ['E - Open Chest'], 'ALL')
+A1Z4_bb = position('End', 'A1Z4_BB', ['E - Continue'], 'ALL')
+
+
+
 #SIDE QUESTS--------------
 SQ1 = side_quest('SQ1')
 
 #ITEMS------------------
-BandAid = health('BandAid', 'health', 10)
 Charlie_House_key = item("Charlie's House Key", 'item')
 Bridge_key_A1Z1 = item("Bridge Key", 'item')
 spear = weapon('Spear', 'weapon', 20)
