@@ -177,11 +177,9 @@ def game_A1Z1_ulckSQ1():
                             GameAssets.Player.add_item(GameAssets.shield)
                             GameAssets.A1Z1_Chest.actions.remove('E - Open Chest')
                             startPos = 'Chest'
-                            player_position = (2,-1)
                             break
                         else:
                             GameAssets.A1Z1_Chest.actions.remove('E - Open Chest')
-                            player_position = (2,-1)
                             startPos = 'Chest'
                             break
                 elif 'E - Continue to Zone 2' in Actions:
@@ -582,7 +580,3 @@ game_A1Z1lckSQ1()
 game_A1Z1_ulckSQ1()
 ld(5)
 game_A1Z2_lckGT12()
-
-#Next steps:
-#Error on lines 175 to 186 (chest section - cannot move after chest part is done for some rsn)
-#design + code Zn3 

@@ -427,7 +427,7 @@ A1Z1_House = position('House', 'A1Z1_House', ['E - Enter House'], 'ALL')
 A1Z1_a = position('A', 'A1Z1_A', [], 'ALL')
 A1Z1_BridgeLCK = position('[!]', 'A1Z1_BridgeLCK', ['E - Interact'], 'ALL')
 A1Z1_b = position('B', 'A1Z1_B', [], 'ALL')
-A1Z1_Chest = position('Chest', 'A1Z1_Chest', ['E - Open Chest'],' ALL')
+A1Z1_Chest = position('Chest', 'A1Z1_Chest', ['E - Open Chest'],'ALL')
 A1Z1_End = position('End', 'A1Z1_End', ['E - Continue to Zone 2'], 'ALL')
 
 Charlie_House_Door = position('Door', 'Charlie_House_Door', ['E - Exit'], 'ALL')
