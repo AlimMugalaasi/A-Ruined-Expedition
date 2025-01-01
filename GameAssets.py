@@ -1,5 +1,5 @@
 from Functions import printc, clr, type, ld, clrline, sleep, clrlines
-import questionary
+import questionary, sys
 from NPCInteractions import Charlie,Anonymous_Civilian
 #-------------------------------------------------------PLAYER
 
@@ -32,7 +32,7 @@ class player:
     def open_inventory(self):
         while True:
             clr()
-            printc('INVENTORY', 'underline green bold italic')
+            printc(f'[underline green bold italic]INVENTORY[/underline green bold italic]           HP: [bold]{self.HP}[/bold]')
             item_select = questionary.select("Select an item to see further options. Select EQUIPPED to see options for equipped items.\n", choices=self.inventoryDEC, qmark='>').ask()
             if item_select =='<--BACK':
                 break
@@ -129,58 +129,54 @@ class player:
                             continue
 
     def equip_item(self, item):
-        for itemDEC in self.inventoryDEC:
-            if itemDEC.startswith('BandAid'):
-                self.heal(10)
-                if self.number_of_bandaids > 0:
-                    self.number_of_bandaids -= 1
+        if 'BandAid' in item:
+            for itemDEC in self.inventoryDEC:
+                if itemDEC.startswith('BandAid'):
+                    self.heal(10)
+                    if self.number_of_bandaids > 0:
+                        self.number_of_bandaids -= 1
 
-                    for i, inventory_item in enumerate(self.inventoryDEC):
-                        if inventory_item.startswith('BandAid'):
-                            if self.number_of_bandaids == 0:
-                                self.inventoryDEC.pop(i)
-                            else:
-                                self.inventoryDEC[i] = f'BandAid ×{self.number_of_bandaids}'
-                            break
-                    
-                else: #Code shouldnt go here
-                    printc('[bold yellow]No BandAids left to use![/bold yellow]')
-                    questionary.press_any_key_to_continue(message='Press any key to dismiss...').ask()
+                        for i, inventory_item in enumerate(self.inventoryDEC):
+                            if inventory_item.startswith('BandAid'):
+                                if self.number_of_bandaids == 0:
+                                    self.inventoryDEC.pop(i)
+                                else:
+                                    self.inventoryDEC[i] = f'BandAid ×{self.number_of_bandaids}'
+                                break
+                        
+                    else: #Code shouldnt go here
+                        printc('[bold yellow]No BandAids left to use![/bold yellow]')
+                        questionary.press_any_key_to_continue(message='Press any key to dismiss...').ask()
+        else:
+            for itemENC in self.inventoryENC:
+                if itemENC.name == item:
+                    if itemENC.category == 'item' or itemENC.category == 'weapon' or item.category == 'health':
+                        if self.item_equippedDEC == 'None':
+                            self.item_equippedDEC = itemENC.name
+                            self.item_equippedENC = itemENC
+                            self.inventoryENC.remove(itemENC)
+                            self.inventoryDEC.remove(itemENC.name)
+                            self.total_equipped.append(self.item_equippedDEC)
 
-        for itemENC in self.inventoryENC:
-            if itemENC.name == item:
-                if itemENC.category == 'item' or itemENC.category == 'weapon':
-                    if self.item_equippedDEC == 'None':
-                        self.item_equippedDEC = itemENC.name
-                        self.item_equippedENC = itemENC
-                        self.inventoryENC.remove(itemENC)
-                        self.inventoryDEC.remove(itemENC.name)
-                        self.total_equipped.append(self.item_equippedDEC)
+                        else:
+                            self.inventoryDEC.append(self.item_equippedDEC)
+                            self.inventoryENC.append(self.item_equippedENC)
+                            self.total_equipped.remove(self.item_equippedDEC)
+                            self.item_equippedDEC = itemENC.name
+                            self.item_equippedENC = itemENC
+                            self.inventoryENC.remove(itemENC)
+                            self.inventoryDEC.remove(itemENC.name)
+                            self.total_equipped.append(self.item_equippedDEC)
 
-                    else:
-                        self.inventoryDEC.append(self.item_equippedDEC)
-                        self.inventoryENC.append(self.item_equippedENC)
-                        self.total_equipped.remove(self.item_equippedDEC)
-                        self.item_equippedDEC = itemENC.name
-                        self.item_equippedENC = itemENC
-                        self.inventoryENC.remove(itemENC)
-                        self.inventoryDEC.remove(itemENC.name)
-                        self.total_equipped.append(self.item_equippedDEC)
+                    elif itemENC.category == 'armour':
+                            self.armour_equippedENC.append(itemENC)
+                            self.armour_equippedDEC.append(itemENC.name)
+                            self.total_equipped.append(itemENC.name)
+                            self.inventoryENC.remove(itemENC)
+                            self.inventoryDEC.remove(itemENC.name)
 
-                elif itemENC.category == 'armour':
-                        self.armour_equippedENC.append(itemENC)
-                        self.armour_equippedDEC.append(itemENC.name)
-                        self.total_equipped.append(itemENC.name)
-                        self.inventoryENC.remove(itemENC)
-                        self.inventoryDEC.remove(itemENC.name)
-
-                elif itemENC.category == 'health':  
-                        self.heal(itemENC.health)
-                        self.inventoryENC.remove(itemENC)
-                        self.inventoryDEC.remove(itemENC.name)
-
-            else:
-                continue
+                else:
+                    continue
 
     def unequip_item(self, item):
         for armourENC in self.armour_equippedENC:

@@ -124,6 +124,8 @@ def game_A1Z1_ulckSQ1():
     GameAssets.Player.positionENC.actions = []
     global Actions
     Actions = []
+    GameAssets.Player.positionENC = GameAssets.A1Z1_a
+    GameAssets.Player.positionDEC = GameAssets.A1Z1_a.name
     while True:
         clr()
         map = Area1_map.A1Z1_ulckSQ1
@@ -208,6 +210,8 @@ def game_A1Z1lckSQ1():
     startPos = 'Start'
     global Actions
     Actions = []
+    GameAssets.Player.positionENC = GameAssets.A1Z1_Start
+    GameAssets.Player.positionDEC = GameAssets.A1Z1_Start.name
     while True:
         clr()
         map = Area1_map.A1Z1_lckSQ1
@@ -307,6 +311,7 @@ CRD_A1Z2_ulckGT12 = {
 def game_A1Z2_ulckGT12(startPos, player_position):
     global Actions
     Actions = []
+
     while True:
         clr()
         map = Area1_map.A1Z2_ulckGT12
@@ -528,6 +533,8 @@ def game_A1Z2_lckGT12():
     global Actions
     Actions = []
     GameAssets.Player.positionENC.actions = []
+    GameAssets.Player.positionENC = GameAssets.A1Z2_Start
+    GameAssets.Player.positionDEC = GameAssets.A1Z2_Start.name
     while True:
         clr()
         map = Area1_map.A1Z2_lckGT12
@@ -687,6 +694,8 @@ def game_A1Z3_lckGT():
     startPos = 'Start'
     global Actions
     Actions = []
+    GameAssets.Player.positionENC = GameAssets.A1Z3_Start
+    GameAssets.Player.positionDEC = GameAssets.A1Z3_Start.name   
     while True:
         clr()
         map = Area1_map.A1Z3_lckGT
@@ -765,6 +774,8 @@ def game_A1Z4():
     startPos = 'Start'
     global Actions
     Actions = []
+    GameAssets.Player.positionENC = GameAssets.A1Z4_Start
+    GameAssets.Player.positionDEC = GameAssets.A1Z4_Start.name
     while True:
         clr()
         map = Area1_map.A1Z4
@@ -832,9 +843,10 @@ def game_A1Z4():
 #ld(5)
 #game_A1Z2_lckGT12()
 #ld(5)
-#game_A1Z3_lckGT()
 
+
+GameAssets.Player.add_item(GameAssets.BandAid)
 GameAssets.Player.add_item(GameAssets.spear)
-
+game_A1Z3_lckGT()
 
 

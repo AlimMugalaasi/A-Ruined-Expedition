@@ -111,8 +111,13 @@ def bossBattle(Boss):
             finally:
                 continue
         elif turn == Player:
-            input('Player takes a turn\n')
+            print('Pick an item and then press ENTER to attack using it.')
+            print('Equipping any health item other than a BandAid will use up a turn once ENTER is pressed.')
+            print('BandAids can be used at any time.e') 
+            type(f'How will {Player.name} fight?\n')
             turn = Boss
             continue
 
 bossBattle(GameAssets.Zexrash)
+
+
