@@ -1,4 +1,4 @@
-from Functions import printc, clr, type, ld, clrline
+from Functions import printc, clr, type, ld, clrline, sleep, clrlines
 import questionary
 from NPCInteractions import Charlie,Anonymous_Civilian
 #-------------------------------------------------------PLAYER
@@ -422,6 +422,34 @@ class NPC(entity):
     def interact(self, interact_number):
         self.interactions[interact_number-1]()
 
+class boss:
+    def __init__(self, name, attacks):
+        self.name = name
+        self.HP = 100
+        self.alive = True
+        self.attacks = attacks
+
+    def heal(self, health):
+        self.HP += health
+        if self.HP > 100:
+            self.HP = 100
+
+    def attack(self, attack):
+        if attack.heal:
+            self.heal(attack.damage)
+            type(f'{self.name} used {attack.name}! (+{attack.damage}HP)\n', 'bold green')
+            sleep(1)
+            clrlines(1)
+        else:
+            type(f'{self.name} used ')
+            type(f'{attack.name}!\n', 'red')
+            sleep(1)
+
+class attack:
+    def __init__(self, name, damage, heal=False):
+        self.name = name
+        self.damage = damage
+        self.heal = heal
 #---------------------------------------------------------POSITION
 
 class position:

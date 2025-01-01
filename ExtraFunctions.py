@@ -1,7 +1,7 @@
 from Functions import clrline, printc
 import GameAssets
 
-#The purpose of Extra functions was to avoid problems with circular imports.
+#The purpose of Extra functions was to avoid problems with circular imports. (involving GameAssets)
 #------------------------------------------------------
 
 #Moving the player around a map
@@ -54,5 +54,7 @@ def move_player(direction, coordinate_sys, player_position):
     else:
         return player_position
     
+
+
 
     
