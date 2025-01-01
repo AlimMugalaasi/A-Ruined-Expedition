@@ -74,3 +74,18 @@ elif 'E - Open Chest' in Actions:
             #break
 
 '''
+
+#'continue to zone X' template
+'''
+(while True)
+    if GameAssets.Player.positionDEC != 'None':
+        for action in GameAssets.Player.positionENC.actions:
+            if action == 'E - Continue to Zone 4':
+                printc(f'{action}', 'bold green')
+                Actions.append(action)
+            else:
+                printc(f'{action}', 'bold')
+                Actions.append(action)
+        clrlines(len(Actions))
+
+'''

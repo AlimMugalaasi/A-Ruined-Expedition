@@ -165,9 +165,9 @@ A1Z3_ulckGT = '''
                    │                                       │
                    │                                       │
                    │                                       │
-                   │                      ┌ ┐              │
-                   │                       [bold red]![/bold red]               │
-                   │                      └ ┘              │
+                   │                                       │
+                   │                                       │
+                   │                                       │
                    C─────────────────────────┤[bold purple]LEVER[/bold purple]        │
                                                            │
                                                            ┴

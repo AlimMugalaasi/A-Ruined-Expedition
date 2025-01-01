@@ -1,6 +1,6 @@
 from Functions import printc, clr, type, ld, clrline
 import questionary
-import NPCInteractions.Charlie as Charlie
+from NPCInteractions import Charlie,Anonymous_Civilian
 #-------------------------------------------------------PLAYER
 
 class player:
@@ -312,41 +312,57 @@ class player:
 #-------------------------------------------------------ITEMS
 
 class item:
-    def __init__(self, name, category):
+    def __init__(self, name, category, single_use=False):
         self.name = name
         self.category = 'item'
+        self.single_use = single_use
 
     def give_details(self):
-            printc(f'ITEM: [bold white]{self.name}[/bold white]     CATEGORY: [bold yellow]item[/bold yellow]')
-            
+            if not self.single_use:
+                printc(f'ITEM: [bold white]{self.name}[/bold white]     CATEGORY: [bold yellow]item[/bold yellow]')
+            else:
+                printc(f'ITEM: [bold white]{self.name}[/bold white]     CATEGORY: [bold yellow]item[/bold yellow]')
+
 
 class armour(item):
-    def __init__(self, name, category, healthProt):
-        super().__init__(name, category)
+    def __init__(self, name, category, healthProt, single_use=False):
+        super().__init__(name, category, single_use=False)
         self.healthProt = healthProt
         self.category = 'armour'
+        self.single_use = single_use
         
     def give_details(self):
-        printc(f'ITEM: [bold white]{self.name}[/bold white]     CATEGORY: [bold blue]Armour[/bold blue]    PROTECTION: [bold green]{self.healthProt}[/bold green]')
-        
+        if not self.single_use:
+            printc(f'ITEM: [bold white]{self.name}[/bold white]     CATEGORY: [bold blue]Armour[/bold blue]    PROTECTION: [bold green]{self.healthProt}[/bold green]')
+        else:
+            printc(f'ITEM: [bold white]{self.name} (SINGLE USE)[/bold white]     CATEGORY: [bold blue]Armour[/bold blue]    PROTECTION: [bold green]{self.healthProt}[/bold green]')
+
 
 class weapon(item):
-    def __init__(self, name, category, damage):
-        super().__init__(name, category)
+    def __init__(self, name, category, damage, single_use=False):
+        super().__init__(name, category, single_use=False)
         self.damage = damage
         self.category = 'weapon'
+        self.single_use = single_use
 
     def give_details(self):
-        printc(f'ITEM: [bold white]{self.name}[/bold white]     CATEGORY: [bold red]Weapon[/bold red]    DAMAGE: [bold green]{self.damage}[/bold green]')
+        if not self.single_use:
+            printc(f'ITEM: [bold white]{self.name}[/bold white]     CATEGORY: [bold red]Weapon[/bold red]    DAMAGE: [bold green]{self.damage}[/bold green]')
+        else:
+            printc(f'ITEM: [bold white]{self.name} (SINGLE USE)[/bold white]     CATEGORY: [bold red]Weapon[/bold red]    DAMAGE: [bold green]{self.damage}[/bold green]')
 
 class health(item):
-    def __init__(self, name, category, health):
-        super().__init__(name, category)
+    def __init__(self, name, category, health, single_use=False):
+        super().__init__(name, category, single_use=False)
         self.health = health
         self.category = 'health'
-
+        self.single_use = single_use
+        
     def give_details(self):
-        printc(f'ITEM: [bold white]{self.name}[/bold white]     CATEGORY: [bold magenta]Health[/bold magenta]    HEALTH: [bold green]+{self.health}[/bold green]')
+        if not self.single_use:
+            printc(f'ITEM: [bold white]{self.name}[/bold white]     CATEGORY: [bold magenta]Health[/bold magenta]    HEALTH: [bold green]+{self.health}[/bold green]')
+        else:
+            printc(f'ITEM: [bold white]{self.name} (SINGLE USE)[/bold white]     CATEGORY: [bold magenta]Health[/bold magenta]    HEALTH: [bold green]+{self.health}[/bold green]')
 
 #-------------------------------------------------------AREAS & NAVIGATION
 
@@ -481,7 +497,8 @@ Charlie_House_key = item("Charlie's House Key", 'item')
 Bridge_key_A1Z1 = item("Bridge Key", 'item')
 spear = weapon('Spear', 'weapon', 20)
 shield = armour('Sheild', 'armour', 10)
-arcane_rune = armour('Arcane Rune', 'armour', 60) #SINGLE USE
+arcane_rune = armour('Arcane Rune', 'armour', 60, True) #SINGLE USE
 
 #NPCs---------------------
 NPC_Charlie = NPC('Charlie', 'Bridge', [Charlie.interaction1, Charlie.interaction2, Charlie.interaction3])
+NPC_anonymous_civilian = NPC('Anonymous Civilian', 'Lever', [Anonymous_Civilian.start_interaction1, Anonymous_Civilian.start_interaction2])
