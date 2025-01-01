@@ -278,9 +278,11 @@ class player:
 
     def kill_check(self):
         if self.Alive == False:
-            #DEATH SEQUENCE - PROGRAMME IS QUIT FROM HERE(or respawn)
-            pass
-
+            clr()
+            type('YOU DIED', 'bold red')
+            sleep(2)
+            quit()
+            #This is a test to make sure it works, you can change what displays later
         else:
             return
         
@@ -444,6 +446,7 @@ class boss:
             type(f'{self.name} used ')
             type(f'{attack.name}!\n', 'red')
             sleep(1)
+            return attack.damage
 
 class attack:
     def __init__(self, name, damage, heal=False):
@@ -530,3 +533,8 @@ arcane_rune = armour('Arcane Rune', 'armour', 60, True) #SINGLE USE
 #NPCs---------------------
 NPC_Charlie = NPC('Charlie', 'Bridge', [Charlie.interaction1, Charlie.interaction2, Charlie.interaction3])
 NPC_anonymous_civilian = NPC('Anonymous Civilian', 'Lever', [Anonymous_Civilian.start_interaction1, Anonymous_Civilian.start_interaction2])
+
+#--------------------------BOSS ELEMENTS
+basic_attack_ZR = attack('Basic Attack', 10) 
+
+Zexrash = boss('Zexrash', [basic_attack_ZR])
