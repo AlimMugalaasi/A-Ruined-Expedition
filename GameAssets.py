@@ -26,6 +26,7 @@ class player:
         self.activeSQ = 'None'
         self.stored_action = 'None'
         self.dropped_items = []
+        self.fighting = False
         #-------------------------NECESSARY ONE-TIME ATTRIBUTES
         self.ReadNote = False
     
@@ -89,12 +90,17 @@ class player:
                                         continue
 #OTHER HEALTH ITEMS--------                                     
                             elif itemENC.category == 'health':
-                                item_confirm = questionary.confirm(f"Use {item_select}?").ask()
+                                item_confirm = questionary.confirm(f"Equip {item_select}?").ask()
                                 if item_confirm:
-                                    self.equip_item(item_select)
-                                    printc(f'Used: [bold white]{item_select}[/bold white] ---> [bold green]+{itemENC.health}HP[/bold green]')
-                                    questionary.press_any_key_to_continue().ask()
-                                    continue
+                                    if self.fighting:
+                                        self.equip_item(item_select)
+                                        questionary.press_any_key_to_continue().ask()
+                                        continue
+                                    else:
+                                        type('You can only use this item in battle!\n', 'bold yellow')
+                                        questionary.press_any_key_to_continue('Press any key to dismiss...').ask()
+                                        clrlines(2)
+                                        continue
                                 else:
                                     continue
 #ARMOUR ITEMS-------------------                           
@@ -150,7 +156,7 @@ class player:
         else:
             for itemENC in self.inventoryENC:
                 if itemENC.name == item:
-                    if itemENC.category == 'item' or itemENC.category == 'weapon' or item.category == 'health':
+                    if itemENC.category == 'item' or itemENC.category == 'weapon' or itemENC.category == 'health':
                         if self.item_equippedDEC == 'None':
                             self.item_equippedDEC = itemENC.name
                             self.item_equippedENC = itemENC
@@ -169,11 +175,11 @@ class player:
                             self.total_equipped.append(self.item_equippedDEC)
 
                     elif itemENC.category == 'armour':
-                            self.armour_equippedENC.append(itemENC)
-                            self.armour_equippedDEC.append(itemENC.name)
-                            self.total_equipped.append(itemENC.name)
-                            self.inventoryENC.remove(itemENC)
-                            self.inventoryDEC.remove(itemENC.name)
+                        self.armour_equippedENC.append(itemENC)
+                        self.armour_equippedDEC.append(itemENC.name)
+                        self.total_equipped.append(itemENC.name)
+                        self.inventoryENC.remove(itemENC)
+                        self.inventoryDEC.remove(itemENC.name)
 
                 else:
                     continue
@@ -298,6 +304,25 @@ class player:
             self.Alive = False
 
         self.kill_check()
+    
+    def attack(self):
+        if self.item_equippedENC.category == 'health':
+            self.heal(self.item_equippedENC.health)
+            type(f'{self.name} used {self.item_equippedDEC}! (+{self.item_equippedENC.health}HP)', 'bold green')
+            sleep(1)
+            return 'HEALED' , self.item_equippedENC.health
+
+        elif self.item_equippedENC.category == 'weapon':
+            type(f'{self.name} used ')
+            type(f'{self.item_equippedENC.name}!\n', 'purple')
+            sleep(1)
+            return 'ATTACKED', self.item_equippedENC.damage
+        
+        else:
+            type(f'You cannot use this item as it is not a weapon!\n')
+            questionary.press_any_key_to_continue('Press any key to dismiss...').ask()
+            return 'NO ATTACK'
+
 
     def heal(self, health):
         self.HP += health
@@ -443,6 +468,19 @@ class boss:
             type(f'{attack.name}!\n', 'red')
             sleep(1)
             return attack.damage
+        
+    def kill_check(self):
+        if self.HP <= 0:
+            self.alive = False
+    
+    def take_damage(self, damage):
+        self.HP -= damage
+        self.kill_check()
+        if self.alive == False:
+            return 'PLAYER WIN'
+        else:
+            return damage
+
 
 class attack:
     def __init__(self, name, damage, heal=False):

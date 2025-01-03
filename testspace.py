@@ -1,4 +1,4 @@
-from Functions import printc, sleep, clr, type
+from Functions import printc, sleep, clr, type, get_key
 import GameAssets, random
 def bb_normal():
     printc('''
@@ -84,6 +84,7 @@ def bb_startAnim(boss):
     sleep(2)
     
 def bossBattle(Boss):
+    GameAssets.Player.fighting = True
     clr()
     bb_startAnim(Boss.name)
     clr()
@@ -98,6 +99,8 @@ def bossBattle(Boss):
 
     turn = starts
     while True:
+        clr()
+        bb_normal()
         if turn == Boss:
             attack_choice = random.choice(Boss.attacks)
             attack = Boss.attack(attack_choice)
@@ -111,13 +114,43 @@ def bossBattle(Boss):
             finally:
                 continue
         elif turn == Player:
-            print('Pick an item and then press ENTER to attack using it.')
-            print('Equipping any health item other than a BandAid will use up a turn once ENTER is pressed.')
-            print('BandAids can be used at any time.e') 
-            type(f'How will {Player.name} fight?\n')
-            turn = Boss
-            continue
+            printc('TIPS:', 'bold')
+            print('Equip an item and then press F to attack using it.')
+            print('Equipping any health item other than a BandAid will use up a turn once F is pressed.')
+            print('BandAids can be used at any time.')
+            print('Up to 3 items of armour (that is not single-use) can be equipped at a time to decrease inflicted damage.\n\n ') 
 
+            printc('F - Attack', 'bold')
+            printc('I - Open inventory\n', 'bold')
+            type(f'How will {Player.name} fight back?\n')
+            key = get_key()
+            if key == 'I' or key == 'i':
+                GameAssets.Player.open_inventory()
+                continue
+
+            elif key == 'F' or key == 'f':
+                player_attack = Player.attack()
+                if 'ATTACKED' in player_attack:
+                    hit = Boss.take_damage(player_attack[1])
+                    try:
+                        typecheck = hit*2
+                    
+                    except TypeError:
+                        #PLAYER WIN BATTLE ANIM
+                        return
+                    
+                    else:
+                        if hit <= 10:
+                            type("It's not so effective...", 'bold yellow', 0.1)
+                            sleep(1)
+                        
+                        elif hit <= 20:
+                            type("It's somewhat effective...") #add speed and colour and finsih rest
+
+
+            
+
+            
 bossBattle(GameAssets.Zexrash)
 
 
