@@ -1,4 +1,4 @@
-from Functions import printc, sleep, clr, type, get_key
+from Functions import printc, sleep, clr, type, get_key, rainbow_type
 import GameAssets, random
 def bb_normal():
     printc('''
@@ -141,16 +141,33 @@ def bossBattle(Boss):
                     
                     else:
                         if hit <= 10:
-                            type("It's not so effective...", 'bold yellow', 0.1)
+                            type("It's not so effective...\n", 'bold yellow', 0.1)
                             sleep(1)
+                            continue
                         
                         elif hit <= 20:
-                            type("It's somewhat effective...") #add speed and colour and finsih rest
+                            type("It's pretty effective!\n", 'bold #013220 ', 0.1)
+                            sleep(1)
+                            continue
+                        
+                        elif hit <= 49:
+                            type("It's really effective!\n", 'bold green', 0.1)
+                            sleep(1)
+                            continue
+
+                        elif hit <=100:
+                            rainbow_type("It's super effective!\n", 0.2)
+                            sleep(1)
+                            continue
+                        
+
+
+
 
 
             
 
-            
+GameAssets.Player.add_item
 bossBattle(GameAssets.Zexrash)
 
 

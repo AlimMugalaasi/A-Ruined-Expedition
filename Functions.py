@@ -130,3 +130,15 @@ def nav():
       S     
            
 ''')
+
+#typing out a string in rainbow colors (made this for one cause only but put it as a function becausue why not?)
+def rainbow_type(string, speed):
+    colors = ['red', 'rgb(255,165,0)', 'yellow', 'green', 'blue', 'rgb(75,0,130)', 'violet']
+    count = 0
+    for char in string:
+        type(char, f'bold {colors[count]}')
+        count +=1
+        if count == 7:
+            count = 0
+        sleep(speed)
+        continue
