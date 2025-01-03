@@ -1,5 +1,5 @@
 from Functions import printc, sleep, clr, type, get_key, rainbow_type
-import GameAssets, random
+import GameAssets, random, questionary
 def bb_normal():
     printc('''
                                                             ┌  ┐ 
@@ -129,6 +129,10 @@ def bossBattle(Boss):
                 continue
 
             elif key == 'F' or key == 'f':
+                if Player.item_equippedDEC == 'None':
+                    type("You need to equip an item to attack!\n", 'bold')
+                    questionary.press_any_key_to_continue('Press any key to dismiss...').ask()
+                    continue
                 player_attack = Player.attack()
                 if 'ATTACKED' in player_attack:
                     hit = Boss.take_damage(player_attack[1])
@@ -141,24 +145,27 @@ def bossBattle(Boss):
                     
                     else:
                         if hit <= 10:
-                            type("It's not so effective...\n", 'bold yellow', 0.1)
+                            type("It's not so effective...\n", 'bold yellow')
                             sleep(1)
-                            continue
+                            
                         
                         elif hit <= 20:
-                            type("It's pretty effective!\n", 'bold #013220 ', 0.1)
+                            type("It's pretty effective!\n", 'bold green')
                             sleep(1)
-                            continue
+                            
                         
                         elif hit <= 49:
-                            type("It's really effective!\n", 'bold green', 0.1)
+                            type("It's really effective!\n", 'bold green')
                             sleep(1)
-                            continue
+                            
 
                         elif hit <=100:
-                            rainbow_type("It's super effective!\n", 0.2)
+                            rainbow_type("It's super effective!\n")
                             sleep(1)
-                            continue
+                    
+                    finally:
+                        turn = Boss
+                        continue
                         
 
 
@@ -167,7 +174,7 @@ def bossBattle(Boss):
 
             
 
-GameAssets.Player.add_item
+GameAssets.Player.add_item(GameAssets.spear)
 bossBattle(GameAssets.Zexrash)
 
 
