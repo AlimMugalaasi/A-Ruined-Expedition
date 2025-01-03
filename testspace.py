@@ -136,36 +136,37 @@ def bossBattle(Boss):
                 player_attack = Player.attack()
                 if 'ATTACKED' in player_attack:
                     hit = Boss.take_damage(player_attack[1])
-                    try:
-                        typecheck = hit*2
-                    
-                    except TypeError:
-                        #PLAYER WIN BATTLE ANIM
+
+                    if str(hit) == 'PLAYER WIN':
                         return
-                    
+
                     else:
                         if hit <= 10:
                             type("It's not so effective...\n", 'bold yellow')
                             sleep(1)
+                            turn = Boss
+                            continue
                             
                         
                         elif hit <= 20:
                             type("It's pretty effective!\n", 'bold green')
                             sleep(1)
+                            turn = Boss
+                            continue
                             
                         
                         elif hit <= 49:
                             type("It's really effective!\n", 'bold green')
                             sleep(1)
+                            turn = Boss
+                            continue
                             
 
                         elif hit <=100:
                             rainbow_type("It's super effective!\n")
                             sleep(1)
-                    
-                    finally:
-                        turn = Boss
-                        continue
+                            turn = Boss
+                            continue
                         
 
 
@@ -176,5 +177,11 @@ def bossBattle(Boss):
 
 GameAssets.Player.add_item(GameAssets.spear)
 bossBattle(GameAssets.Zexrash)
+
+#add option for player not to drop an item when in a battle
+#make sure fighiting becomes false when battle finish
+#add more fighting styles for BOSS and make it heal themselves after certain health
+#try and make this last a while but remember this is the easiet bb as it is the first.
+#health bars
 
 
