@@ -216,8 +216,6 @@ GameAssets.Player.add_item(GameAssets.BandAid)
 bossBattle(GameAssets.Zexrash)
 
 #make sure fighiting becomes false when battle finish
-#add more fighting styles for BOSS and make it heal themselves after certain health
-#try and make this last a while but remember this is the easiet bb as it is the first.
 #health bars
 
 
