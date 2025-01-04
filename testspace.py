@@ -109,10 +109,42 @@ def bossBattle(Boss):
             except TypeError:
                 turn = Player
             else:
-                GameAssets.Player.take_damage(attack)
+                global player_damage
+                player_damage = GameAssets.Player.take_damage(attack)
                 turn = Player
             finally:
-                continue
+                if 'ALIVE' in player_damage:
+                    if player_damage[1] <= 10:
+                        type("It's not so effective...\n", 'bold yellow')
+                        sleep(1)
+                        turn = Player
+                        continue
+                                 
+                    elif player_damage[1] <= 20:
+                        type("It's pretty effective!\n", 'bold green')
+                        sleep(1)
+                        turn = Player
+                        continue
+                        
+                    
+                    elif player_damage[1] <= 49:
+                        type("It's really effective!\n", 'bold green')
+                        sleep(1)
+                        turn = Player
+                        continue
+                        
+
+                    elif player_damage[1] <=100:
+                        rainbow_type("It's super effective!\n")
+                        sleep(1)
+                        turn = Player
+                        continue
+
+                    continue
+                elif player_damage == 'DEAD':
+                    quit()
+
+
         elif turn == Player:
             printc('TIPS:', 'bold')
             print('Equip an item and then press F to attack using it.')
@@ -135,6 +167,7 @@ def bossBattle(Boss):
                     continue
                 player_attack = Player.attack()
                 if 'ATTACKED' in player_attack:
+                    input(f'{player_attack}') #TSTS
                     hit = Boss.take_damage(player_attack[1])
 
                     if str(hit) == 'PLAYER WIN':
@@ -163,7 +196,7 @@ def bossBattle(Boss):
                             
 
                         elif hit <=100:
-                            rainbow_type("It's super effective!\n")
+                            rainbow_type("It's super effective!\n", 0.03)
                             sleep(1)
                             turn = Boss
                             continue
@@ -176,9 +209,13 @@ def bossBattle(Boss):
             
 
 GameAssets.Player.add_item(GameAssets.spear)
+GameAssets.Player.add_item(GameAssets.arcane_rune)
+GameAssets.Player.add_item(GameAssets.shield)
+GameAssets.Player.add_item(GameAssets.BandAid)
+GameAssets.Player.add_item(GameAssets.BandAid)
+GameAssets.Player.add_item(GameAssets.BandAid)
 bossBattle(GameAssets.Zexrash)
 
-#add option for player not to drop an item when in a battle
 #make sure fighiting becomes false when battle finish
 #add more fighting styles for BOSS and make it heal themselves after certain health
 #try and make this last a while but remember this is the easiet bb as it is the first.

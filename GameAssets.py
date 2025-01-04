@@ -120,7 +120,11 @@ class player:
                                         continue
 #DROPPING ITEMS-----------------------   
                 elif options_choice == 'Drop item':
-                    if item_select.startswith('BandAid'):
+                    if self.fighting:
+                        printc('You cannot drop an item whilst in battle!', 'bold yellow')
+                        questionary.press_any_key_to_continue('Press any key to dismiss...').ask()
+                        continue
+                    elif item_select.startswith('BandAid'):
                         printc('You cannot drop this item.\n', 'bold red')
                         questionary.press_any_key_to_continue('Press any key to dismiss...').ask()
                         continue
@@ -281,12 +285,11 @@ class player:
     def kill_check(self):
         if self.Alive == False:
             clr()
-            type('YOU DIED', 'bold red')
+            type('YOU DIED\n', 'bold red')
             sleep(2)
-            quit()
             #This is a test to make sure it works, you can change what displays later
         else:
-            return
+            return 'ALIVE'
         
 
     def take_damage(self, damage):
@@ -303,20 +306,42 @@ class player:
         if self.HP <= 0:
             self.Alive = False
 
-        self.kill_check()
+        killCheck = self.kill_check()
+        if killCheck == 'ALIVE':
+            return 'ALIVE', damage
+        else:
+            return 'DEAD'
     
     def attack(self):
         if self.item_equippedENC.category == 'health':
-            self.heal(self.item_equippedENC.health)
-            type(f'{self.name} used {self.item_equippedDEC}! (+{self.item_equippedENC.health}HP)', 'bold green')
-            sleep(1)
-            return 'HEALED' , self.item_equippedENC.health
+            if self.item_equippedENC.single_use:
+                self.heal(self.item_equippedENC.health)
+                type(f'{self.name} used {self.item_equippedDEC}! (+{self.item_equippedENC.health}HP)', 'bold green')
+                sleep(1)
+                healed = self.item_equippedENC.health
+                self.remove_item(self.item_equippedDEC)
+                return 'HEALED' , healed
+            
+            else:
+                self.heal(self.item_equippedENC.health)
+                type(f'{self.name} used {self.item_equippedDEC}! (+{self.item_equippedENC.health}HP)', 'bold green')
+                sleep(1)
+                return 'HEALED' , self.item_equippedENC.health
 
         elif self.item_equippedENC.category == 'weapon':
-            type(f'{self.name} used ')
-            type(f'{self.item_equippedENC.name}!\n', 'purple')
-            sleep(1)
-            return 'ATTACKED', self.item_equippedENC.damage
+            if self.item_equippedENC.single_use:
+                type(f'{self.name}')
+                type(f' used {self.item_equippedENC.name}!\n', 'bold purple')
+                sleep(1)
+                attacked = self.item_equippedENC.damage
+                self.remove_item(self.item_equippedDEC)
+                return 'ATTACKED', attacked
+            
+            else:
+                type(f'{self.name}')
+                type(f' used {self.item_equippedENC.name}!\n', 'bold purple')
+                sleep(1)
+                return 'ATTACKED', self.item_equippedENC.damage
         
         else:
             type(f'You cannot use this item as it is not a weapon!\n')
@@ -335,7 +360,7 @@ class player:
 #-------------------------------------------------------ITEMS
 
 class item:
-    def __init__(self, name, category, single_use=False):
+    def __init__(self, name, single_use=False):
         self.name = name
         self.category = 'item'
         self.single_use = single_use
@@ -348,8 +373,8 @@ class item:
 
 
 class armour(item):
-    def __init__(self, name, category, healthProt, single_use=False):
-        super().__init__(name, category, single_use=False)
+    def __init__(self, name, healthProt, single_use=False):
+        super().__init__(name, single_use=False)
         self.healthProt = healthProt
         self.category = 'armour'
         self.single_use = single_use
@@ -362,8 +387,8 @@ class armour(item):
 
 
 class weapon(item):
-    def __init__(self, name, category, damage, single_use=False):
-        super().__init__(name, category, single_use=False)
+    def __init__(self, name, damage, single_use=False):
+        super().__init__(name, single_use=False)
         self.damage = damage
         self.category = 'weapon'
         self.single_use = single_use
@@ -375,8 +400,8 @@ class weapon(item):
             printc(f'ITEM: [bold white]{self.name} (SINGLE USE)[/bold white]     CATEGORY: [bold red]Weapon[/bold red]    DAMAGE: [bold green]{self.damage}[/bold green]')
 
 class health(item):
-    def __init__(self, name, category, health, single_use=False):
-        super().__init__(name, category, single_use=False)
+    def __init__(self, name, health, single_use=False):
+        super().__init__(name, single_use=False)
         self.health = health
         self.category = 'health'
         self.single_use = single_use
@@ -464,7 +489,7 @@ class boss:
             sleep(1)
             clrlines(1)
         else:
-            type(f'{self.name} used ')
+            type(f'{self.name} ')
             type(f'{attack.name}!\n', 'red')
             sleep(1)
             return attack.damage
@@ -499,7 +524,7 @@ class position:
 
 #---------------------------------------------------------CREATING ALL NECESSARY INSTANCES
 Player = player('ALIM', 'None') #PLAYER NAME TST
-BandAid = health('BandAid', 'health', 10)
+BandAid = health('BandAid', 10)
 
 #--------------------------AREA 1--------------------------#
  
@@ -560,15 +585,19 @@ SQ1 = side_quest('SQ1')
 #ITEMS------------------
 Charlie_House_key = item("Charlie's House Key", 'item')
 Bridge_key_A1Z1 = item("Bridge Key", 'item')
-spear = weapon('Spear', 'weapon', 20)
-shield = armour('Sheild', 'armour', 10)
-arcane_rune = armour('Arcane Rune', 'armour', 60, True) #SINGLE USE
+spear = weapon('Spear', 20)
+shield = armour('Sheild', 10)
+arcane_rune = weapon('Arcane Rune', 60, True) #SINGLE USE
 
 #NPCs---------------------
 NPC_Charlie = NPC('Charlie', 'Bridge', [Charlie.interaction1, Charlie.interaction2, Charlie.interaction3])
 NPC_anonymous_civilian = NPC('Anonymous Civilian', 'Lever', [Anonymous_Civilian.start_interaction1, Anonymous_Civilian.start_interaction2])
 
 #--------------------------BOSS ELEMENTS
-basic_attack_ZR = attack('Basic Attack', 10) 
+basic_attack_ZR = attack('throws a knife', 11)
+medium_attack_ZR = attack('swings a battle axe', 22)
+special_attack_ZR = attack('uses special attack', 35)
+heal_ZR = attack('Heal', 20, True)
 
-Zexrash = boss('Zexrash', [basic_attack_ZR])
+
+Zexrash = boss('Zexrash', [basic_attack_ZR, medium_attack_ZR, special_attack_ZR, heal_ZR])
