@@ -7,7 +7,7 @@ import questionary, GameAssets
 os.system('clear')
 from Functions import get_key, clrline, printc, clr, type, sleep, open_chest, clrlines,ld
 from ExtraFunctions import move_player
-import Area1_map
+import Area1.Area1_map as Area1_map
 
 #-----------------------------------------------------------AREA 1 SEQUENCE (i.e GAMEPLAY)
 
@@ -843,10 +843,8 @@ def game_A1Z4():
 #ld(5)
 #game_A1Z2_lckGT12()
 #ld(5)
+#game_A1Z3_lckGT()
+#ld(5)
 
-
-GameAssets.Player.add_item(GameAssets.BandAid)
-GameAssets.Player.add_item(GameAssets.spear)
-game_A1Z3_lckGT()
 
 
