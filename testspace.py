@@ -167,7 +167,6 @@ def bossBattle(Boss):
                     continue
                 player_attack = Player.attack()
                 if 'ATTACKED' in player_attack:
-                    input(f'{player_attack}') #TSTS
                     hit = Boss.take_damage(player_attack[1])
 
                     if str(hit) == 'PLAYER WIN':

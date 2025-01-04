@@ -63,10 +63,15 @@ class player:
                     if item_select.startswith('BandAid'):
                         item_confirm = questionary.confirm(f"Use a Band-Aid?").ask()
                         if item_confirm:
-                            self.equip_item(item_select)
-                            printc(f'Used: [bold white]BandAid[/bold white] ---> [bold green]+10 HP[/bold green]')
-                            questionary.press_any_key_to_continue().ask()
-                            continue
+                            if self.HP == 100:
+                                printc('HP is already at max. Your item was not used.', 'bold yellow')
+                                questionary.press_any_key_to_continue('Press any key to dismiss...').ask()
+                                continue
+                            else:
+                                self.equip_item(item_select)
+                                printc(f'Used: [bold white]BandAid[/bold white] ---> [bold green]+10 HP[/bold green]')
+                                questionary.press_any_key_to_continue().ask()
+                                continue
                         else:
                             continue
 
@@ -93,9 +98,14 @@ class player:
                                 item_confirm = questionary.confirm(f"Equip {item_select}?").ask()
                                 if item_confirm:
                                     if self.fighting:
-                                        self.equip_item(item_select)
-                                        questionary.press_any_key_to_continue().ask()
-                                        continue
+                                        if self.HP == 100:
+                                            printc("HP is already at max. You won't be able to equip this item.", 'bold yellow')
+                                            questionary.press_any_key_to_continue('Press any key to dismiss...').ask()
+                                            continue
+                                        else:
+                                            self.equip_item(item_select)
+                                            questionary.press_any_key_to_continue().ask()
+                                            continue
                                     else:
                                         type('You can only use this item in battle!\n', 'bold yellow')
                                         questionary.press_any_key_to_continue('Press any key to dismiss...').ask()
@@ -596,8 +606,8 @@ NPC_anonymous_civilian = NPC('Anonymous Civilian', 'Lever', [Anonymous_Civilian.
 #--------------------------BOSS ELEMENTS
 basic_attack_ZR = attack('throws a knife', 11)
 medium_attack_ZR = attack('swings a battle axe', 22)
-special_attack_ZR = attack('uses special attack', 35)
-heal_ZR = attack('Heal', 20, True)
+special_attack_ZR = attack('uses special attack', 30)
+heal_ZR = attack('Heal', 15, True)
 
 
 Zexrash = boss('Zexrash', [basic_attack_ZR, medium_attack_ZR, special_attack_ZR, heal_ZR])
