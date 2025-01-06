@@ -6,7 +6,7 @@ sys.path.append(parent_dir)
 import questionary, GameAssets
 os.system('clear')
 from Functions import get_key, clrline, printc, clr, type, sleep, open_chest, clrlines,ld
-from ExtraFunctions import move_player
+from ExtraFunctions import move_player, bossBattle
 import Area1.Area1_map as Area1_map
 
 #-----------------------------------------------------------AREA 1 SEQUENCE (i.e GAMEPLAY)
@@ -787,7 +787,7 @@ def game_A1Z4():
         while True:
             if GameAssets.Player.positionDEC != 'None':
                 for action in GameAssets.Player.positionENC.actions:
-                    if action == 'E - Continue to Zone 4':
+                    if action == 'E - Continue':
                         printc(f'{action}', 'bold green')
                         Actions.append(action)
                     else:
@@ -828,11 +828,13 @@ def game_A1Z4():
                         startPos = 'Chest'
                         break
 
-                elif 'E - Continue to Zone 4' in Actions:
-                    #Out put interaction before BB begins
-                    #BB
-                    #Return/reset - we haven't decided
-                    pass
+                elif 'E - Continue' in Actions:
+                    GameAssets.NPC_Zexrash.interact(1)
+                    bb = bossBattle(GameAssets.zexrash)
+                    if bb == 'DEFEATED':
+                        return
+                    elif bb == 'UNDEFEATED':
+                         break
         continue
 
 
@@ -845,6 +847,17 @@ def game_A1Z4():
 #ld(5)
 #game_A1Z3_lckGT()
 #ld(5)
+
+GameAssets.Player.add_item(GameAssets.spear)
+GameAssets.Player.add_item(GameAssets.arcane_rune)
+GameAssets.Player.add_item(GameAssets.shield)
+GameAssets.Player.add_item(GameAssets.BandAid)
+GameAssets.Player.add_item(GameAssets.BandAid)
+GameAssets.Player.add_item(GameAssets.BandAid)
+
+
+game_A1Z4()
+GameAssets.Player.complete_area(GameAssets.Area1)
 
 
 

@@ -1,6 +1,6 @@
 from Functions import printc, clr, type, ld, clrline, sleep, clrlines
-import questionary, sys
-from NPCInteractions import Charlie,Anonymous_Civilian
+import questionary, pyfiglet
+from NPCInteractions import Charlie , Anonymous_Civilian, Zexrash
 #-------------------------------------------------------PLAYER
 
 class player:
@@ -367,6 +367,22 @@ class player:
     def update_active_SQ(self, SQ):
         self.activeSQ = SQ
 
+    def complete_area(self, area):
+        clr()
+        pyfiglet.print_figlet(" A R E A", font="slant", colors='green')
+        sleep(0.7)
+        pyfiglet.print_figlet(" COMPLETE !", font="slant", colors='green')
+        sleep(1)
+        self.completed_areas.append(area.name)
+        self.current_area = 'None'
+        print(' ')
+        questionary.press_any_key_to_continue().ask()
+        ld(7)
+
+    def new_area(self, area):
+        self.current_area = area.name
+
+
 #-------------------------------------------------------ITEMS
 
 class item:
@@ -424,23 +440,9 @@ class health(item):
 
 #-------------------------------------------------------AREAS & NAVIGATION
 
-def complete_area(self, area):
-        clr()
-        type('AREA COMPLETE!', 'bold green')
-        self.completed_areas.append(area.name)
-        self.current_area = None
-        print(' ')
-        questionary.press_any_key_to_continue().ask()
-        ld()
-
-def new_area(self, area):
-    self.current_area = area.code
-
-
 class area:
-    def __init__(self, name, code):
+    def __init__(self, name):
         self.name = name
-        self.code = code
 
 class side_quest:
     def __init__(self, code):
@@ -498,6 +500,8 @@ class boss:
             type(f'{self.name} used {attack.name}! (+{attack.damage}HP)\n', 'bold green')
             sleep(1)
             clrlines(1)
+            return 0
+            
         else:
             type(f'{self.name} ')
             type(f'{attack.name}!\n', 'red')
@@ -536,6 +540,10 @@ class position:
 Player = player('ALIM', 'None') #PLAYER NAME TST
 BandAid = health('BandAid', 10)
 
+Area1 = area('Area 1')
+Area2 = area('Area 2')
+Area3 = area('Area 3')
+Area4 = area('Area 4')
 #--------------------------AREA 1--------------------------#
  
 #POSITONS----------------
@@ -597,11 +605,12 @@ Charlie_House_key = item("Charlie's House Key", 'item')
 Bridge_key_A1Z1 = item("Bridge Key", 'item')
 spear = weapon('Spear', 20)
 shield = armour('Sheild', 10)
-arcane_rune = weapon('Arcane Rune', 60, True) #SINGLE USE
+arcane_rune = weapon('Arcane Rune', 50, True) #SINGLE USE
 
 #NPCs---------------------
 NPC_Charlie = NPC('Charlie', 'Bridge', [Charlie.interaction1, Charlie.interaction2, Charlie.interaction3])
 NPC_anonymous_civilian = NPC('Anonymous Civilian', 'Lever', [Anonymous_Civilian.start_interaction1, Anonymous_Civilian.start_interaction2])
+NPC_Zexrash = NPC('Zexrash', 'End', [Zexrash.interaction])
 
 #--------------------------BOSS ELEMENTS
 basic_attack_ZR = attack('throws a knife', 11)
@@ -610,4 +619,4 @@ special_attack_ZR = attack('uses special attack', 30)
 heal_ZR = attack('Heal', 15, True)
 
 
-Zexrash = boss('Zexrash', [basic_attack_ZR, medium_attack_ZR, special_attack_ZR, heal_ZR])
+zexrash = boss('Zexrash', [basic_attack_ZR, medium_attack_ZR, special_attack_ZR, heal_ZR])

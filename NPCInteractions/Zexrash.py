@@ -81,5 +81,3 @@ def interaction():
     type("It's", 'bold red',0.15 )
     type(" mine.", 'italic bold red',0.15 )
     sleep(1)
-    
-interaction()
