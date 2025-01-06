@@ -840,27 +840,23 @@ def game_A1Z4():
 
 
 #------------------------RUNNING THE SEQUENCE
-#game_A1Z1lckSQ1()
-#game_A1Z1_ulckSQ1()
-#ld(5)
-#game_A1Z2_lckGT12()
-#ld(5)
-#game_A1Z3_lckGT()
-#ld(5)
-
-GameAssets.Player.add_item(GameAssets.spear)
-GameAssets.Player.add_item(GameAssets.arcane_rune)
-GameAssets.Player.add_item(GameAssets.shield)
-GameAssets.Player.add_item(GameAssets.BandAid)
-GameAssets.Player.add_item(GameAssets.BandAid)
-GameAssets.Player.add_item(GameAssets.BandAid)
-
-
+game_A1Z1lckSQ1()
+game_A1Z1_ulckSQ1()
+ld(5)
+game_A1Z2_lckGT12()
+ld(5)
+game_A1Z3_lckGT()
+ld(5)
 game_A1Z4()
 GameAssets.Player.complete_area(GameAssets.Area1)
 
 #test if restarting works
-#FULL AREA 1 PLAYTHROUGH
+
+#ADD PLAYER NAME IN SPEECH OF ANONYMOUS CIVILIAN
+#the part where zexrash is like lemme give u advice, make it white and add exclamation at the end
+
+#BIG BUG: Zex healed in the bb and it for some reason played the damaga anim and ALSO increased PLAYERS health?!?!?
+
 #AREA 2222222222
 
 
