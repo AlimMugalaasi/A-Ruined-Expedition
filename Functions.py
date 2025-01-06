@@ -94,7 +94,7 @@ codes = [
 
 
 def open_chest():
-    type('Repeat the code to open the chest. You have one chance.\n', 'yellow', 0.004)
+    type('Repeat the 5-character code that breifly apperars to open the chest. You have one chance.\n', 'yellow', 0.004)
     questionary.press_any_key_to_continue('Press any key to begin...').ask()
     clrline()
     code = random.choice(codes)

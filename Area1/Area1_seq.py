@@ -829,9 +829,11 @@ def game_A1Z4():
                         break
 
                 elif 'E - Continue' in Actions:
-                    #GameAssets.NPC_Zexrash.interact(1) #TST CMT
+                    GameAssets.NPC_Zexrash.interact(1)
                     bb = bossBattle(GameAssets.zexrash)
                     if bb == 'DEFEATED':
+                        GameAssets.Player.add_item(GameAssets.knife)
+                        GameAssets.Player.add_item(GameAssets.battle_axe)
                         return
                     elif bb == 'UNDEFEATED':
                          GameAssets.zexrash.HP = 100
@@ -841,17 +843,17 @@ def game_A1Z4():
 
 
 #------------------------RUNNING THE SEQUENCE
-#game_A1Z1lckSQ1()
-#game_A1Z1_ulckSQ1()
-#ld(5)
-#game_A1Z2_lckGT12()
-#ld(5)
-#game_A1Z3_lckGT()
-##ld(5)
-#game_A1Z4()
-#GameAssets.Player.complete_area(GameAssets.Area1)
+ld(5)
+game_A1Z1lckSQ1()
+game_A1Z1_ulckSQ1()
+ld(5)
+game_A1Z2_lckGT12()
+ld(5)
+game_A1Z3_lckGT()
+ld(5)
+game_A1Z4()
+GameAssets.Player.complete_area(GameAssets.Area1)
 
-#FULL PLAYTHORUGH THEN READ AIR LAW
 
 #AREA 2222222222
 
