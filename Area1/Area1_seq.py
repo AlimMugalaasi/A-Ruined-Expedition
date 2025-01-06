@@ -829,33 +829,27 @@ def game_A1Z4():
                         break
 
                 elif 'E - Continue' in Actions:
-                    GameAssets.NPC_Zexrash.interact(1)
+                    #GameAssets.NPC_Zexrash.interact(1) #TST CMT
                     bb = bossBattle(GameAssets.zexrash)
                     if bb == 'DEFEATED':
                         return
                     elif bb == 'UNDEFEATED':
+                         GameAssets.zexrash.HP = 100
                          break
         continue
 
 
 
 #------------------------RUNNING THE SEQUENCE
-game_A1Z1lckSQ1()
-game_A1Z1_ulckSQ1()
-ld(5)
-game_A1Z2_lckGT12()
-ld(5)
-game_A1Z3_lckGT()
-ld(5)
-game_A1Z4()
-GameAssets.Player.complete_area(GameAssets.Area1)
-
-#test if restarting works
-
-#ADD PLAYER NAME IN SPEECH OF ANONYMOUS CIVILIAN
-#the part where zexrash is like lemme give u advice, make it white and add exclamation at the end
-
-#BIG BUG: Zex healed in the bb and it for some reason played the damaga anim and ALSO increased PLAYERS health?!?!?
+#game_A1Z1lckSQ1()
+#game_A1Z1_ulckSQ1()
+#ld(5)
+#game_A1Z2_lckGT12()
+#ld(5)
+#game_A1Z3_lckGT()
+##ld(5)
+#game_A1Z4()
+#GameAssets.Player.complete_area(GameAssets.Area1)
 
 #AREA 2222222222
 

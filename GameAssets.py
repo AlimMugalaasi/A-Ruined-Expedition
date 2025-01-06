@@ -1,4 +1,4 @@
-from Functions import printc, clr, type, ld, clrline, sleep, clrlines
+from Functions import printc, clr, type, ld, clrline, sleep, clrlines, no_HP
 import questionary, pyfiglet
 from NPCInteractions import Charlie , Anonymous_Civilian, Zexrash
 #-------------------------------------------------------PLAYER
@@ -294,10 +294,8 @@ class player:
 
     def kill_check(self):
         if self.Alive == False:
-            clr()
-            type('YOU DIED\n', 'bold red')
+            no_HP()
             sleep(2)
-            #This is a test to make sure it works, you can change what displays later
         else:
             return 'ALIVE'
         

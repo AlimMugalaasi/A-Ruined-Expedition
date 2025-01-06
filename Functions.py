@@ -142,3 +142,35 @@ def rainbow_type(string, speed):
             count = 0
         sleep(speed)
         continue
+
+#HP:0...
+
+def no_HP():
+    type('HP: \n', 'bold red', 0.4)
+    clrline()
+    printc('HP: 0', 'bold red')
+    sleep(0.3)
+    clrline()
+    printc('HP:  ', 'bold red')
+    sleep(0.3)
+    clrline()
+    printc('HP: 0', 'bold red')
+    sleep(0.3)
+    clrline()
+    printc('HP:  ', 'bold red')
+    sleep(0.3)
+    clrline()
+    printc('HP: 0', 'bold red')
+    sleep(0.3)
+    clrline()
+    printc('HP:  ', 'bold red')
+    sleep(0.3)
+    clrline()
+    printc('HP: 0', 'bold red')
+    sleep(0.3)
+    clrline()
+    printc('HP:  ', 'bold red')
+    sleep(0.3)
+    clrline()
+    printc('HP: 0', 'bold red')
+    sleep(1)
