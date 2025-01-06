@@ -859,5 +859,8 @@ GameAssets.Player.add_item(GameAssets.BandAid)
 game_A1Z4()
 GameAssets.Player.complete_area(GameAssets.Area1)
 
+#test if restarting works
+#AREA 2222222222
+
 
 
