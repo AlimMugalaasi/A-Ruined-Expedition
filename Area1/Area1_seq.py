@@ -860,6 +860,7 @@ game_A1Z4()
 GameAssets.Player.complete_area(GameAssets.Area1)
 
 #test if restarting works
+#FULL AREA 1 PLAYTHROUGH
 #AREA 2222222222
 
 
