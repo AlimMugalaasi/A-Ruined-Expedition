@@ -851,6 +851,8 @@ def game_A1Z4():
 #game_A1Z4()
 #GameAssets.Player.complete_area(GameAssets.Area1)
 
+#FULL PLAYTHORUGH THEN READ AIR LAW
+
 #AREA 2222222222
 
 
