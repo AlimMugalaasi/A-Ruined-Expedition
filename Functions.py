@@ -183,3 +183,17 @@ def time_elapsed(script_start_time):
     runtime = current_time - script_start_time
     time_el = print(f"Script runtime: {runtime:.2f} seconds")
     return time_el
+
+#Invisible typing (for some fun gimmicks)
+
+def invisiType():
+    user_input = ""
+    while True:
+        key = get_key()
+        if key == '\r':
+            break
+        if key in ('\x08', '\x7f'):
+            user_input = user_input[:-1]
+        else:
+            user_input += key
+    return user_input

@@ -22,13 +22,13 @@ class player:
         self.HP = 100
         self.Alive = True
         self.completed_areas = []
-        self.completed_zones = []
         self.activeSQ = 'None'
         self.stored_action = 'None'
         self.dropped_items = []
         self.fighting = False
         #-------------------------NECESSARY ONE-TIME ATTRIBUTES
         self.ReadNote = False
+        self.A2Z1CRT_opened = False
     
     def open_inventory(self):
         while True:
@@ -592,6 +592,24 @@ A1Z4_Start = position('Start', 'A1Z4_Start', [], 'ALL')
 A1Z4_a = position('A', 'A1Z4_A', [], 'ALL')
 A1Z4_Chest = position('Chest', 'A1Z4_Chest', ['E - Open Chest'], 'ALL')
 A1Z4_bb = position('End', 'A1Z4_BB', ['E - Continue'], 'ALL')
+
+A2Z1_Start = position('Start', 'A2Z1-Start', [], 'ALL')
+A2Z1_a = position('A', 'A2Z1_A', [], 'ALL')
+A2Z1_b = position('B', 'A2Z1_B', [], 'ALL')
+A2Z1_c = position('C', 'A2Z1_C', [], 'ALL')
+A2Z1_d = position('D', 'A2Z1_D', [], 'WSA')
+A2Z1_e = position('E', 'A2Z1_E', [], 'SWD')
+A2Z1_f = position('F', 'A2Z1_F', [], 'ALL')
+A2Z1_g = position('G', 'A2Z1_G', [], 'ALL')
+A2Z1_h = position('H', 'A2Z1_H', [], 'ALL')
+A2Z1_i = position('I', 'A2Z1_I', [], 'ALL')
+A2Z1_End = position('End', 'A2Z1_End', ['E - Continue to Zone 2'], 'ALL')
+A2Z1_Chest = position('Chest', 'A2Z1_Chest', ['E - Open Chest'], 'ALL')
+A2Z1_Crate = position('Crate', 'A2Z1_Crate', [], 'S')
+
+
+
+
 
 
 

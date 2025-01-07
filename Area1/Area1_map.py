@@ -16,8 +16,8 @@ from Functions import printc, type
 A1Z1_lckSQ1 = '''
                                                                     
                            HOUSE                                                     
-                             ┬                                                       
-                             │      ┌ ┐                                              
+         AREA 1:             ┬                                                       
+      SHADOW PLAINS          │      ┌ ┐                                              
                              │       [bold red]![/bold red]                                               
                              │      └ ┘                                              
          [bold green]START[/bold green]├──────────────A──────────  ─  ─  ─  ─  ─────B────────────┤►           
@@ -34,8 +34,8 @@ A1Z1_lckSQ1 = '''
 A1Z1_ulckSQ1 = '''
                                                                     
                            HOUSE                                                     
-                             ┬                                                       
-                             │                                                    
+         AREA 1:             ┬                                                       
+      SHADOW PLAINS          │                                                    
                              │                                                   
                              │                                                   
          [bold green]START[/bold green]├──────────────A─────────────────────────────B────────────┤►           
