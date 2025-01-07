@@ -178,7 +178,7 @@ def no_HP():
 
 # checking the time that has been played (for the hunter mechanic)
 
-def time_elapsed():
+def time_elapsed(script_start_time):
     current_time = time.time()
     runtime = current_time - script_start_time
     time_el = print(f"Script runtime: {runtime:.2f} seconds")

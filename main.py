@@ -86,5 +86,5 @@ GameAssets.Player.name = player_name
 
 #SHOW THE CONTROLS USING nav() BEFORE ALLOWING THE PLAYER TO CONTINUE TO A1Z1
 
-script_start_time = time.time()
+timer = time.time()
 #-----------------------------------------------------------------------------------------GAME SEQUENCE
