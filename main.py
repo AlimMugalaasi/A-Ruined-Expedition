@@ -1,4 +1,4 @@
-import sys,os
+import sys,os, time
 # Getting the parent directory of the current folder (so i can import Functions)
 parent_dir = os.path.abspath(os.path.join(os.path.dirname(__file__), '..'))
 sys.path.append(parent_dir)
@@ -85,4 +85,6 @@ import GameAssets
 GameAssets.Player.name = player_name
 
 #SHOW THE CONTROLS USING nav() BEFORE ALLOWING THE PLAYER TO CONTINUE TO A1Z1
+
+script_start_time = time.time()
 #-----------------------------------------------------------------------------------------GAME SEQUENCE

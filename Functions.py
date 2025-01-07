@@ -2,7 +2,7 @@ from rich.console import Console
 console = Console()
 from rich.text import Text
 from time import sleep
-import sys, os, termios, tty
+import sys, os, termios, tty, time
 import random, questionary
 from rich.progress import track
 #---------------------------------------------------------------------------------
@@ -174,3 +174,12 @@ def no_HP():
     clrline()
     printc('HP: 0', 'bold red')
     sleep(1)
+
+
+# checking the time that has been played (for the hunter mechanic)
+
+def time_elapsed():
+    current_time = time.time()
+    runtime = current_time - script_start_time
+    time_el = print(f"Script runtime: {runtime:.2f} seconds")
+    return time_el
