@@ -180,8 +180,9 @@ def no_HP():
 
 def time_elapsed(script_start_time):
     current_time = time.time()
-    runtime = current_time - script_start_time
-    time_el = print(f"Script runtime: {runtime:.2f} seconds")
+player_position = (5,-2)
+                GameAssets.Player.positionENC = GameAssets.A2Z1_g
+                GameAssets.Player.positionDEC = 'A2Z1_G'
     return time_el
 
 #Invisible typing (for some fun gimmicks)

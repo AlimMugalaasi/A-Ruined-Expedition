@@ -1,4 +1,4 @@
-import sys,os
+import sys,os, time
 # Getting the parent directory of the current folder (so i can import Functions)
 parent_dir = os.path.abspath(os.path.join(os.path.dirname(__file__), '..'))
 sys.path.append(parent_dir)
@@ -24,14 +24,15 @@ def game_A2Z1_CRT():
     startPos = 'Crate'
     global Actions
     Actions = []
-    global Crate_opened
-    Crate_opened = False
+    global solved
+    solved = False
+    GameAssets.Player.positionENC = GameAssets.A2Z1_Crate
+    GameAssets.Player.positionDEC = 'A2Z1_Crate'
     while True:
         GameAssets.Player.drop_item_able = False
         clr()
         map = Area2_map.A2Z1_lckCRT
         printc(map)
-        printc('[bold]I[/bold] - Open inventory\n')
         printc(f'Position: [bold]{startPos}[/bold]')
         Actions = []
 
@@ -41,50 +42,56 @@ def game_A2Z1_CRT():
                         printc(f'{action}', 'bold')
                         Actions.append(action)
                 clrlines(len(Actions))
+                
 
-            if 'E - Read Note' not in Actions and not Crate_opened:
-                code = invisiType()
-                if code.lower == 'e - open crate':
-                    Actions.append('E - Open Crate')
-                    break
+            if 'E - Read Note' not in Actions and not solved:
+                while True:
+                    user_input = ""
+                    typeTimer = time.time()
+                    key = get_key()
+                    current_time = time.time()
+                    Typeruntime = current_time - typeTimer
+                    if float(f"{Typeruntime:.2f}") >= 2.00:
+                        continue
+                    if key in ('\x08', '\x7f'):
+                        user_input = user_input[:-1]
+                    else:
+                        user_input += key
+                    if user_input.lower == 'e - open crate':
+                        Actions.append('E - Open Crate')
+                        solved = True
+                        break
+                    elif user_input.lower == 'q':
+                        return
+                break
 
             key = get_key()
             if key == 'W' or key == 'w' or key == 'A' or key == 'a' or key == 'D' or key == 'd' or key == 's' or key == 'S':
                 player_position = move_player(key, CRD_A2Z1_CRT, player_position)
                 Actions = []
 
-            elif key == 'I' or key == 'i':
-                startPos = GameAssets.Player.positionENC.name
-                GameAssets.player.open_inventory(GameAssets.Player)
-                clr()
-                break
-
             elif key == 'E' or key == 'e':
                 if 'E - Read Note' in Actions:
                     GameAssets.A2Z1_Crate.actions.remove('E - Read Note')
-                    type('The crate has no visible mechanism. The solution lies in retracing its design.')
+                    type('The crate has no visible mechanism. The solution lies in retracing its design.\n')
                     questionary.press_any_key_to_continue('Press any key to dismiss...').ask()
                     clrlines(2)
                     break
 
                 elif 'E - Open Crate' in Actions:
-                    if ''item name (not item.name)'' in GameAssets.Player.inventoryDEC:
-                        #break
-                    else:
-                        AXZYChest = open_chest()
-                        if AXZXChest:
-                            GameAssets.Player.add_item(GameAssets.''item'')
-                            GameAssets.AXZY_Chest.actions.remove('E - Open Chest')
-                            startPos = 'Chest'
-                            #break
-                        else:
-                            GameAssets.AXZY_Chest.actions.remove('E - Open Chest')
-                            startPos = 'Chest'
-                            #break
+                    type('Elixir of Immortality ', 'bold magenta')
+                    type('- Your Max Health has increased to')
+                    type(' 200!\n', 'green')
+                    questionary.press_any_key_to_continue().ask()
+                    clrlines(2)
+                    GameAssets.Player.HP = 200
+                    GameAssets.Player.HP_MAX = 200
+                    Actions.remove('E - Open Crate')
+                    break
 
-                elif key == 'Q' or key == 'q':
-                    if'Q - Exit' in Actions:
-                        return
+            elif key == 'Q' or key == 'q':
+                if'Q - Exit' in Actions:
+                    return
     
                                 
                 
@@ -145,7 +152,11 @@ def game_A2Z1():
             elif key == 'W' or key == 'w' and GameAssets.Player.positionDEC == 'A2Z1_G':
                 clr()
                 sleep(1)
-                #game_A2Z1_lckCRT()
+                game_A2Z1_CRT()
+                player_position = (5,-2)
+                GameAssets.Player.positionENC = GameAssets.A2Z1_g
+                GameAssets.Player.positionDEC = 'A2Z1_G'
+                startPos = 'G'
                 break
                 
 

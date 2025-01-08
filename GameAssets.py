@@ -20,6 +20,7 @@ class player:
         self.armour_equippedENC = []
         self.total_equipped = ['<--BACK']
         self.HP = 100
+        self.HP_MAX = 100
         self.Alive = True
         self.completed_areas = []
         self.activeSQ = 'None'
@@ -613,12 +614,6 @@ A2Z1_End = position('End', 'A2Z1_End', ['E - Continue to Zone 2'], 'ALL')
 A2Z1_Chest = position('Chest', 'A2Z1_Chest', ['E - Open Chest'], 'ALL')
 A2Z1_Crate = position('Crate', 'A2Z1_Crate', ['E - Read Note', 'Q - Exit'], 'S')
 
-
-
-
-
-
-
 #SIDE QUESTS--------------
 SQ1 = side_quest('SQ1')
 
@@ -631,7 +626,7 @@ arcane_rune = weapon('Arcane Rune', 50, True) #SINGLE USE
 knife = weapon('Knife', 11)
 battle_axe = weapon('Battle axe', 22)
 Medkit = health('Medkit', 30, True)
-whisper = weapon('Whisper Blade')
+
 #NPCs---------------------
 NPC_Charlie = NPC('Charlie', 'Bridge', [Charlie.interaction1, Charlie.interaction2, Charlie.interaction3])
 NPC_anonymous_civilian = NPC('Anonymous Civilian', 'Lever', [Anonymous_Civilian.start_interaction1, Anonymous_Civilian.start_interaction2])

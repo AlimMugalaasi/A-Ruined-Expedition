@@ -287,7 +287,7 @@ def bb_normal(boss, player):
      [bold green]❤[/bold green]              
                  
 
- [bold white]HP: {player.HP}/100[/bold white]
+ [bold white]HP: {player.HP}/{player.HP_MAX}[/bold white]
 ''')    
 
 #boss battle code
