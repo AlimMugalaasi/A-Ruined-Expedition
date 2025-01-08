@@ -45,25 +45,12 @@ def game_A2Z1_CRT():
                 
 
             if 'E - Read Note' not in Actions and not solved:
-                while True:
-                    user_input = ""
-                    typeTimer = time.time()
-                    key = get_key()
-                    current_time = time.time()
-                    Typeruntime = current_time - typeTimer
-                    if float(f"{Typeruntime:.2f}") >= 2.00:
-                        continue
-                    if key in ('\x08', '\x7f'):
-                        user_input = user_input[:-1]
-                    else:
-                        user_input += key
-                    if user_input.lower == 'e - open crate':
-                        Actions.append('E - Open Crate')
-                        solved = True
-                        break
-                    elif user_input.lower == 'q':
-                        return
-                break
+                challenge = invisiType()
+                if challenge.lower == 'e - open crate':
+                    Actions.append('E - Open Crate')
+                
+                #We unfortunately can't do invisitype. let them see what theyre typing but dont put smn like 'code: ' as a promt just give ability to type. We need to find a way
+                #to allow user to exit
 
             key = get_key()
             if key == 'W' or key == 'w' or key == 'A' or key == 'a' or key == 'D' or key == 'd' or key == 's' or key == 'S':
