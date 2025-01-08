@@ -624,6 +624,7 @@ shield = armour('Sheild', 10)
 arcane_rune = weapon('Arcane Rune', 50, True) #SINGLE USE
 knife = weapon('Knife', 11)
 battle_axe = weapon('Battle axe', 22)
+Medkit = health('Medkit', 30, True)
 
 #NPCs---------------------
 NPC_Charlie = NPC('Charlie', 'Bridge', [Charlie.interaction1, Charlie.interaction2, Charlie.interaction3])

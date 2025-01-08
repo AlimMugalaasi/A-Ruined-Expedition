@@ -51,7 +51,7 @@ def game_COORDINATE_SYSTEM_WITHOUT_CRD_PART():
             elif key == 'E' or key == 'e':
                 if 'E - ACTION' in Actions:
                     #Action code goes here
-                    return
+                    break
         continue
 
 
