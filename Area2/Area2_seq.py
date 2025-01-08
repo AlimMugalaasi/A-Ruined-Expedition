@@ -11,8 +11,61 @@ import Area2.Area2_map as Area2_map
 
 #--------------------------------------------------------------------AREA 2 SEQUENCE
 
-#---------------ZONE 1
+#-----------------------------------ZONE 1
 
+CRD_A2Z1_CRT = {
+    (0,0) : GameAssets.A2Z1_Crate
+}
+
+def game_A2Z1_CRT():
+    global player_position
+    player_position = (0,0)
+    global startPos
+    startPos = 'Crate'
+    global Actions
+    Actions = []
+    while True:
+        GameAssets.Player.drop_item_able = False
+        clr()
+        map = Area2_map.A2Z1_lckCRT
+        printc(map)
+        printc('[bold]I[/bold] - Open inventory\n')
+        printc(f'Position: [bold]{startPos}[/bold]')
+        Actions = []
+
+        while True:
+            if GameAssets.Player.positionDEC != 'None':
+                for action in GameAssets.Player.positionENC.actions:
+                        printc(f'{action}', 'bold')
+                        Actions.append(action)
+                clrlines(len(Actions))
+
+            key = get_key()
+            if key == 'W' or key == 'w' or key == 'A' or key == 'a' or key == 'D' or key == 'd' or key == 's' or key == 'S':
+                player_position = move_player(key, CRD_A2Z1_CRT, player_position)
+                Actions = []
+
+            elif key == 'I' or key == 'i':
+                startPos = GameAssets.Player.positionENC.name
+                GameAssets.player.open_inventory(GameAssets.Player)
+                clr()
+                break
+
+            elif key == 'E' or key == 'e':
+                if 'E - Read Note' in Actions:
+                    GameAssets.A2Z1_Crate.actions.remove('E - Read Note')
+                    type('The crate has no visible mechanism. The solution lies in retracing its design.')
+                    questionary.press_any_key_to_continue('Press any key to dismiss...').ask()
+                    clrlines(2)
+                    break
+
+                elif 'E - Exit' in Actions:
+                    return
+                
+                #now write code for invisible typing etc
+        continue
+
+#-----------------------
 CRD_A2Z1 = {
     (0,0) : GameAssets.A2Z1_Start,
     (1,0) : GameAssets.A2Z1_a,
@@ -35,6 +88,7 @@ def game_A2Z1():
     global Actions
     Actions = []
     while True:
+        GameAssets.Player.drop_item_able = True
         clr()
         map = Area2_map.A2Z1
         printc(map)
@@ -54,12 +108,19 @@ def game_A2Z1():
             if key == 'W' or key == 'w' and GameAssets.Player.positionDEC == 'A2Z1_F':
                 type('Large rocks block your path...\n')
                 questionary.press_any_key_to_continue('Press any key to dismiss...').ask()
-                clrlines(2)
+                startPos = 'F'
+                break
 
-            elif key == 'I' or key == 'i' and GameAssets.Player.positionDEC == 'A2Z1_I':
+            elif key == 'S' or key == 's' and GameAssets.Player.positionDEC == 'A2Z1_I':
                 type('Large rocks block your path...\n')
                 questionary.press_any_key_to_continue('Press any key to dismiss...').ask()
-                clrlines(2)
+                startPos = 'I'
+                break
+
+            elif key == 'W' or key == 'w' and GameAssets.Player.positionDEC == 'A2Z1_G':
+                #game_A2Z1_lckCRT()
+                break
+                
 
             elif key == 'W' or key == 'w' or key == 'A' or key == 'a' or key == 'S' or key == 's' or key == 'D' or key == 'd':
                 player_position = move_player(key, CRD_A2Z1, player_position)

@@ -26,6 +26,7 @@ class player:
         self.stored_action = 'None'
         self.dropped_items = []
         self.fighting = False
+        self.drop_item_able = True
         #-------------------------NECESSARY ONE-TIME ATTRIBUTES
         self.ReadNote = False
         self.A2Z1CRT_opened = False
@@ -130,6 +131,11 @@ class player:
                                         continue
 #DROPPING ITEMS-----------------------   
                 elif options_choice == 'Drop item':
+                    if not self.drop_item_able:
+                        printc('You cannot drop an item here.', 'bold yellow')
+                        questionary.press_any_key_to_continue('Press any key to dismiss...').ask()
+                        continue
+
                     if self.fighting:
                         printc('You cannot drop an item whilst in battle!', 'bold yellow')
                         questionary.press_any_key_to_continue('Press any key to dismiss...').ask()
@@ -605,7 +611,7 @@ A2Z1_h = position('H', 'A2Z1_H', [], 'ALL')
 A2Z1_i = position('I', 'A2Z1_I', [], 'ALL')
 A2Z1_End = position('End', 'A2Z1_End', ['E - Continue to Zone 2'], 'ALL')
 A2Z1_Chest = position('Chest', 'A2Z1_Chest', ['E - Open Chest'], 'ALL')
-A2Z1_Crate = position('Crate', 'A2Z1_Crate', [], 'S')
+A2Z1_Crate = position('Crate', 'A2Z1_Crate', ['E - Read Note', 'Q - Exit'], 'S')
 
 
 
