@@ -631,7 +631,7 @@ arcane_rune = weapon('Arcane Rune', 50, True) #SINGLE USE
 knife = weapon('Knife', 11)
 battle_axe = weapon('Battle axe', 22)
 Medkit = health('Medkit', 30, True)
-
+whisper = weapon('Whisper Blade')
 #NPCs---------------------
 NPC_Charlie = NPC('Charlie', 'Bridge', [Charlie.interaction1, Charlie.interaction2, Charlie.interaction3])
 NPC_anonymous_civilian = NPC('Anonymous Civilian', 'Lever', [Anonymous_Civilian.start_interaction1, Anonymous_Civilian.start_interaction2])

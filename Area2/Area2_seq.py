@@ -5,7 +5,7 @@ sys.path.append(parent_dir)
 
 import questionary, GameAssets
 os.system('clear')
-from Functions import get_key, clrline, printc, clr, type, sleep, open_chest, clrlines,ld
+from Functions import get_key, clrline, printc, clr, type, sleep, open_chest, clrlines,ld, invisiType
 from ExtraFunctions import move_player, bossBattle
 import Area2.Area2_map as Area2_map
 
@@ -24,6 +24,8 @@ def game_A2Z1_CRT():
     startPos = 'Crate'
     global Actions
     Actions = []
+    global Crate_opened
+    Crate_opened = False
     while True:
         GameAssets.Player.drop_item_able = False
         clr()
@@ -39,6 +41,12 @@ def game_A2Z1_CRT():
                         printc(f'{action}', 'bold')
                         Actions.append(action)
                 clrlines(len(Actions))
+
+            if 'E - Read Note' not in Actions and not Crate_opened:
+                code = invisiType()
+                if code.lower == 'e - open crate':
+                    Actions.append('E - Open Crate')
+                    break
 
             key = get_key()
             if key == 'W' or key == 'w' or key == 'A' or key == 'a' or key == 'D' or key == 'd' or key == 's' or key == 'S':
@@ -59,10 +67,27 @@ def game_A2Z1_CRT():
                     clrlines(2)
                     break
 
-                elif 'E - Exit' in Actions:
-                    return
+                elif 'E - Open Crate' in Actions:
+                    if ''item name (not item.name)'' in GameAssets.Player.inventoryDEC:
+                        #break
+                    else:
+                        AXZYChest = open_chest()
+                        if AXZXChest:
+                            GameAssets.Player.add_item(GameAssets.''item'')
+                            GameAssets.AXZY_Chest.actions.remove('E - Open Chest')
+                            startPos = 'Chest'
+                            #break
+                        else:
+                            GameAssets.AXZY_Chest.actions.remove('E - Open Chest')
+                            startPos = 'Chest'
+                            #break
+
+                elif key == 'Q' or key == 'q':
+                    if'Q - Exit' in Actions:
+                        return
+    
+                                
                 
-                #now write code for invisible typing etc
         continue
 
 #-----------------------
@@ -118,6 +143,8 @@ def game_A2Z1():
                 break
 
             elif key == 'W' or key == 'w' and GameAssets.Player.positionDEC == 'A2Z1_G':
+                clr()
+                sleep(1)
                 #game_A2Z1_lckCRT()
                 break
                 
