@@ -80,7 +80,7 @@ elif 'E - Open Chest' in Actions:
 (while True)
     if GameAssets.Player.positionDEC != 'None':
         for action in GameAssets.Player.positionENC.actions:
-            if action == 'E - Continue to Zone 4':
+            if action == 'E - Continue to Zone X':
                 printc(f'{action}', 'bold green')
                 Actions.append(action)
             else:

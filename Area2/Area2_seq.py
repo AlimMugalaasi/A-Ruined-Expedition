@@ -47,14 +47,11 @@ def game_A2Z1_CRT():
             if 'E - Read Note' not in Actions and not solved:
                 challenge = input('')
                 if challenge.lower() == 'e - open crate':
-                    clrline()
-                    Actions.append('E - Open Crate')
+                    GameAssets.A2Z1_Crate.actions = ['E - Open Crate']
                     solved = True
-                    continue
-                    
-                
-                #We unfortunately can't do invisitype. let them see what theyre typing but dont put smn like 'code: ' as a promt just give ability to type. We need to find a way
-                #to allow user to exit
+                    break
+                else:
+                    break
 
             key = get_key()
             if key == 'W' or key == 'w' or key == 'A' or key == 'a' or key == 'D' or key == 'd' or key == 's' or key == 'S':
@@ -63,11 +60,17 @@ def game_A2Z1_CRT():
 
             elif key == 'E' or key == 'e':
                 if 'E - Read Note' in Actions:
-                    GameAssets.A2Z1_Crate.actions.remove('E - Read Note')
-                    type('The crate has no visible mechanism. The solution lies in retracing its design.\n')
-                    questionary.press_any_key_to_continue('Press any key to dismiss...').ask()
-                    clrlines(2)
-                    break
+                    type('The crate has no visible mechanism. The solution to opening it lies in retracing its design.\n')
+                    questionary.press_any_key_to_continue().ask()
+                    clrline()
+                    type('Should you choose to accept the challenge, there is no turning back.\n')
+                    sleep(1)
+                    conf = questionary.confirm('Accept the challenge?').ask()
+                    if conf:
+                        GameAssets.A2Z1_Crate.actions.remove('E - Read Note')
+                        break
+                    else:
+                        return
 
                 elif 'E - Open Crate' in Actions:
                     type('Elixir of Immortality ', 'bold magenta')
@@ -77,8 +80,7 @@ def game_A2Z1_CRT():
                     clrlines(2)
                     GameAssets.Player.HP = 200
                     GameAssets.Player.HP_MAX = 200
-                    Actions.remove('E - Open Crate')
-                    break
+                    return
 
             elif key == 'Q' or key == 'q':
                 if'Q - Exit' in Actions:
@@ -100,7 +102,8 @@ CRD_A2Z1 = {
     (4,-2) : GameAssets.A2Z1_f,
     (5,-2) : GameAssets.A2Z1_g,
     (5,-3) : GameAssets.A2Z1_h,
-    (6,-3) : GameAssets.A2Z1_i
+    (6,-3) : GameAssets.A2Z1_i,
+    (7,-3) : GameAssets.A2Z1_End
 }
 
 def game_A2Z1():
@@ -122,10 +125,13 @@ def game_A2Z1():
         while True:
             if GameAssets.Player.positionDEC != 'None':
                 for action in GameAssets.Player.positionENC.actions:
+                    if action == 'E - Continue to Zone 2':
+                        printc(f'{action}', 'bold green')
+                        Actions.append(action)
+                    else:
                         printc(f'{action}', 'bold')
                         Actions.append(action)
                 clrlines(len(Actions))
-
             key = get_key()
 
             if key == 'W' or key == 'w' and GameAssets.Player.positionDEC == 'A2Z1_F':
@@ -141,15 +147,15 @@ def game_A2Z1():
                 break
 
             elif key == 'W' or key == 'w' and GameAssets.Player.positionDEC == 'A2Z1_G':
-                clr()
-                sleep(1)
-                game_A2Z1_CRT()
-                player_position = (5,-2)
-                GameAssets.Player.positionENC = GameAssets.A2Z1_g
-                GameAssets.Player.positionDEC = 'A2Z1_G'
-                startPos = 'G'
-                break
-                
+                if GameAssets.Player.HP_MAX != 200:
+                    clr()
+                    sleep(1)
+                    game_A2Z1_CRT()
+                    player_position = (5,-2)
+                    GameAssets.Player.positionENC = GameAssets.A2Z1_g
+                    GameAssets.Player.positionDEC = 'A2Z1_G'
+                    startPos = 'G'
+                    break
 
             elif key == 'W' or key == 'w' or key == 'A' or key == 'a' or key == 'S' or key == 's' or key == 'D' or key == 'd':
                 player_position = move_player(key, CRD_A2Z1, player_position)
@@ -184,6 +190,8 @@ def game_A2Z1():
                             GameAssets.A2Z1_Chest.actions.remove('E - Open Chest')
                             startPos = 'Chest'
                             break
+                elif 'E - Continue to Zone 2' in Actions:
+                    return
         continue
 
 
