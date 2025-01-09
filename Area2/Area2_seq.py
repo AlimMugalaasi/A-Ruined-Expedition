@@ -43,11 +43,15 @@ def game_A2Z1_CRT():
                         Actions.append(action)
                 clrlines(len(Actions))
                 
-
+            
             if 'E - Read Note' not in Actions and not solved:
-                challenge = invisiType()
-                if challenge.lower == 'e - open crate':
+                challenge = input('')
+                if challenge.lower() == 'e - open crate':
+                    clrline()
                     Actions.append('E - Open Crate')
+                    solved = True
+                    continue
+                    
                 
                 #We unfortunately can't do invisitype. let them see what theyre typing but dont put smn like 'code: ' as a promt just give ability to type. We need to find a way
                 #to allow user to exit
