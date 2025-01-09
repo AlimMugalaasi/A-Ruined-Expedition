@@ -194,6 +194,61 @@ def game_A2Z1():
                     return
         continue
 
+#------------------------ZONE 2
 
+CRD_A2Z2_lckSQ2 = {
+    (0,0) : GameAssets.A2Z2_Start,
+    (1,0) : GameAssets.A2Z2_alck,
+    (2,0) : GameAssets.A2Z2_c,
+    (2,1) : GameAssets.A2Z2_d,
+    (3,1) : GameAssets.A2Z2_House
+}
 
-game_A2Z1()
+def game_A2Z2_lckSQ2():
+    global player_position
+    player_position = (0,0)
+    global startPos
+    startPos = 'Start'
+    global Actions
+    Actions = []
+    while True:
+        clr()
+        map = Area2_map.A2Z2_lckSQ2
+        printc(map)
+        printc('[bold]I[/bold] - Open inventory\n')
+        printc(f'Position: [bold]{startPos}[/bold]')
+        Actions = []
+
+        while True:
+            if GameAssets.Player.positionDEC != 'None':
+                for action in GameAssets.Player.positionENC.actions:
+                        printc(f'{action}', 'bold')
+                        Actions.append(action)
+                clrlines(len(Actions))
+
+            key = get_key()
+            if key == 'W' or key == 'w' or key == 'A' or key == 'a' or key == 'S' or key == 's' or key == 'D' or key == 'd':
+                player_position = move_player(key, CRD_A2Z2_lckSQ2, player_position)
+                Actions = []
+                
+            elif key == 'T' or key == 't':
+                for action in GameAssets.Player.positionENC.actions:
+                    if action.startswith('T - Pick up '):
+                        pickup_item = action[12:]
+                        for item in GameAssets.Player.dropped_items:
+                            if pickup_item == item.name:
+                                GameAssets.Player.add_item(item)
+                break
+
+            elif key == 'I' or key == 'i':
+                startPos = GameAssets.Player.positionENC.name
+                GameAssets.player.open_inventory(GameAssets.Player)
+                clr()
+                break
+            elif key == 'E' or key == 'e':
+                if 'E - ACTION' in Actions:
+                    #Action code goes here
+                    break
+        continue
+
+#game_A2Z1()

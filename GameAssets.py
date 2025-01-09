@@ -614,6 +614,25 @@ A2Z1_End = position('End', 'A2Z1_End', ['E - Continue to Zone 2'], 'ALL')
 A2Z1_Chest = position('Chest', 'A2Z1_Chest', ['E - Open Chest'], 'ALL')
 A2Z1_Crate = position('Crate', 'A2Z1_Crate', ['E - Read Note', 'Q - Exit'], 'S')
 
+
+A2Z2_Start = position('Start', 'A2Z2_Start', [], 'ALL')
+A2Z2_a = position('A', 'A2Z2_A', [], 'ALL')
+A2Z2_b = position('B', 'A2Z2_B', [], 'ALL')
+A2Z2_c = position('C', 'A2Z2_C', [], 'ALL')
+A2Z2_d = position('D', 'A2Z2_D', [], 'ALL')
+A2Z2_House = position('House', 'A2Z2_House', ['E - Interact'], 'AD')
+A2Z2_e = position('E', 'A2Z2_E', [], 'DAS')
+A2Z2_f = position('F', 'A2Z2_F', [], 'AWD')
+A2Z2_g = position('G', 'A2Z2_G', [], 'ALL')
+A2Z2_lvr = position('Lever', 'A2Z2_lvr', ['E - Pull Lever'], 'ALL')
+A2Z2_Forest = position('Forest', 'A2Z2_Forest', [], 'ALL')
+A2Z2_Chest1 = position('Chest', 'A2Z2_Chest1', ['E - Open Chest'], 'A')
+A2Z2_Chest2 = position('Chest', 'A2Z2_Chest2', ['E - Open Chest'], 'AD')
+A2Z2_End = position('End', 'A2Z2_End', ['E - Continue to Zone 3'], 'WS')
+A2Z2_GTlck = position('Gate', 'A2Z2_GTlck', [], 'W')
+A2Z2_GTulck = position('Gate', 'A2Z2_GTulck', [], 'WS')
+
+
 #SIDE QUESTS--------------
 SQ1 = side_quest('SQ1')
 

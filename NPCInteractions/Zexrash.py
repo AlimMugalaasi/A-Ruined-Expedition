@@ -6,9 +6,6 @@ sys.path.append(parent_dir)
 from Functions import type, newline, clr, sleep
 
 #--------------------------------------------------------
-clr() #TST
-
-
 def interaction():
     type('ZEXRASH: ', 'bold white')
     type('Hey you! over there! Can I ask you something?\n')
