@@ -51,8 +51,45 @@ A2Z1_lckCRT = '''
                                     [bold rgb(128,128,128)]│[/bold rgb(128,128,128)]  
 '''
 
-os.system('clear')
+A2Z2_lckSQ2 = '''
+                                                              [bold green]+###  &#+###%%%%+[/bold green]                    
+                                                            [bold green]++&&&&#&%###+####%%#+[/bold green]                  
+                                                           [bold green]##%#&+%#%#%&&##%#+####[/bold green]                 
+                                                               [bold rgb(150,75,0)]||[/bold rgb(150,75,0)][bold green]%#&+%[/bold green][bold rgb(150,75,0)]||[/bold rgb(150,75,0)][bold green]#%&&#[/bold green][bold rgb(150,75,0)]||[/bold rgb(150,75,0)]                    
+                                                               [bold rgb(150,75,0)]||  || ||  || ||[/bold rgb(150,75,0)]                    
+                                                                   [bold rgb(150,75,0)]||[/bold rgb(150,75,0)]  [white]│[/white]  [bold rgb(150,75,0)]||[/bold rgb(150,75,0)]                       
+                                                                       │                           
+                                                                       │                           
+                                                                       │                           
+                                                                       │                           
+                                                                       G──────┤[bold blue]LEVER[/bold blue]               
+                                                                       │                           
+                                               E───────────────────────F                           
+                                               │                                                   
+                                               │                                                   
+                                               │                                                   
+    ----------------------------------------───────------------------------------------------------
+                                               │                                                   
+                                               │        ┌ ┐                                        
+                                               │         [bold red]![/bold red]                                         
+                                               │        └ ┘                                        
+                         [bold blue]LEVER[/bold blue]                 │       ┌──┬─┐                                      
+                           ┬                   │       │┌┐│ │                                      
+                           │                   D──────┤││││ │                                      
+                           │                   │       ¯¯¯¯¯¯                                      
+                           │                   │                                                   
+                           │                   │                                                   
+[bold green]START[/bold green]├────────────A────────B───────────────────C                                                   
+                  │                                                                                
+                  [bold red]│[/bold red]                                                                                
+                  [bold red]/[/bold red]                                                                                
+                  [bold red]│[/bold red]                                                                                
+                  │                                                                                
+                   ──[bold red]─/─[/bold red]─┤[bold yellow]CHEST[/bold yellow]                                                                    
+'''
 
+os.system('clear')
+printc(A2Z2_lckSQ2)
 
 #Zone 1 maps completed
 #CRDs made
