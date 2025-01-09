@@ -93,12 +93,13 @@ codes = [
 ]
 
 
-def open_chest():
+def open_chest(code=None):
     type('Repeat the 5-character code that breifly apperars to open the chest. You have one chance.\n', 'yellow', 0.004)
     questionary.press_any_key_to_continue('Press any key to begin...').ask()
     clrline()
-    code = random.choice(codes)
-    codes.remove(code)
+    if code is None:
+        code = random.choice(codes)
+        codes.remove(code)
     type(f'{code}\n', 'bold green', 0.2)
     clrline()
     user_code = input('Enter Code: ')

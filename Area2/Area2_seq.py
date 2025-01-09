@@ -198,10 +198,12 @@ def game_A2Z1():
 
 CRD_A2Z2_lckSQ2 = {
     (0,0) : GameAssets.A2Z2_Start,
-    (1,0) : GameAssets.A2Z2_alck,
+    (1,0) : GameAssets.A2Z2_a,
+    (1,-1): GameAssets.A2Z2_GTlck,
     (2,0) : GameAssets.A2Z2_c,
     (2,1) : GameAssets.A2Z2_d,
-    (3,1) : GameAssets.A2Z2_House
+    (3,1) : GameAssets.A2Z2_House,
+    (2,-1): GameAssets.A2Z2_End
 }
 
 def game_A2Z2_lckSQ2():
@@ -246,9 +248,12 @@ def game_A2Z2_lckSQ2():
                 clr()
                 break
             elif key == 'E' or key == 'e':
-                if 'E - ACTION' in Actions:
-                    #Action code goes here
+                if 'E - Interact' in Actions:
+                    #interaction
                     break
         continue
 
 #game_A2Z1()
+
+#complete coding the interaction
+#code the levers, forest challenge, side quest management etc
