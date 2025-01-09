@@ -8,34 +8,33 @@ from Functions import printc
 
 import GameAssets
 
-A2Z1 = '''
-               AREA 2:                                                         
-              THE VOID                                   [bold rgb(128,128,128)]│[/bold rgb(128,128,128)]                     
-               DEPTHS                                                          
-                                                         [bold rgb(128,128,128)]│[/bold rgb(128,128,128)]                     
-                                                                               
-                                                         │                     
-                                                                               
-[bold green]START[/bold green]├──────────────A                                    │                     
-                    │                                                          
-                    │                                    │                     
-                    │                           #& %                           
-                    │                          &%&#$#    │                     
-                    B─────────C─────────D        #$      │                     
-                              │         │        │       │                     
-                              │         │        │       │                     
-                              │         │        │       │                     
-                              ┴         E────────F───────G                     
-                            [bold yellow]CHEST[/bold yellow]                        │                     
-                                                         │                     
-                                                         │                     
-                                                         H─────────I─────────┤►
-                                                                   │           
-                                                                   │           
-                                                                   │           
-                                                                  #% &         
-                                                                % #@&&         
-                                                                # %&# %         
+A2Z1 = '''                              AREA 2:                                                                                   
+                             THE VOID                                   [bold rgb(128,128,128)]│[/bold rgb(128,128,128)]
+                              DEPTHS                                                                                    
+                                                                        [bold rgb(128,128,128)]│[/bold rgb(128,128,128)]
+                                                                                                                        
+                                                                        │                                               
+                                                                                                                        
+               [bold green]START[/bold green]├──────────────A                                    │                      
+                                   │                                                                                    
+-----------------------------------┼------------------------------------│-------------------------                     
+                                   │                           #& %                                                     
+                                   │                          &%&#$#    │                                               
+                                   B─────────C─────────D        #$      │                                               
+                                             │         │        │       │                                               
+                                             │         │        │       │                                               
+                                             │         │        │       │                                               
+                                             ┴         E────────F───────G                                               
+                                           [bold yellow]CHEST[/bold yellow]                        │                    
+                                                                        │                                               
+                                                                        │                                               
+                                                                        H─────────I─────────┤►                          
+                                                                                  │                                     
+                                                                                  │                                     
+                                                                                  │                                     
+                                                                                 #% &                                   
+                                                                               % #@&&                                   
+                                                                               # %&# %                                  
 '''
 
 A2Z1_lckCRT = '''

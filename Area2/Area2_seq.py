@@ -196,4 +196,4 @@ def game_A2Z1():
 
 
 
-#game_A2Z1()
+game_A2Z1()
