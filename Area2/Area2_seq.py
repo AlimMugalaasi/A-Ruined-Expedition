@@ -503,8 +503,9 @@ def game_A2Z2_lckSQ2():
                     return
         continue
 
+#ld(5)
 #game_A2Z1()
+#ld(5)
 game_A2Z2_lckSQ2()
 
-#complete coding the interaction
-#code the levers, forest challenge, side quest management etc
+#FOREST CHALLENGE
