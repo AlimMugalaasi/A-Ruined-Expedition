@@ -17,19 +17,11 @@ def interaction1():
     newline()
 
     type('MIKA: ', 'bold white')
-    type("My fire here is about to go out but I can't go get wood from the forest...\n")
+    type("My fire here is about to go out but I can't go get firewood from the forest. I happened to be home alone today and It's dangerous to leave the house unnattended.\n")
     newline()
 
     type('YOU: ', 'bold white')
     type('Well...\n')
-    newline()
-
-    type('MIKA: ', 'bold white')
-    type("...I'm not usually home alone.\n")
-    newline()
-
-    type('YOU: ', 'bold white')
-    type('...\n')
     newline()
 
     type('MIKA: ', 'bold white')
@@ -39,7 +31,7 @@ def interaction1():
     newline()
 
     type('YOU: ', 'bold white')
-    type("Now we're talking. I'll get that wood to you as soon as I can.\n")
+    type("Now we're talking. I'll get that firewood to you as soon as I can.\n")
     newline()
 
     type('MIKA: ', 'bold white')

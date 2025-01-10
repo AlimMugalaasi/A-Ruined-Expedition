@@ -59,8 +59,6 @@ def game_COORDINATE_SYSTEM_WITHOUT_CRD_PART():
 
 '''
 elif 'E - Open Chest' in Actions:
-    if ''item name (not item.name)'' in GameAssets.Player.inventoryDEC:
-        #break
     else:
         AXZYChest = open_chest()
         if AXZXChest:

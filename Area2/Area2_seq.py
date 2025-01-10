@@ -5,7 +5,7 @@ sys.path.append(parent_dir)
 
 import questionary, GameAssets
 os.system('clear')
-from Functions import get_key, clrline, printc, clr, type, sleep, open_chest, clrlines,ld, invisiType
+from Functions import get_key, clrline, printc, clr, type, sleep, open_chest, clrlines,ld,firewood_minigame
 from ExtraFunctions import move_player, bossBattle
 import Area2.Area2_map as Area2_map
 
@@ -217,7 +217,7 @@ CRD_A2Z2_ulckSQ2_ulcklvr = {
 
 def game_A2Z2_ulckSQ2_ulcklvr():
     global player_position
-    player_position = (3,1)
+    player_position = (4,3)
     global startPos
     startPos = 'Lever'
     global Actions
@@ -233,6 +233,10 @@ def game_A2Z2_ulckSQ2_ulcklvr():
         while True:
             if GameAssets.Player.positionDEC != 'None':
                 for action in GameAssets.Player.positionENC.actions:
+                    if action == 'E - Continue to Zone 3':
+                        printc(f'{action}', 'bold green')
+                        Actions.append(action)
+                    else:
                         printc(f'{action}', 'bold')
                         Actions.append(action)
                 clrlines(len(Actions))
@@ -267,48 +271,56 @@ def game_A2Z2_ulckSQ2_ulcklvr():
                         return
 
                 elif 'E - Interact' in Actions:
-                #if wood collected == True and GameAssets.Player.activeSQ != 'None':
-                    GameAssets.NPC_Mika.interact(2)
-                    GameAssets.SQ2.complete_sq(GameAssets.Player)
-                    break
-                #elif wood collected == True and GameAssets.Player.activeSQ == 'None':
-                    #type('MIKA: ', 'bold white')
-                    #type('The code is 9abc3!\n')
-                    #questionary.press_any_key_to_continue('Press any key to dismiss...').ask()
-                    #clrlines(2)
-                    #break
+                    if 'E - Collect Firewood' not in Actions and GameAssets.Player.activeSQ != 'None':
+                        #GameAssets.NPC_Mika.interact(2)
+                        GameAssets.SQ2.complete_sq(GameAssets.Player)
+                        startPos = 'House'
+                        break
+                    elif 'E - Collect Firewood' not in Actions and GameAssets.Player.activeSQ == 'None':
+                        type('MIKA: ', 'bold white')
+                        type('The code is 9abc3!\n')
+                        questionary.press_any_key_to_continue('Press any key to dismiss...').ask()
+                        clrlines(2)
+                        break
 
 
                 elif 'E - Open Chest' in Actions:
                     if GameAssets.Player.positionENC == GameAssets.A2Z2_Chest1:
-                            '''
-                            if ''item name (not item.name)'' in GameAssets.Player.inventoryDEC:
-                                #break
-                            else:
-                                AXZYChest = open_chest()
-                                if AXZXChest:
-                                    GameAssets.Player.add_item(GameAssets.''item'')
-                                    GameAssets.AXZY_Chest.actions.remove('E - Open Chest')
-                                    startPos = 'Chest'
-                                    #break
-                                else:
-                                    GameAssets.AXZY_Chest.actions.remove('E - Open Chest')
-                                    startPos = 'Chest'
-                                    #break
-                                    '''
-                            pass
+                        A2Z2Chest = open_chest()
+                        if A2Z2Chest:
+                            GameAssets.Player.add_item(GameAssets.BandAid)
+                            GameAssets.Player.add_item(GameAssets.silent_knife)
+                            GameAssets.A2Z2_Chest1.actions.remove('E - Open Chest')
+                            startPos = 'Chest'
+                            break
+                        else:
+                            GameAssets.A2Z2_Chest1.actions.remove('E - Open Chest')
+                            startPos = 'Chest'
+                            break
+                           
                     elif GameAssets.Player.positionENC == GameAssets.A2Z2_Chest2:
                         ChestCode = input('Enter Code: ')
                         if ChestCode == '9abc3':
                             printc('-ACCEPTED-', 'bold green')
                             sleep(0.7)
-                            #GameAssets.Player.add_item(GameAssets.**ITEM***)
-                            GameAssets.A2Z2_Chest2.actions.remove('E - Open chest')
+                            GameAssets.Player.add_item(GameAssets.arcane_rune)
+                            GameAssets.Player.add_item(GameAssets.longSword)
+                            GameAssets.A2Z2_Chest2.actions.remove('E - Open Chest')
                             break
                         else:
                             printc('-DENIED-', 'bold red')
                             sleep(0.7)
                             break
+
+                elif 'E - Collect Firewood' in Actions:
+                    #firewood_minigame()
+                    type('Firewood collected!\n', 'bold green')
+                    sleep(1)
+                    clrline()
+                    startPos = 'Forest'
+                    GameAssets.A2Z2_House.actions.append('E - Interact')
+                    GameAssets.A2Z2_Forest.actions.remove('E - Collect Firewood')
+                    break
         continue
 
 #---------------------------
@@ -349,6 +361,10 @@ def game_A2Z2_ulckSQ2_lcklvr():
         while True:
             if GameAssets.Player.positionDEC != 'None':
                 for action in GameAssets.Player.positionENC.actions:
+                    if action == 'E - Continue to Zone 3':
+                        printc(f'{action}', 'bold green')
+                        Actions.append(action)
+                    else:
                         printc(f'{action}', 'bold')
                         Actions.append(action)
                 clrlines(len(Actions))
@@ -383,48 +399,31 @@ def game_A2Z2_ulckSQ2_lcklvr():
                         return
 
                 elif 'E - Interact' in Actions:
-                #if wood collected == True and GameAssets.Player.activeSQ != 'None':
-                    GameAssets.NPC_Mika.interact(2)
-                    GameAssets.SQ2.complete_sq(GameAssets.Player)
-                    break
-                #elif wood collected == True and GameAssets.Player.activeSQ == 'None':
-                    #type('MIKA: ', 'bold white')
-                    #type('The code is 9abc3!\n')
-                    #questionary.press_any_key_to_continue('Press any key to dismiss...').ask()
-                    #clrlines(2)
-                    #break
-
-
+                    if 'E - Collect Firewood' not in Actions and GameAssets.Player.activeSQ != 'None':
+                        #GameAssets.NPC_Mika.interact(2)
+                        GameAssets.SQ2.complete_sq(GameAssets.Player)
+                        startPos = 'House'
+                        break
+                    elif 'E - Collect Firewood' not in Actions and GameAssets.Player.activeSQ == 'None':
+                        type('MIKA: ', 'bold white')
+                        type('The code is 9abc3!\n')
+                        questionary.press_any_key_to_continue('Press any key to dismiss...').ask()
+                        clrlines(2)
+                        break
+                           
                 elif 'E - Open Chest' in Actions:
-                    if GameAssets.Player.positionENC == GameAssets.A2Z2_Chest1:
-                            '''
-                            if ''item name (not item.name)'' in GameAssets.Player.inventoryDEC:
-                                #break
-                            else:
-                                AXZYChest = open_chest()
-                                if AXZXChest:
-                                    GameAssets.Player.add_item(GameAssets.''item'')
-                                    GameAssets.AXZY_Chest.actions.remove('E - Open Chest')
-                                    startPos = 'Chest'
-                                    #break
-                                else:
-                                    GameAssets.AXZY_Chest.actions.remove('E - Open Chest')
-                                    startPos = 'Chest'
-                                    #break
-                                    '''
-                            pass
-                    elif GameAssets.Player.positionENC == GameAssets.A2Z2_Chest2:
-                        ChestCode = input('Enter Code: ')
-                        if ChestCode == '9abc3':
-                            printc('-ACCEPTED-', 'bold green')
-                            sleep(0.7)
-                            #GameAssets.Player.add_item(GameAssets.**ITEM***)
-                            GameAssets.A2Z2_Chest2.actions.remove('E - Open chest')
-                            break
-                        else:
-                            printc('-DENIED-', 'bold red')
-                            sleep(0.7)
-                            break
+                    ChestCode = input('Enter Code: ')
+                    if ChestCode == '9abc3':
+                        printc('-ACCEPTED-', 'bold green')
+                        sleep(0.7)
+                        GameAssets.Player.add_item(GameAssets.arcane_rune)
+                        GameAssets.Player.add_item(GameAssets.longSword)
+                        GameAssets.A2Z2_Chest2.actions.remove('E - Open chest')
+                        break
+                    else:
+                        printc('-DENIED-', 'bold red')
+                        sleep(0.7)
+                        break
 
                 elif 'E - Pull Lever' in Actions:
                     GameAssets.Player.positionENC = GameAssets.A2Z2_lvr
@@ -432,6 +431,16 @@ def game_A2Z2_ulckSQ2_lcklvr():
                     GameAssets.A2Z2_lvr.actions.remove('E - Pull Lever')
                     game_A2Z2_ulckSQ2_ulcklvr()
                     return
+                
+                elif 'E - Collect Firewood' in Actions:
+                    #firewood_minigame()
+                    type('Firewood collected!\n', 'bold green')
+                    sleep(1)
+                    clrline()
+                    startPos = 'Forest'
+                    GameAssets.A2Z2_House.actions.append('E - Interact')
+                    GameAssets.A2Z2_Forest.actions.remove('E - Collect Firewood')
+                    break
 
         continue
 #-------------------
@@ -495,8 +504,8 @@ def game_A2Z2_lckSQ2():
             elif key == 'E' or key == 'e':
                 if 'E - Interact' in Actions:
                     GameAssets.SQ2.start_sq(GameAssets.Player)
-                    GameAssets.NPC_Mika.interact(1)
-                    #game_A2Z2_ulckSQ2_lvr()
+                    #GameAssets.NPC_Mika.interact(1)
+                    game_A2Z2_ulckSQ2_lcklvr()
                     return
                 
                 if 'E - Continue to Zone 3' in Actions:

@@ -199,3 +199,49 @@ def invisiType():
         else:
             user_input += key
     return user_input
+
+
+#minigame to collect firewood in SQ2
+def firewood_minigame():
+    type('You will use the ')
+    type('WASD', 'bold')
+    type(' keys in the sequences that appear briefly. To collect all the firewood, complete 15 successfull sequences.\n')
+    questionary.press_any_key_to_continue('Press any key to begin...').ask()
+    clrlines(2)
+
+    type('Collecting firewood...\n', 'bold green')
+    sleep(1)
+
+    keys = ['W','A','S','D']
+    successful = 0
+    seq_num = 4
+    turns = 0
+
+    while successful <= 15:
+        if seq_num > 8:
+            seq_num = 8
+        seq = ""
+        for i in range(seq_num):
+            seq += (random.choice(keys))
+        
+        printc(f'{successful}/15')
+        type(f'{seq}\n', 'bold magenta', 0.3)
+        clrline()
+        usercode = input('Enter sequence (Not Case Sensitive): ')
+        if usercode.upper() == seq:
+            type('-CORRECT-\n', 'bold green')
+            sleep(0.5)
+            clrlines(3)
+            turns +=1
+            if turns == 4:
+                turns = 0
+                seq_num += 1
+            successful +=1
+            continue
+
+        else:
+            type('-INCORRECT-\n', 'bold red')
+            sleep(0.5)
+            clrlines(3)
+            continue
+    clrline()

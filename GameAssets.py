@@ -31,7 +31,7 @@ class player:
         #-------------------------NECESSARY ONE-TIME ATTRIBUTES
         self.ReadNote = False
         self.A2Z1CRT_opened = False
-    
+
     def open_inventory(self):
         while True:
             clr()
@@ -625,10 +625,10 @@ A2Z2_e = position('E', 'A2Z2_E', [], 'DAS')
 A2Z2_f = position('F', 'A2Z2_F', [], 'AWD')
 A2Z2_g = position('G', 'A2Z2_G', [], 'ALL')
 A2Z2_lvr = position('Lever', 'A2Z2_lvr', ['E - Pull Lever'], 'ALL')
-A2Z2_Forest = position('Forest', 'A2Z2_Forest', [], 'ALL')
+A2Z2_Forest = position('Forest', 'A2Z2_Forest', ['E - Collect Firewood'], 'ALL')
 A2Z2_Chest1 = position('Chest', 'A2Z2_Chest1', ['E - Open Chest'], 'A')
 A2Z2_Chest2 = position('Chest', 'A2Z2_Chest2', ['E - Open Chest'], 'AD')
-A2Z2_End = position('End', 'A2Z2_End', ['E - Continue to Zone 3'], 'WS')
+A2Z2_End = position('End', 'A2Z2_End', ['E - Continue to Zone 3'], 'W')
 A2Z2_GTlck = position('Gate', 'A2Z2_GTlck', [], 'W')
 A2Z2_GTulck = position('Gate', 'A2Z2_GTulck', [], 'WS')
 
@@ -640,12 +640,14 @@ SQ2 = side_quest('SQ2')
 #ITEMS------------------
 Charlie_House_key = item("Charlie's House Key", 'item')
 Bridge_key_A1Z1 = item("Bridge Key", 'item')
-spear = weapon('Spear', 20)
+spear = weapon('Spear', 18)
 shield = armour('Sheild', 10)
 arcane_rune = weapon('Arcane Rune', 50, True) #SINGLE USE
 knife = weapon('Knife', 11)
 battle_axe = weapon('Battle axe', 22)
 Medkit = health('Medkit', 30, True)
+silent_knife = weapon('Silent knife', 22)
+longSword = weapon('Long Sword', 31)
 
 #NPCs---------------------
 NPC_Charlie = NPC('Charlie', 'Bridge', [Charlie.interaction1, Charlie.interaction2, Charlie.interaction3])
