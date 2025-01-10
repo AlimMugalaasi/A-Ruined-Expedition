@@ -52,5 +52,5 @@ def interaction2():
     newline()
 
     type('MIKA: ', 'bold white')
-    type("Well, a deal is a deal. The code to that chest is 9abc3. Don't get it wrong, or it'll lock!\n")
+    type("Well, a deal is a deal. The code to that chest is 9abc3. Thanks again!\n")
     newline()
