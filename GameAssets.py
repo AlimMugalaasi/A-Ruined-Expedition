@@ -1,6 +1,6 @@
 from Functions import printc, clr, type, ld, clrline, sleep, clrlines, no_HP
 import questionary, pyfiglet
-from NPCInteractions import Charlie , Anonymous_Civilian, Zexrash
+from NPCInteractions import Charlie , Anonymous_Civilian, Zexrash, Mika
 #-------------------------------------------------------PLAYER
 
 class player:
@@ -635,6 +635,7 @@ A2Z2_GTulck = position('Gate', 'A2Z2_GTulck', [], 'WS')
 
 #SIDE QUESTS--------------
 SQ1 = side_quest('SQ1')
+SQ2 = side_quest('SQ2')
 
 #ITEMS------------------
 Charlie_House_key = item("Charlie's House Key", 'item')
@@ -650,6 +651,7 @@ Medkit = health('Medkit', 30, True)
 NPC_Charlie = NPC('Charlie', 'Bridge', [Charlie.interaction1, Charlie.interaction2, Charlie.interaction3])
 NPC_anonymous_civilian = NPC('Anonymous Civilian', 'Lever', [Anonymous_Civilian.start_interaction1, Anonymous_Civilian.start_interaction2])
 NPC_Zexrash = NPC('Zexrash', 'End', [Zexrash.interaction])
+NPC_Mika = NPC('Mika', 'House', [Mika.interaction1, Mika.interaction2])
 
 #--------------------------BOSS ELEMENTS
 basic_attack_ZR = attack('throws a knife', 11)

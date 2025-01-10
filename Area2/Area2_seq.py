@@ -194,7 +194,74 @@ def game_A2Z1():
                     return
         continue
 
-#------------------------ZONE 2
+#---------------------------ZONE 2
+
+CRD_A2Z2_ulckSQ2_lcklvr = {
+    (0,0) : GameAssets.A2Z2_Start,
+    (1,0) : GameAssets.A2Z2_a,
+    (1,-1): GameAssets.A2Z2_GTlck,
+    (2,0) : GameAssets.A2Z2_c,
+    (2,1) : GameAssets.A2Z2_d,
+    (3,1) : GameAssets.A2Z2_House,
+    (2,2) : GameAssets.A2Z2_e,
+    (3,2) : GameAssets.A2Z2_f,
+    (3,3) : GameAssets.A2Z2_g,
+    (3,4) : GameAssets.A2Z2_Forest,
+    (4,3) : GameAssets.A2Z2_lvr,
+    (2,4) : GameAssets.A2Z2_Chest2,
+    (2,-1): GameAssets.A2Z2_End
+}
+
+def game_A2Z2_ulckSQ2_lcklvr():
+    global player_position
+    player_position = (3,1)
+    global startPos
+    startPos = 'House'
+    GameAssets.Player.positionENC = GameAssets.A2Z2_House
+    GameAssets.Player.positionDEC = 'A2Z2_House'
+    global Actions
+    Actions = []
+    while True:
+        clr()
+        map = Area2_map.A2Z2_ulckSQ2_lcklvr
+        printc(map)
+        printc('[bold]I[/bold] - Open inventory\n')
+        printc(f'Position: [bold]{startPos}[/bold]')
+        Actions = []
+
+        while True:
+            if GameAssets.Player.positionDEC != 'None':
+                for action in GameAssets.Player.positionENC.actions:
+                        printc(f'{action}', 'bold')
+                        Actions.append(action)
+                clrlines(len(Actions))
+
+            key = get_key()
+            if key == 'W' or key == 'w' or key == 'A' or key == 'a' or key == 'S' or key == 's' or key == 'D' or key == 'd':
+                player_position = move_player(key, CRD_A2Z2_ulckSQ2_lcklvr, player_position)
+                Actions = []
+                
+            elif key == 'T' or key == 't':
+                for action in GameAssets.Player.positionENC.actions:
+                    if action.startswith('T - Pick up '):
+                        pickup_item = action[12:]
+                        for item in GameAssets.Player.dropped_items:
+                            if pickup_item == item.name:
+                                GameAssets.Player.add_item(item)
+                break
+
+            elif key == 'I' or key == 'i':
+                startPos = GameAssets.Player.positionENC.name
+                GameAssets.player.open_inventory(GameAssets.Player)
+                clr()
+                break
+            elif key == 'E' or key == 'e':
+                if 'E - Continue to Zone 3' in Actions:
+                    #ACTION
+                    break
+        continue
+#-------------------
+
 
 CRD_A2Z2_lckSQ2 = {
     (0,0) : GameAssets.A2Z2_Start,
@@ -224,6 +291,10 @@ def game_A2Z2_lckSQ2():
         while True:
             if GameAssets.Player.positionDEC != 'None':
                 for action in GameAssets.Player.positionENC.actions:
+                    if action == 'E - Continue to Zone 3':
+                        printc(f'{action}', 'bold green')
+                        Actions.append(action)
+                    else:
                         printc(f'{action}', 'bold')
                         Actions.append(action)
                 clrlines(len(Actions))
@@ -249,11 +320,17 @@ def game_A2Z2_lckSQ2():
                 break
             elif key == 'E' or key == 'e':
                 if 'E - Interact' in Actions:
-                    #interaction
-                    break
+                    GameAssets.SQ2.start_sq(GameAssets.Player)
+                    GameAssets.NPC_Mika.interact(1)
+                    #game_A2Z2_ulckSQ2_lvr()
+                    return
+                
+                if 'E - Continue to Zone 3' in Actions:
+                    return
         continue
 
 #game_A2Z1()
+game_A2Z2_lckSQ2()
 
 #complete coding the interaction
 #code the levers, forest challenge, side quest management etc
