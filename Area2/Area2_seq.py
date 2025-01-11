@@ -515,6 +515,4 @@ def game_A2Z2_lckSQ2():
 #ld(5)
 #game_A2Z1()
 #ld(5)
-game_A2Z2_lckSQ2()
-
-#FOREST CHALLENGE
+#game_A2Z2_lckSQ2()
