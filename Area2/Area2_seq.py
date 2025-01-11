@@ -272,7 +272,7 @@ def game_A2Z2_ulckSQ2_ulcklvr():
 
                 elif 'E - Interact' in Actions:
                     if 'E - Collect Firewood' not in Actions and GameAssets.Player.activeSQ != 'None':
-                        #GameAssets.NPC_Mika.interact(2)
+                        GameAssets.NPC_Mika.interact(2)
                         GameAssets.SQ2.complete_sq(GameAssets.Player)
                         startPos = 'House'
                         break
@@ -313,7 +313,7 @@ def game_A2Z2_ulckSQ2_ulcklvr():
                             break
 
                 elif 'E - Collect Firewood' in Actions:
-                    #firewood_minigame()
+                    firewood_minigame()
                     type('Firewood collected!\n', 'bold green')
                     sleep(1)
                     clrline()
@@ -400,7 +400,7 @@ def game_A2Z2_ulckSQ2_lcklvr():
 
                 elif 'E - Interact' in Actions:
                     if 'E - Collect Firewood' not in Actions and GameAssets.Player.activeSQ != 'None':
-                        #GameAssets.NPC_Mika.interact(2)
+                        GameAssets.NPC_Mika.interact(2)
                         GameAssets.SQ2.complete_sq(GameAssets.Player)
                         startPos = 'House'
                         break
@@ -433,7 +433,7 @@ def game_A2Z2_ulckSQ2_lcklvr():
                     return
                 
                 elif 'E - Collect Firewood' in Actions:
-                    #firewood_minigame()
+                    firewood_minigame()
                     type('Firewood collected!\n', 'bold green')
                     sleep(1)
                     clrline()
@@ -504,7 +504,7 @@ def game_A2Z2_lckSQ2():
             elif key == 'E' or key == 'e':
                 if 'E - Interact' in Actions:
                     GameAssets.SQ2.start_sq(GameAssets.Player)
-                    #GameAssets.NPC_Mika.interact(1)
+                    GameAssets.NPC_Mika.interact(1)
                     game_A2Z2_ulckSQ2_lcklvr()
                     return
                 

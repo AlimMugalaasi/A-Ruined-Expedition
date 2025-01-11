@@ -212,7 +212,8 @@ def firewood_minigame():
     type('Collecting firewood...\n', 'bold green')
     sleep(1)
 
-    keys = ['W','A','S','D']
+    keys = ['W', 'A', 'S', 'D']
+    keys_arr = ['▲','◄','▼','►']
     successful = 0
     seq_num = 4
     turns = 0
@@ -221,14 +222,49 @@ def firewood_minigame():
         if seq_num > 8:
             seq_num = 8
         seq = ""
+        seq_str = ""
         for i in range(seq_num):
-            seq += (random.choice(keys))
-        
+            keychoice = random.choice(keys)
+            if keychoice == 'W':
+                seq_str += keychoice
+                keychoice = '▲'
+            elif keychoice == 'A':
+                seq_str += keychoice
+                keychoice = '◄'
+            elif keychoice == 'S':
+                seq_str += keychoice
+                keychoice = '▼'
+            elif keychoice == 'D':
+                seq_str += keychoice
+                keychoice = '►'
+            seq += keychoice
+
         printc(f'{successful}/15')
-        type(f'{seq}\n', 'bold magenta', 0.3)
-        clrline()
-        usercode = input('Enter sequence (Not Case Sensitive): ')
-        if usercode.upper() == seq:
+        for char in seq:
+            type(f'{char} ', 'bold magenta')
+            sleep(0.3)
+        print(' ')
+        clrlines(2)
+        printc(f'{successful}/15')
+        usercode = ""
+        while True:
+            userkey = get_key()
+            if userkey.upper() == 'W':
+                usercode += userkey
+                type('▲ ')
+            elif userkey.upper() == 'A':
+                usercode += userkey
+                type('◄ ')
+            elif userkey.upper() == 'S':
+                usercode += userkey
+                type('▼ ')
+            elif userkey.upper() == 'D':
+                usercode += userkey
+                type('► ')
+            elif userkey == '\r':
+                print(' ')
+                break
+        if usercode.upper() == seq_str:
             type('-CORRECT-\n', 'bold green')
             sleep(0.5)
             clrlines(3)
