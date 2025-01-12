@@ -632,6 +632,18 @@ A2Z2_End = position('End', 'A2Z2_End', ['E - Continue to Zone 3'], 'W')
 A2Z2_GTlck = position('Gate', 'A2Z2_GTlck', [], 'W')
 A2Z2_GTulck = position('Gate', 'A2Z2_GTulck', [], 'WS')
 
+A2Z3_Start = position('Start', 'A3Z3_Start', [], 'ALL')
+A2Z3_1 = position('Switch 1', 'A2Z3_1', ['E - Activate'], 'WAD')
+A2Z3_2 = position('Switch 2', 'A2Z3_2', ['E - Activate'], 'WAD')
+A2Z3_3 = position('Switch 3', 'A2Z3_3', ['E - Activate'], 'WAD')
+A2Z3_4 = position('Switch 4', 'A2Z3_4', ['E - Activate'], 'WAD')
+A2Z3_5lck = position('Switch 5', 'A2Z3_5', ['E - Activate'], 'WA')
+A2Z3_5ulck = position('Switch 5', 'A2Z3_5', ['E - Activate'], 'WAD')
+A2Z3_a = position('A', 'A2Z3_A', [], 'ALL')
+A2Z3_Chest = position('Chest', 'A2Z3_Chest', ['E - Open Chest'], 'ALL')
+A2Z3_End = position('End', 'A2Z3_End', ['E - Continue to Zone 4'], 'AD')
+A2Z3_secret = position('Tunnel', 'A2Z3_Secret', ['E - Enter Tunnel'], 'SW')
+
 
 #SIDE QUESTS--------------
 SQ1 = side_quest('SQ1')

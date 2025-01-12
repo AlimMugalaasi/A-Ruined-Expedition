@@ -17,7 +17,7 @@ check = input('\nIf you need to quit the programme, type QUIT, or If all the abo
 if check == 'QUIT':
     quit()
 
-import Area1.Area1_seq as A1, Area2.Area2_seq as A2, Area3.Area3_seq as A3, Area4.Area4_seq as A4
+import Area1.Area1_seq as A1, Area2.Area2_seq as A2
 import pyfiglet
 from time import sleep
 from rich.console import Console

@@ -1,5 +1,3 @@
-from Functions import get_key
 
-while True:
-    key = get_key()
-    print(f"Key pressed: {repr(key)}")
+import random
+random.sample(range(1, 6), 5)

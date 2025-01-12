@@ -167,4 +167,66 @@ A2Z2_ulckSQ2_ulcklvr = '''
                                                ▼                                                                                                                                                   
 '''
 
+A2Z3_lckGT = '''
+                      [bold green]START[/bold green]                                      
+                        ┬                                        
+                        │                                        
+                        │                                        
+                        │                                        
+                        │                                        
+                        │                                        
+ 1───────────2──────────3───────────4──────────5──[bold red]─/─[/bold red]──A────────┤
+ │           │          │           │          │       │         
+ │           │          │           │          │       │         
+ │           │          │           │          │       ┴         
+ │           │          │           │          │     [bold yellow]CHEST[/bold yellow]       
+ ┴           ┴          ┴           ┴          ┴                 
+┌─┐         ┌─┐        ┌─┐         ┌─┐        ┌─┐                
+└─┘         └─┘        └─┘         └─┘        └─┘                              
+'''
+
+A2Z3_ulckGT = '''
+                      [bold green]START[/bold green]                                      
+                        ┬                                        
+                        │                                        
+                        │                                        
+                        │                                        
+                        │                                        
+                        │                                        
+ 1───────────2──────────3───────────4──────────5──[bold green]───[/bold green]──A────────┤
+ │           │          │           │          │       │         
+ │           │          │           │          │       │         
+ │           │          │           │          │       ┴         
+ │           │          │           │          │     [bold yellow]CHEST[/bold yellow]       
+ ┴           ┴          ┴           ┴          ┴                 
+[bold green]┌─┐[/bold green]         [bold green]┌─┐[/bold green]        [bold green]┌─┐[/bold green]         [bold green]┌─┐[/bold green]        [bold green]┌─┐[/bold green]                
+[bold green]└─┘[/bold green]         [bold green]└─┘[/bold green]        [bold green]└─┘[/bold green]         [bold green]└─┘[/bold green]        [bold green]└─┘[/bold green]                              
+'''
+
+A2Z3_ALT = '''
+                      [bold green]START[/bold green]                                      
+                        ┬                                        
+                        │                                        
+                        │                                        
+                        │                                        
+                        │                                        
+                        │                                        
+ A───────────B──────────C───────────D──────────E──[bold red]─/─[/bold red]──F────────┤
+ │           │          │           │          │       │         
+ │           │          │           │          │       │         
+ │           │          │           │          │       ┴         
+ │           │          │           │          │     [bold yellow]CHEST[/bold yellow]       
+ ┴           ┴          │           ┴          ┴                 
+┌─┐         ┌─┐        ┌│┐         ┌─┐        ┌─┐                
+└─┘         └─┘        └│┘         └─┘        └─┘                
+                        │                                        
+                        │                                        
+                                                                 
+                        [bold rgb(128,128,128)]│[/bold rgb(128,128,128)]                                        
+                                                                 
+                        [bold rgb(128,128,128)]│[/bold rgb(128,128,128)]                                        
+                                                                 
+                        [bold rgb(128,128,128)]│[/bold rgb(128,128,128)]                                        
+'''
 os.system('clear')
+
