@@ -102,6 +102,9 @@ def game_Charlie_House():
                     GameAssets.Player.positionENC = GameAssets.A1Z1_House
                     GameAssets.Player.positionDEC = GameAssets.A1Z1_House.name
                     return
+            else:
+                startPos = GameAssets.Player.positionENC.name
+                break
         continue
 
 #---------------------------------------------------------------------------
@@ -194,6 +197,9 @@ def game_A1Z1_ulckSQ1():
                         questionary.press_any_key_to_continue('Press any key to dismiss...').ask()
                         clrlines(2)
                         break
+            else:
+                startPos = GameAssets.Player.positionENC.name
+                break
         continue
 #-------------------------------------------------------------
 CRD_A1Z1lckSQ1 = {
@@ -287,6 +293,10 @@ def game_A1Z1lckSQ1():
                         type('the key to use it!\n')
                         questionary.press_any_key_to_continue().ask()
                         clrlines(2)
+
+            else:
+                startPos = GameAssets.Player.positionENC.name
+                break
         continue
 
 #-----------------------ZONE 2
@@ -373,7 +383,9 @@ def game_A1Z2_ulckGT12(startPos, player_position):
                         clrlines(2)
                         break
                     
-
+            else:
+                startPos = GameAssets.Player.positionENC.name
+                break
         continue
 
 #--------------------------------------------------------
@@ -453,8 +465,10 @@ def game_A1Z2_lckGT2():
                         GameAssets.A1Z2_Chest.actions.remove('E - Open Chest')
                         startPos = 'Chest'
                         break
-
-                continue
+            else:
+                startPos = GameAssets.Player.positionENC.name
+                break                       
+        continue
 
 #-----------------------------------------------------------
 CRD_A1Z2_lckGT12 = {
@@ -517,7 +531,9 @@ def game_A1Z2_lckGT1():
                     GameAssets.A1Z2_lvr1.actions.remove('E - Pull Lever')
                     game_A1Z2_ulckGT12('Lever 1', (2,-1))
                 return
-                
+            else:
+                startPos = GameAssets.Player.positionENC.name
+                break
         continue
 
 
@@ -580,6 +596,9 @@ def game_A1Z2_lckGT12():
                         game_A1Z2_lckGT1()
                         
                     return
+            else:
+                startPos = GameAssets.Player.positionENC.name
+                break
         continue
 
 #-----------------ZONE 3
@@ -671,7 +690,9 @@ def game_A1Z3_ulckGT():
                         clrlines(2)
                         break
 
-                    
+            else:
+                startPos = GameAssets.Player.positionENC.name
+                break                  
         continue
 #-----------------------------------------------------------
 
@@ -757,6 +778,9 @@ def game_A1Z3_lckGT():
                             GameAssets.A1Z3_Chest.actions.remove('E - Open Chest')
                             startPos = 'Chest'
                             break
+            else:
+                startPos = GameAssets.Player.positionENC.name
+                break
         continue
 #----------------------------------ZONE 4
 
@@ -838,6 +862,9 @@ def game_A1Z4():
                     elif bb == 'UNDEFEATED':
                          GameAssets.zexrash.HP = 100
                          break
+            else:
+                startPos = GameAssets.Player.positionENC.name
+                break
         continue
 
 

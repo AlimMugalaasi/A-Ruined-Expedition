@@ -52,6 +52,10 @@ def game_COORDINATE_SYSTEM_WITHOUT_CRD_PART():
                 if 'E - ACTION' in Actions:
                     #Action code goes here
                     break
+
+            else:
+                startPos = GameAssets.Player.positionENC.name
+                break
         continue
 
 

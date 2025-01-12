@@ -87,7 +87,9 @@ def game_A2Z1_CRT():
                     return
     
                                 
-                
+            else:
+                startPos = GameAssets.Player.positionENC.name
+                break    
         continue
 
 #-----------------------
@@ -192,6 +194,9 @@ def game_A2Z1():
                             break
                 elif 'E - Continue to Zone 2' in Actions:
                     return
+            else:
+                startPos = GameAssets.Player.positionENC.name
+                break
         continue
 
 #---------------------------ZONE 2
@@ -321,6 +326,9 @@ def game_A2Z2_ulckSQ2_ulcklvr():
                     GameAssets.A2Z2_House.actions.append('E - Interact')
                     GameAssets.A2Z2_Forest.actions.remove('E - Collect Firewood')
                     break
+            else:
+                startPos = GameAssets.Player.positionENC.name
+                break
         continue
 
 #---------------------------
@@ -441,7 +449,9 @@ def game_A2Z2_ulckSQ2_lcklvr():
                     GameAssets.A2Z2_House.actions.append('E - Interact')
                     GameAssets.A2Z2_Forest.actions.remove('E - Collect Firewood')
                     break
-
+            else:
+                startPos = GameAssets.Player.positionENC.name
+                break  
         continue
 #-------------------
 
@@ -510,10 +520,91 @@ def game_A2Z2_lckSQ2():
                 
                 if 'E - Continue to Zone 3' in Actions:
                     return
+            else:
+                startPos = GameAssets.Player.positionENC.name
+                break
         continue
 
 
 #-------------------------------------------------ZONE 3
+CRD_A2Z3_ulckGT = {
+    (0,0) : GameAssets.A2Z3_Start,
+    (0,-1) : GameAssets.A2Z3_3,
+    (-1,-1): GameAssets.A2Z3_2,
+    (-2,-1): GameAssets.A2Z3_1,
+    (1,-1) : GameAssets.A2Z3_4,
+    (2,-1) : GameAssets.A2Z3_5ulck,
+    (3,-1) : GameAssets.A2Z3_a,
+    (3,-2) : GameAssets.A2Z3_Chest,
+    (4,-1) : GameAssets.A2Z3_End
+}
+
+def game_A2Z3_ulckGT(startPosition, playerCoords):
+    global player_position
+    player_position = playerCoords
+    global startPos
+    startPos = startPosition
+    global Actions
+    Actions = []
+    while True:
+        clr()
+        map = Area2_map.A2Z3_ulckGT
+        printc(map)
+        printc('[bold]I[/bold] - Open inventory\n')
+        printc(f'Position: [bold]{startPos}[/bold]')
+        Actions = []
+
+        while True:
+            if GameAssets.Player.positionDEC != 'None':
+                    for action in GameAssets.Player.positionENC.actions:
+                        if action == 'E - Continue to Zone 4':
+                            printc(f'{action}', 'bold green')
+                            Actions.append(action)
+                        else:
+                            printc(f'{action}', 'bold')
+                            Actions.append(action)
+                    clrlines(len(Actions))
+
+            key = get_key()
+            if key == 'W' or key == 'w' or key == 'A' or key == 'a' or key == 'S' or key == 's' or key == 'D' or key == 'd':
+                player_position = move_player(key, CRD_A2Z3_ulckGT, player_position)
+                Actions = []
+                
+            elif key == 'T' or key == 't':
+                for action in GameAssets.Player.positionENC.actions:
+                    if action.startswith('T - Pick up '):
+                        pickup_item = action[12:]
+                        for item in GameAssets.Player.dropped_items:
+                            if pickup_item == item.name:
+                                GameAssets.Player.add_item(item)
+                break
+
+            elif key == 'I' or key == 'i':
+                startPos = GameAssets.Player.positionENC.name
+                GameAssets.player.open_inventory(GameAssets.Player)
+                clr()
+                break
+            elif key == 'E' or key == 'e':
+                if 'E - Open Chest' in Actions:
+                    A2Z3Chest = open_chest()
+                    if A2Z3Chest:
+                        GameAssets.Player.add_item(GameAssets.BandAid)
+                        GameAssets.A2Z3_Chest.actions.remove('E - Open Chest')
+                        startPos = 'Chest'
+                        break
+                    else:
+                        GameAssets.A2Z3_Chest.actions.remove('E - Open Chest')
+                        startPos = 'Chest'
+                        break
+                elif 'E - Continue to Zone 4' in Actions:
+                    return
+
+            else:
+                startPos = GameAssets.Player.positionENC.name
+                break
+        continue
+
+#----------------------------------
 CRD_A2Z3_lckGT = {
     (0,0) : GameAssets.A2Z3_Start,
     (0,-1) : GameAssets.A2Z3_3,
@@ -534,6 +625,8 @@ def game_A2Z3_lckGT():
     sequence = ['1','2','4','3','5']
     global userseq
     userseq = []
+    global index
+    index = 0
     while True:
         clr()
         map = Area2_map.A2Z3_lckGT
@@ -574,74 +667,127 @@ def game_A2Z3_lckGT():
                     if GameAssets.Player.positionDEC == 'A2Z3_1':
                         userseq.append('1')
                         startPos = 'Switch 1'
-                        if len(userseq) >= 5:
+                        if userseq[index] == sequence[index]:
                             if userseq == sequence:
-                                #game_A2Z3_ulckGT
+                                GameAssets.A2Z3_1.actions.remove('E - Activate')
+                                GameAssets.A2Z3_2.actions.remove('E - Activate')
+                                GameAssets.A2Z3_3.actions.remove('E - Activate')
+                                GameAssets.A2Z3_4.actions.remove('E - Activate')
+                                GameAssets.A2Z3_5ulck.actions.remove('E - Activate')
+                                game_A2Z3_ulckGT(startPos, player_position)
                                 return
                             else:
-                                clrline()
-                                printc(f'{userseq}', 'bold red')
-                                sleep(0.5)
-                                userseq = []
+                                sleep(0.2)
+                                index+=1
                                 break
+                        else:
+                            printc(f'{userseq}', 'bold red')
+                            sleep(0.5)
+                            userseq = []
+                            index = 0
+                            break
                             
                     elif GameAssets.Player.positionDEC == 'A2Z3_2':
                         userseq.append('2')
                         startPos = 'Switch 2'
-                        if len(userseq) >= 5:
+                        if userseq[index] == sequence[index]:
                             if userseq == sequence:
-                                #game_A2Z3_ulckGT
+                                GameAssets.A2Z3_1.actions.remove('E - Activate')
+                                GameAssets.A2Z3_2.actions.remove('E - Activate')
+                                GameAssets.A2Z3_3.actions.remove('E - Activate')
+                                GameAssets.A2Z3_4.actions.remove('E - Activate')
+                                GameAssets.A2Z3_5ulck.actions.remove('E - Activate')
+                                game_A2Z3_ulckGT(startPos, player_position)
                                 return
                             else:
-                                clrline()
-                                printc(f'{userseq}', 'bold red')
-                                sleep(0.5)
-                                userseq = []
+                                sleep(0.2)
+                                index+=1
                                 break
+                        
+                        else:
+                            printc(f'{userseq}', 'bold red')
+                            sleep(0.5)
+                            userseq = []
+                            index = 0
+                            break
 
                     if GameAssets.Player.positionDEC == 'A2Z3_3':
                         userseq.append('3')
                         startPos = 'Switch 3'
-                        if len(userseq) >= 5:
+                        if userseq[index] == sequence[index]:
                             if userseq == sequence:
-                                #game_A2Z3_ulckGT
+                                GameAssets.A2Z3_1.actions.remove('E - Activate')
+                                GameAssets.A2Z3_2.actions.remove('E - Activate')
+                                GameAssets.A2Z3_3.actions.remove('E - Activate')
+                                GameAssets.A2Z3_4.actions.remove('E - Activate')
+                                GameAssets.A2Z3_5ulck.actions.remove('E - Activate')
+                                game_A2Z3_ulckGT(startPos, player_position)
                                 return
                             else:
-                                clrline()
-                                printc(f'{userseq}', 'bold red')
-                                sleep(0.5)
-                                userseq = []
+                                sleep(0.2)
+                                index+=1
                                 break
+                            
+                        else:
+                            printc(f'{userseq}', 'bold red')
+                            sleep(0.5)
+                            userseq = []
+                            index = 0
+                            break
+                            
 
                     if GameAssets.Player.positionDEC == 'A2Z3_4':
                         userseq.append('4')
                         startPos = 'Switch 4'
-                        if len(userseq) >= 5:
+                        if userseq[index] == sequence[index]:
                             if userseq == sequence:
-                                #game_A2Z3_ulckGT
+                                GameAssets.A2Z3_1.actions.remove('E - Activate')
+                                GameAssets.A2Z3_2.actions.remove('E - Activate')
+                                GameAssets.A2Z3_3.actions.remove('E - Activate')
+                                GameAssets.A2Z3_4.actions.remove('E - Activate')
+                                GameAssets.A2Z3_5ulck.actions.remove('E - Activate')
+                                game_A2Z3_ulckGT(startPos, player_position)
                                 return
                             else:
-                                clrline()
-                                printc(f'{userseq}', 'bold red')
-                                sleep(0.5)
-                                userseq = []
+                                sleep(0.2)
+                                index+=1
                                 break
+                            
+                        else:
+                            printc(f'{userseq}', 'bold red')
+                            sleep(0.5)
+                            userseq = []
+                            index = 0
+                            break
 
                     if GameAssets.Player.positionDEC == 'A2Z3_5':
                         userseq.append('5')
                         startPos = 'Switch 5'
-                        if len(userseq) >= 5:
+                        if userseq[index] == sequence[index]:
                             if userseq == sequence:
-                                #game_A2Z3_ulckGT
+                                GameAssets.A2Z3_1.actions.remove('E - Activate')
+                                GameAssets.A2Z3_2.actions.remove('E - Activate')
+                                GameAssets.A2Z3_3.actions.remove('E - Activate')
+                                GameAssets.A2Z3_4.actions.remove('E - Activate')
+                                GameAssets.A2Z3_5ulck.actions.remove('E - Activate')
+                                game_A2Z3_ulckGT(startPos, player_position)
                                 return
                             else:
-                                clrline()
-                                printc(f'{userseq}', 'bold red')
-                                sleep(0.5)
-                                userseq = []
+                                sleep(0.2)
+                                index+=1
                                 break
+                            
+                        else:
+                            printc(f'{userseq}', 'bold red')
+                            sleep(0.5)
+                            userseq = []
+                            index = 0
+                            break
+            else:
+                startPos = GameAssets.Player.positionENC.name
+                break
 
-                    break
+                    
         continue
 
 

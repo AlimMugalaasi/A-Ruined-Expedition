@@ -175,7 +175,7 @@ A2Z3_lckGT = '''
                         │                                        
                         │                                        
                         │                                        
- 1───────────2──────────3───────────4──────────5──[bold red]─/─[/bold red]──A────────┤
+ 1───────────2──────────3───────────4──────────5──[bold red]─/─[/bold red]──A────────┤►
  │           │          │           │          │       │         
  │           │          │           │          │       │         
  │           │          │           │          │       ┴         
@@ -193,7 +193,7 @@ A2Z3_ulckGT = '''
                         │                                        
                         │                                        
                         │                                        
- 1───────────2──────────3───────────4──────────5──[bold green]───[/bold green]──A────────┤
+ 1───────────2──────────3───────────4──────────5──[bold green]───[/bold green]──A────────┤►
  │           │          │           │          │       │         
  │           │          │           │          │       │         
  │           │          │           │          │       ┴         
@@ -211,7 +211,7 @@ A2Z3_ALT = '''
                         │                                        
                         │                                        
                         │                                        
- A───────────B──────────C───────────D──────────E──[bold red]─/─[/bold red]──F────────┤
+ A───────────B──────────C───────────D──────────E──[bold red]─/─[/bold red]──F────────┤►
  │           │          │           │          │       │         
  │           │          │           │          │       │         
  │           │          │           │          │       ┴         
@@ -230,3 +230,24 @@ A2Z3_ALT = '''
 '''
 os.system('clear')
 
+CRD_A2Z3_ALT = {
+    (0,0) : GameAssets.A2Z3_Start,
+    (0,-1) : GameAssets.A2Z3_3,
+    (0,-2) : GameAssets.A2Z3_secret,
+    (-1,-1): GameAssets.A2Z3_2,
+    (-2,-1): GameAssets.A2Z3_1,
+    (1,-1) : GameAssets.A2Z3_4,
+    (2,-1) : GameAssets.A2Z3_5lck
+}
+
+CRD_A2Z3_ulckGT = {
+    (0,0) : GameAssets.A2Z3_Start,
+    (0,-1) : GameAssets.A2Z3_3,
+    (-1,-1): GameAssets.A2Z3_2,
+    (-2,-1): GameAssets.A2Z3_1,
+    (1,-1) : GameAssets.A2Z3_4,
+    (2,-1) : GameAssets.A2Z3_5ulck,
+    (3,-1) : GameAssets.A2Z3_a,
+    (3,-2) : GameAssets.A2Z3_Chest,
+    (4,-1) : GameAssets.A2Z3_End
+}
