@@ -793,9 +793,10 @@ def game_A2Z3_lckGT():
 
 #-----------------------
 
-game_A2Z3_lckGT()
 
 #ld(5)
 #game_A2Z1()
 #ld(5)
 #game_A2Z2_lckSQ2()
+#ld(5)
+#game_A2Z3_lckGT()
