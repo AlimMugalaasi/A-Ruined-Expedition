@@ -51,7 +51,11 @@ def game_COORDINATE_SYSTEM_WITHOUT_CRD_PART():
             elif key == 'E' or key == 'e':
                 if 'E - ACTION' in Actions:
                     #Action code goes here
-                    return
+                    break
+
+            else:
+                startPos = GameAssets.Player.positionENC.name
+                break
         continue
 
 
@@ -59,8 +63,6 @@ def game_COORDINATE_SYSTEM_WITHOUT_CRD_PART():
 
 '''
 elif 'E - Open Chest' in Actions:
-    if ''item name (not item.name)'' in GameAssets.Player.inventoryDEC:
-        #break
     else:
         AXZYChest = open_chest()
         if AXZXChest:
@@ -80,7 +82,7 @@ elif 'E - Open Chest' in Actions:
 (while True)
     if GameAssets.Player.positionDEC != 'None':
         for action in GameAssets.Player.positionENC.actions:
-            if action == 'E - Continue to Zone 4':
+            if action == 'E - Continue to Zone X':
                 printc(f'{action}', 'bold green')
                 Actions.append(action)
             else:

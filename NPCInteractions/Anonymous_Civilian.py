@@ -4,6 +4,7 @@ import os
 parent_dir = os.path.abspath(os.path.join(os.path.dirname(__file__), '..'))
 sys.path.append(parent_dir)
 from Functions import type, newline, clr
+import GameAssets
 
 #------------------------------------------------------
 clr() #TST
@@ -112,7 +113,7 @@ def start_interaction2():
     type('There are')
     type(' treasure hunters', 'yellow')
     type(' also trying to collect that artifact. They are just as powerful as you, ')
-    type('PLAYER NAME...\n', 'bold magenta')
+    type(f'{GameAssets.Player.name}...\n', 'bold magenta')
     newline()
 
     type('ANONYMOUS CIVILIAN: ', 'bold')

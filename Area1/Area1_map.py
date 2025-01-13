@@ -14,28 +14,37 @@ from Functions import printc, type
 #   GT - Gate
 
 A1Z1_lckSQ1 = '''
-                                                                    
-                           HOUSE                                                     
-                             ┬                                                       
-                             │      ┌ ┐                                              
-                             │       [bold red]![/bold red]                                               
-                             │      └ ┘                                              
-         [bold green]START[/bold green]├──────────────A──────────  ─  ─  ─  ─  ─────B────────────┤►           
-                                                           │                         
-                                                           │                         
-                                                           │                         
-                                                           │                         
-                                                           ┴                         
-                                                         [bold yellow]CHEST[/bold yellow]                                                                                                                                                
+                     _/│\_                                                                   
+                    [white]/[/white]  │  \                                                                  
+                   │ _/ \_ │                                                                 
+                   │[white]/[/white]     \│                                                                 
+                   │  ┌─┐  │                                                                 
+                   │__| |__│                                                                 
+   AREA 1:             ┬                                                                     
+SHADOW PLAINS          │      ┌ ┐                                                            
+                       │       [bold red]![/bold red]                                        
+                       │      └ ┘                                                            
+   [bold green]START[/bold green]├──────────────A──────────  ─  ─  ─  ─  ─────B────────────┤►
+                                                     │                                       
+                                                     │                                       
+                                                     │                                       
+                                                     │                                       
+                                                     ┴                                       
+                                                   [bold yellow]CHEST[/bold yellow]                                                                                                                                               
     '''
    
   
     
 A1Z1_ulckSQ1 = '''
                                                                     
-                           HOUSE                                                     
-                             ┬                                                       
-                             │                                                    
+                           _/│\_                                                                   
+                          [white]/[/white]  │  \                                                                  
+                         │ _/ \_ │                                                                 
+                         │[white]/[/white]     \│                                                                 
+                         │  ┌─┐  │                                                                 
+                         │__| |__│                                                                   
+         AREA 1:             ┬                                                       
+      SHADOW PLAINS          │                                                    
                              │                                                   
                              │                                                   
          [bold green]START[/bold green]├──────────────A─────────────────────────────B────────────┤►           
@@ -49,14 +58,17 @@ A1Z1_ulckSQ1 = '''
 
    
   
-Charlie_House = '''
-    
-                                                     
-                      DESK                       
-                        ┬                        
-                        │                        
-                        │                 
- DOOR ►├────────────────A───────────────┤BED
+Charlie_House = '''                                  
+      ┌─────────────────────────────────────────┐
+      │                                         │
+      │              DESK                       │
+      │                ┬                        │
+      │                │                        │
+      │                │                        │
+DOOR ►│────────────────A───────────────┤BED     │
+      │                                         │
+      │                                         │
+      └─────────────────────────────────────────┘
     '''                          
 
 A1Z2_lckGT12 = '''

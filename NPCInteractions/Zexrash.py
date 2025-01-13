@@ -6,9 +6,6 @@ sys.path.append(parent_dir)
 from Functions import type, newline, clr, sleep
 
 #--------------------------------------------------------
-clr() #TST
-
-
 def interaction():
     type('ZEXRASH: ', 'bold white')
     type('Hey you! over there! Can I ask you something?\n')
@@ -68,18 +65,14 @@ def interaction():
     newline()
 
     type('ZEXRASH: ', 'bold')
-    type('Oh,', 'red')
-    sleep(0.5)
-    type(" sure you don't. ", 'red')
-    sleep(0.5)
-    type("But I know you want that artifact as much as I do," , 'red')
-    sleep(0.5)
-    type(' so let me give you a piece of advice that could help.\n', 'red')
+    type("Oh sure you don't. But I know you want that artifact as much as I do, so let me give you a piece of advice that could help!\n")
+    newline()
+
+    type('YOU: ', 'bold')
+    type("Oh... uh... I could definitely do with that. What's your advice?\n")
     newline()
 
     type('ZEXRASH: ', 'bold')
     type("It's", 'bold red',0.15 )
     type(" mine.", 'italic bold red',0.15 )
     sleep(1)
-    
-interaction()

@@ -1,6 +1,6 @@
-from Functions import printc, clr, type, ld, clrline, sleep, clrlines
-import questionary, sys
-from NPCInteractions import Charlie,Anonymous_Civilian
+from Functions import printc, clr, type, ld, clrline, sleep, clrlines, no_HP
+import questionary, pyfiglet
+from NPCInteractions import Charlie , Anonymous_Civilian, Zexrash, Mika
 #-------------------------------------------------------PLAYER
 
 class player:
@@ -20,16 +20,18 @@ class player:
         self.armour_equippedENC = []
         self.total_equipped = ['<--BACK']
         self.HP = 100
+        self.HP_MAX = 100
         self.Alive = True
         self.completed_areas = []
-        self.completed_zones = []
         self.activeSQ = 'None'
         self.stored_action = 'None'
         self.dropped_items = []
         self.fighting = False
+        self.drop_item_able = True
         #-------------------------NECESSARY ONE-TIME ATTRIBUTES
         self.ReadNote = False
-    
+        self.A2Z1CRT_opened = False
+
     def open_inventory(self):
         while True:
             clr()
@@ -63,10 +65,15 @@ class player:
                     if item_select.startswith('BandAid'):
                         item_confirm = questionary.confirm(f"Use a Band-Aid?").ask()
                         if item_confirm:
-                            self.equip_item(item_select)
-                            printc(f'Used: [bold white]BandAid[/bold white] ---> [bold green]+10 HP[/bold green]')
-                            questionary.press_any_key_to_continue().ask()
-                            continue
+                            if self.HP == 100:
+                                printc('HP is already at max. Your item was not used.', 'bold yellow')
+                                questionary.press_any_key_to_continue('Press any key to dismiss...').ask()
+                                continue
+                            else:
+                                self.equip_item(item_select)
+                                printc(f'Used: [bold white]BandAid[/bold white] ---> [bold green]+10 HP[/bold green]')
+                                questionary.press_any_key_to_continue().ask()
+                                continue
                         else:
                             continue
 
@@ -93,9 +100,14 @@ class player:
                                 item_confirm = questionary.confirm(f"Equip {item_select}?").ask()
                                 if item_confirm:
                                     if self.fighting:
-                                        self.equip_item(item_select)
-                                        questionary.press_any_key_to_continue().ask()
-                                        continue
+                                        if self.HP == 100:
+                                            printc("HP is already at max. You won't be able to equip this item.", 'bold yellow')
+                                            questionary.press_any_key_to_continue('Press any key to dismiss...').ask()
+                                            continue
+                                        else:
+                                            self.equip_item(item_select)
+                                            questionary.press_any_key_to_continue().ask()
+                                            continue
                                     else:
                                         type('You can only use this item in battle!\n', 'bold yellow')
                                         questionary.press_any_key_to_continue('Press any key to dismiss...').ask()
@@ -120,7 +132,16 @@ class player:
                                         continue
 #DROPPING ITEMS-----------------------   
                 elif options_choice == 'Drop item':
-                    if item_select.startswith('BandAid'):
+                    if not self.drop_item_able:
+                        printc('You cannot drop an item here.', 'bold yellow')
+                        questionary.press_any_key_to_continue('Press any key to dismiss...').ask()
+                        continue
+
+                    if self.fighting:
+                        printc('You cannot drop an item whilst in battle!', 'bold yellow')
+                        questionary.press_any_key_to_continue('Press any key to dismiss...').ask()
+                        continue
+                    elif item_select.startswith('BandAid'):
                         printc('You cannot drop this item.\n', 'bold red')
                         questionary.press_any_key_to_continue('Press any key to dismiss...').ask()
                         continue
@@ -280,13 +301,10 @@ class player:
 
     def kill_check(self):
         if self.Alive == False:
-            clr()
-            type('YOU DIED', 'bold red')
+            no_HP()
             sleep(2)
-            quit()
-            #This is a test to make sure it works, you can change what displays later
         else:
-            return
+            return 'ALIVE'
         
 
     def take_damage(self, damage):
@@ -303,20 +321,42 @@ class player:
         if self.HP <= 0:
             self.Alive = False
 
-        self.kill_check()
+        killCheck = self.kill_check()
+        if killCheck == 'ALIVE':
+            return 'ALIVE', damage
+        else:
+            return 'DEAD'
     
     def attack(self):
         if self.item_equippedENC.category == 'health':
-            self.heal(self.item_equippedENC.health)
-            type(f'{self.name} used {self.item_equippedDEC}! (+{self.item_equippedENC.health}HP)', 'bold green')
-            sleep(1)
-            return 'HEALED' , self.item_equippedENC.health
+            if self.item_equippedENC.single_use:
+                self.heal(self.item_equippedENC.health)
+                type(f'{self.name} used {self.item_equippedDEC}! (+{self.item_equippedENC.health}HP)', 'bold green')
+                sleep(1)
+                healed = self.item_equippedENC.health
+                self.remove_item(self.item_equippedDEC)
+                return 'HEALED' , healed
+            
+            else:
+                self.heal(self.item_equippedENC.health)
+                type(f'{self.name} used {self.item_equippedDEC}! (+{self.item_equippedENC.health}HP)', 'bold green')
+                sleep(1)
+                return 'HEALED' , self.item_equippedENC.health
 
         elif self.item_equippedENC.category == 'weapon':
-            type(f'{self.name} used ')
-            type(f'{self.item_equippedENC.name}!\n', 'purple')
-            sleep(1)
-            return 'ATTACKED', self.item_equippedENC.damage
+            if self.item_equippedENC.single_use:
+                type(f'{self.name}')
+                type(f' used {self.item_equippedENC.name}!\n', 'bold purple')
+                sleep(1)
+                attacked = self.item_equippedENC.damage
+                self.remove_item(self.item_equippedDEC)
+                return 'ATTACKED', attacked
+            
+            else:
+                type(f'{self.name}')
+                type(f' used {self.item_equippedENC.name}!\n', 'bold purple')
+                sleep(1)
+                return 'ATTACKED', self.item_equippedENC.damage
         
         else:
             type(f'You cannot use this item as it is not a weapon!\n')
@@ -332,10 +372,26 @@ class player:
     def update_active_SQ(self, SQ):
         self.activeSQ = SQ
 
+    def complete_area(self, area):
+        clr()
+        pyfiglet.print_figlet(" A R E A", font="slant", colors='green')
+        sleep(0.7)
+        pyfiglet.print_figlet(" COMPLETE !", font="slant", colors='green')
+        sleep(1)
+        self.completed_areas.append(area.name)
+        self.current_area = 'None'
+        print(' ')
+        questionary.press_any_key_to_continue().ask()
+        ld(7)
+
+    def new_area(self, area):
+        self.current_area = area.name
+
+
 #-------------------------------------------------------ITEMS
 
 class item:
-    def __init__(self, name, category, single_use=False):
+    def __init__(self, name, single_use=False):
         self.name = name
         self.category = 'item'
         self.single_use = single_use
@@ -348,8 +404,8 @@ class item:
 
 
 class armour(item):
-    def __init__(self, name, category, healthProt, single_use=False):
-        super().__init__(name, category, single_use=False)
+    def __init__(self, name, healthProt, single_use=False):
+        super().__init__(name, single_use=False)
         self.healthProt = healthProt
         self.category = 'armour'
         self.single_use = single_use
@@ -362,8 +418,8 @@ class armour(item):
 
 
 class weapon(item):
-    def __init__(self, name, category, damage, single_use=False):
-        super().__init__(name, category, single_use=False)
+    def __init__(self, name, damage, single_use=False):
+        super().__init__(name, single_use=False)
         self.damage = damage
         self.category = 'weapon'
         self.single_use = single_use
@@ -375,8 +431,8 @@ class weapon(item):
             printc(f'ITEM: [bold white]{self.name} (SINGLE USE)[/bold white]     CATEGORY: [bold red]Weapon[/bold red]    DAMAGE: [bold green]{self.damage}[/bold green]')
 
 class health(item):
-    def __init__(self, name, category, health, single_use=False):
-        super().__init__(name, category, single_use=False)
+    def __init__(self, name, health, single_use=False):
+        super().__init__(name, single_use=False)
         self.health = health
         self.category = 'health'
         self.single_use = single_use
@@ -389,23 +445,9 @@ class health(item):
 
 #-------------------------------------------------------AREAS & NAVIGATION
 
-def complete_area(self, area):
-        clr()
-        type('AREA COMPLETE!', 'bold green')
-        self.completed_areas.append(area.name)
-        self.current_area = None
-        print(' ')
-        questionary.press_any_key_to_continue().ask()
-        ld()
-
-def new_area(self, area):
-    self.current_area = area.code
-
-
 class area:
-    def __init__(self, name, code):
+    def __init__(self, name):
         self.name = name
-        self.code = code
 
 class side_quest:
     def __init__(self, code):
@@ -463,8 +505,10 @@ class boss:
             type(f'{self.name} used {attack.name}! (+{attack.damage}HP)\n', 'bold green')
             sleep(1)
             clrlines(1)
+            return 0
+            
         else:
-            type(f'{self.name} used ')
+            type(f'{self.name} ')
             type(f'{attack.name}!\n', 'red')
             sleep(1)
             return attack.damage
@@ -499,8 +543,12 @@ class position:
 
 #---------------------------------------------------------CREATING ALL NECESSARY INSTANCES
 Player = player('ALIM', 'None') #PLAYER NAME TST
-BandAid = health('BandAid', 'health', 10)
+BandAid = health('BandAid', 10)
 
+Area1 = area('Area 1')
+Area2 = area('Area 2')
+Area3 = area('Area 3')
+Area4 = area('Area 4')
 #--------------------------AREA 1--------------------------#
  
 #POSITONS----------------
@@ -552,23 +600,78 @@ A1Z4_a = position('A', 'A1Z4_A', [], 'ALL')
 A1Z4_Chest = position('Chest', 'A1Z4_Chest', ['E - Open Chest'], 'ALL')
 A1Z4_bb = position('End', 'A1Z4_BB', ['E - Continue'], 'ALL')
 
+A2Z1_Start = position('Start', 'A2Z1-Start', [], 'ALL')
+A2Z1_a = position('A', 'A2Z1_A', [], 'ALL')
+A2Z1_b = position('B', 'A2Z1_B', [], 'ALL')
+A2Z1_c = position('C', 'A2Z1_C', [], 'ALL')
+A2Z1_d = position('D', 'A2Z1_D', [], 'WSA')
+A2Z1_e = position('E', 'A2Z1_E', [], 'SWD')
+A2Z1_f = position('F', 'A2Z1_F', [], 'ALL')
+A2Z1_g = position('G', 'A2Z1_G', ['W - Enter Tunnel'], 'ALL')
+A2Z1_h = position('H', 'A2Z1_H', [], 'ALL')
+A2Z1_i = position('I', 'A2Z1_I', [], 'ALL')
+A2Z1_End = position('End', 'A2Z1_End', ['E - Continue to Zone 2'], 'ALL')
+A2Z1_Chest = position('Chest', 'A2Z1_Chest', ['E - Open Chest'], 'ALL')
+A2Z1_Crate = position('Crate', 'A2Z1_Crate', ['E - Read Note', 'Q - Exit'], 'S')
+
+
+A2Z2_Start = position('Start', 'A2Z2_Start', [], 'ALL')
+A2Z2_a = position('A', 'A2Z2_A', [], 'ALL')
+A2Z2_b = position('B', 'A2Z2_B', [], 'ALL')
+A2Z2_c = position('C', 'A2Z2_C', [], 'ALL')
+A2Z2_d = position('D', 'A2Z2_D', [], 'ALL')
+A2Z2_House = position('House', 'A2Z2_House', ['E - Interact'], 'AD')
+A2Z2_e = position('E', 'A2Z2_E', [], 'DAS')
+A2Z2_f = position('F', 'A2Z2_F', [], 'AWD')
+A2Z2_g = position('G', 'A2Z2_G', [], 'ALL')
+A2Z2_lvr = position('Lever', 'A2Z2_lvr', ['E - Pull Lever'], 'ALL')
+A2Z2_Forest = position('Forest', 'A2Z2_Forest', ['E - Collect Firewood'], 'ALL')
+A2Z2_Chest1 = position('Chest', 'A2Z2_Chest1', ['E - Open Chest'], 'A')
+A2Z2_Chest2 = position('Chest', 'A2Z2_Chest2', ['E - Open Chest'], 'AD')
+A2Z2_End = position('End', 'A2Z2_End', ['E - Continue to Zone 3'], 'W')
+A2Z2_GTlck = position('Gate', 'A2Z2_GTlck', [], 'W')
+A2Z2_GTulck = position('Gate', 'A2Z2_GTulck', [], 'WS')
+
+A2Z3_Start = position('Start', 'A3Z3_Start', [], 'ALL')
+A2Z3_1 = position('Switch 1', 'A2Z3_1', ['E - Activate'], 'WAD')
+A2Z3_2 = position('Switch 2', 'A2Z3_2', ['E - Activate'], 'WAD')
+A2Z3_3 = position('Switch 3', 'A2Z3_3', ['E - Activate'], 'WAD')
+A2Z3_4 = position('Switch 4', 'A2Z3_4', ['E - Activate'], 'WAD')
+A2Z3_5lck = position('Switch 5', 'A2Z3_5', ['E - Activate'], 'WA')
+A2Z3_5ulck = position('Switch 5', 'A2Z3_5', ['E - Activate'], 'WAD')
+A2Z3_a = position('A', 'A2Z3_A', [], 'ALL')
+A2Z3_Chest = position('Chest', 'A2Z3_Chest', ['E - Open Chest'], 'ALL')
+A2Z3_End = position('End', 'A2Z3_End', ['E - Continue to Zone 4'], 'AD')
+A2Z3_secret = position('Tunnel', 'A2Z3_Secret', ['E - Enter Tunnel'], 'SW')
 
 
 #SIDE QUESTS--------------
 SQ1 = side_quest('SQ1')
+SQ2 = side_quest('SQ2')
 
 #ITEMS------------------
 Charlie_House_key = item("Charlie's House Key", 'item')
 Bridge_key_A1Z1 = item("Bridge Key", 'item')
-spear = weapon('Spear', 'weapon', 20)
-shield = armour('Sheild', 'armour', 10)
-arcane_rune = armour('Arcane Rune', 'armour', 60, True) #SINGLE USE
+spear = weapon('Spear', 18)
+shield = armour('Sheild', 10)
+arcane_rune = weapon('Arcane Rune', 50, True) #SINGLE USE
+knife = weapon('Knife', 11)
+battle_axe = weapon('Battle axe', 22)
+Medkit = health('Medkit', 30, True)
+silent_knife = weapon('Silent knife', 22)
+longSword = weapon('Long Sword', 31)
 
 #NPCs---------------------
 NPC_Charlie = NPC('Charlie', 'Bridge', [Charlie.interaction1, Charlie.interaction2, Charlie.interaction3])
 NPC_anonymous_civilian = NPC('Anonymous Civilian', 'Lever', [Anonymous_Civilian.start_interaction1, Anonymous_Civilian.start_interaction2])
+NPC_Zexrash = NPC('Zexrash', 'End', [Zexrash.interaction])
+NPC_Mika = NPC('Mika', 'House', [Mika.interaction1, Mika.interaction2])
 
 #--------------------------BOSS ELEMENTS
-basic_attack_ZR = attack('Basic Attack', 10) 
+basic_attack_ZR = attack('throws a knife', 11)
+medium_attack_ZR = attack('swings a battle axe', 22)
+special_attack_ZR = attack('uses special attack', 30)
+heal_ZR = attack('Heal', 15, True)
 
-Zexrash = boss('Zexrash', [basic_attack_ZR])
+
+zexrash = boss('Zexrash', [basic_attack_ZR, medium_attack_ZR, special_attack_ZR, heal_ZR])

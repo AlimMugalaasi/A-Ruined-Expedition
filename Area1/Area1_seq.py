@@ -6,8 +6,8 @@ sys.path.append(parent_dir)
 import questionary, GameAssets
 os.system('clear')
 from Functions import get_key, clrline, printc, clr, type, sleep, open_chest, clrlines,ld
-from ExtraFunctions import move_player
-import Area1_map
+from ExtraFunctions import move_player, bossBattle
+import Area1.Area1_map as Area1_map
 
 #-----------------------------------------------------------AREA 1 SEQUENCE (i.e GAMEPLAY)
 
@@ -102,6 +102,9 @@ def game_Charlie_House():
                     GameAssets.Player.positionENC = GameAssets.A1Z1_House
                     GameAssets.Player.positionDEC = GameAssets.A1Z1_House.name
                     return
+            else:
+                startPos = GameAssets.Player.positionENC.name
+                break
         continue
 
 #---------------------------------------------------------------------------
@@ -194,6 +197,9 @@ def game_A1Z1_ulckSQ1():
                         questionary.press_any_key_to_continue('Press any key to dismiss...').ask()
                         clrlines(2)
                         break
+            else:
+                startPos = GameAssets.Player.positionENC.name
+                break
         continue
 #-------------------------------------------------------------
 CRD_A1Z1lckSQ1 = {
@@ -287,6 +293,10 @@ def game_A1Z1lckSQ1():
                         type('the key to use it!\n')
                         questionary.press_any_key_to_continue().ask()
                         clrlines(2)
+
+            else:
+                startPos = GameAssets.Player.positionENC.name
+                break
         continue
 
 #-----------------------ZONE 2
@@ -373,7 +383,9 @@ def game_A1Z2_ulckGT12(startPos, player_position):
                         clrlines(2)
                         break
                     
-
+            else:
+                startPos = GameAssets.Player.positionENC.name
+                break
         continue
 
 #--------------------------------------------------------
@@ -453,8 +465,10 @@ def game_A1Z2_lckGT2():
                         GameAssets.A1Z2_Chest.actions.remove('E - Open Chest')
                         startPos = 'Chest'
                         break
-
-                continue
+            else:
+                startPos = GameAssets.Player.positionENC.name
+                break                       
+        continue
 
 #-----------------------------------------------------------
 CRD_A1Z2_lckGT12 = {
@@ -517,7 +531,9 @@ def game_A1Z2_lckGT1():
                     GameAssets.A1Z2_lvr1.actions.remove('E - Pull Lever')
                     game_A1Z2_ulckGT12('Lever 1', (2,-1))
                 return
-                
+            else:
+                startPos = GameAssets.Player.positionENC.name
+                break
         continue
 
 
@@ -580,6 +596,9 @@ def game_A1Z2_lckGT12():
                         game_A1Z2_lckGT1()
                         
                     return
+            else:
+                startPos = GameAssets.Player.positionENC.name
+                break
         continue
 
 #-----------------ZONE 3
@@ -671,7 +690,9 @@ def game_A1Z3_ulckGT():
                         clrlines(2)
                         break
 
-                    
+            else:
+                startPos = GameAssets.Player.positionENC.name
+                break                  
         continue
 #-----------------------------------------------------------
 
@@ -757,6 +778,9 @@ def game_A1Z3_lckGT():
                             GameAssets.A1Z3_Chest.actions.remove('E - Open Chest')
                             startPos = 'Chest'
                             break
+            else:
+                startPos = GameAssets.Player.positionENC.name
+                break
         continue
 #----------------------------------ZONE 4
 
@@ -787,7 +811,7 @@ def game_A1Z4():
         while True:
             if GameAssets.Player.positionDEC != 'None':
                 for action in GameAssets.Player.positionENC.actions:
-                    if action == 'E - Continue to Zone 4':
+                    if action == 'E - Continue':
                         printc(f'{action}', 'bold green')
                         Actions.append(action)
                     else:
@@ -828,25 +852,37 @@ def game_A1Z4():
                         startPos = 'Chest'
                         break
 
-                elif 'E - Continue to Zone 4' in Actions:
-                    #Out put interaction before BB begins
-                    #BB
-                    #Return/reset - we haven't decided
-                    pass
+                elif 'E - Continue' in Actions:
+                    GameAssets.NPC_Zexrash.interact(1)
+                    bb = bossBattle(GameAssets.zexrash)
+                    if bb == 'DEFEATED':
+                        GameAssets.Player.add_item(GameAssets.knife)
+                        GameAssets.Player.add_item(GameAssets.battle_axe)
+                        return
+                    elif bb == 'UNDEFEATED':
+                         GameAssets.zexrash.HP = 100
+                         break
+            else:
+                startPos = GameAssets.Player.positionENC.name
+                break
         continue
 
 
 
 #------------------------RUNNING THE SEQUENCE
-#game_A1Z1lckSQ1()
-#game_A1Z1_ulckSQ1()
-#ld(5)
-#game_A1Z2_lckGT12()
-#ld(5)
-
-
-GameAssets.Player.add_item(GameAssets.BandAid)
-GameAssets.Player.add_item(GameAssets.spear)
+ld(5)
+game_A1Z1lckSQ1()
+game_A1Z1_ulckSQ1()
+ld(5)
+game_A1Z2_lckGT12()
+ld(5)
 game_A1Z3_lckGT()
+ld(5)
+game_A1Z4()
+GameAssets.Player.complete_area(GameAssets.Area1)
+
+
+#AREA 2222222222
+
 
 

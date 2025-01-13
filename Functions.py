@@ -2,7 +2,7 @@ from rich.console import Console
 console = Console()
 from rich.text import Text
 from time import sleep
-import sys, os, termios, tty
+import sys, os, termios, tty, time
 import random, questionary
 from rich.progress import track
 #---------------------------------------------------------------------------------
@@ -93,12 +93,13 @@ codes = [
 ]
 
 
-def open_chest():
-    type('Repeat the code to open the chest. You have one chance.\n', 'yellow', 0.004)
+def open_chest(code=None):
+    type('Repeat the 5-character code that breifly apperars to open the chest. You have one chance.\n', 'yellow', 0.004)
     questionary.press_any_key_to_continue('Press any key to begin...').ask()
     clrline()
-    code = random.choice(codes)
-    codes.remove(code)
+    if code is None:
+        code = random.choice(codes)
+        codes.remove(code)
     type(f'{code}\n', 'bold green', 0.2)
     clrline()
     user_code = input('Enter Code: ')
@@ -142,3 +143,141 @@ def rainbow_type(string, speed):
             count = 0
         sleep(speed)
         continue
+
+#HP:0...
+
+def no_HP():
+    type('HP: \n', 'bold red', 0.4)
+    clrline()
+    printc('HP: 0', 'bold red')
+    sleep(0.3)
+    clrline()
+    printc('HP:  ', 'bold red')
+    sleep(0.3)
+    clrline()
+    printc('HP: 0', 'bold red')
+    sleep(0.3)
+    clrline()
+    printc('HP:  ', 'bold red')
+    sleep(0.3)
+    clrline()
+    printc('HP: 0', 'bold red')
+    sleep(0.3)
+    clrline()
+    printc('HP:  ', 'bold red')
+    sleep(0.3)
+    clrline()
+    printc('HP: 0', 'bold red')
+    sleep(0.3)
+    clrline()
+    printc('HP:  ', 'bold red')
+    sleep(0.3)
+    clrline()
+    printc('HP: 0', 'bold red')
+    sleep(1)
+
+
+# checking the time that has been played (for the hunter mechanic)
+
+def time_elapsed(script_start_time):
+    current_time = time.time()
+    current_time = time.time()
+    runtime = current_time - script_start_time
+    time_el = print(f"Script runtime: {runtime:.2f} seconds")
+    return time_el
+
+#Invisible typing (for some fun gimmicks)
+
+def invisiType():
+    user_input = ""
+    while True:
+        key = get_key()
+        if key == '\r':
+            break
+        if key in ('\x08', '\x7f'):
+            user_input = user_input[:-1]
+        else:
+            user_input += key
+    return user_input
+
+
+#minigame to collect firewood in SQ2
+def firewood_minigame():
+    type('You will use the ')
+    type('WASD', 'bold')
+    type(' keys in the sequences that appear briefly. To collect all the firewood, complete 15 successfull sequences.\n')
+    questionary.press_any_key_to_continue('Press any key to begin...').ask()
+    clrlines(2)
+
+    type('Collecting firewood...\n', 'bold green')
+    sleep(1)
+
+    keys = ['W', 'A', 'S', 'D']
+    keys_arr = ['▲','◄','▼','►']
+    successful = 0
+    seq_num = 4
+    turns = 0
+
+    while successful <= 15:
+        if seq_num > 8:
+            seq_num = 8
+        seq = ""
+        seq_str = ""
+        for i in range(seq_num):
+            keychoice = random.choice(keys)
+            if keychoice == 'W':
+                seq_str += keychoice
+                keychoice = '▲'
+            elif keychoice == 'A':
+                seq_str += keychoice
+                keychoice = '◄'
+            elif keychoice == 'S':
+                seq_str += keychoice
+                keychoice = '▼'
+            elif keychoice == 'D':
+                seq_str += keychoice
+                keychoice = '►'
+            seq += keychoice
+
+        printc(f'{successful}/15')
+        for char in seq:
+            type(f'{char} ', 'bold magenta')
+            sleep(0.3)
+        print(' ')
+        clrlines(2)
+        printc(f'{successful}/15')
+        usercode = ""
+        while True:
+            userkey = get_key()
+            if userkey.upper() == 'W':
+                usercode += userkey
+                type('▲ ')
+            elif userkey.upper() == 'A':
+                usercode += userkey
+                type('◄ ')
+            elif userkey.upper() == 'S':
+                usercode += userkey
+                type('▼ ')
+            elif userkey.upper() == 'D':
+                usercode += userkey
+                type('► ')
+            elif userkey == '\r':
+                print(' ')
+                break
+        if usercode.upper() == seq_str:
+            type('-CORRECT-\n', 'bold green')
+            sleep(0.5)
+            clrlines(3)
+            turns +=1
+            if turns == 4:
+                turns = 0
+                seq_num += 1
+            successful +=1
+            continue
+
+        else:
+            type('-INCORRECT-\n', 'bold red')
+            sleep(0.5)
+            clrlines(3)
+            continue
+    clrline()
