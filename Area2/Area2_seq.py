@@ -527,6 +527,72 @@ def game_A2Z2_lckSQ2():
 
 
 #-------------------------------------------------ZONE 3
+CRD_A2Z3_ALT = {
+    (0,0) : GameAssets.A2Z3_Start,
+    (0,-1) : GameAssets.A2Z3_3,
+    (0,-2) : GameAssets.A2Z3_secret,
+    (-1,-1): GameAssets.A2Z3_2,
+    (-2,-1): GameAssets.A2Z3_1,
+    (1,-1) : GameAssets.A2Z3_4,
+    (2,-1) : GameAssets.A2Z3_5lck
+}
+
+def game_A2Z3_ALT():
+    global player_position
+    player_position = (0,-1)
+    global startPos
+    startPos = 'Switch 3'
+    global Actions
+    Actions = []
+    while True:
+        clr()
+        map = Area2_map.A2Z3_ALT
+        printc(map)
+        printc('[bold]I[/bold] - Open inventory\n')
+        printc(f'Position: [bold]{startPos}[/bold]')
+        Actions = []
+
+        while True:
+            if GameAssets.Player.positionDEC != 'None':
+                for action in GameAssets.Player.positionENC.actions:
+                        printc(f'{action}', 'bold')
+                        Actions.append(action)
+                clrlines(len(Actions))
+
+            key = get_key()
+            if key == 'W' or key == 'w' or key == 'A' or key == 'a' or key == 'D' or key == 'd':
+                player_position = move_player(key, CRD_A2Z3_ALT, player_position)
+                Actions = []
+            
+            elif key == 'S' or key == 's':
+                if GameAssets.Player.positionENC == GameAssets.A2Z3_3:
+                    #secret ending
+                    return
+                
+                else:
+                    player_position = move_player(key, CRD_A2Z3_ALT, player_position)
+                    Actions = []
+                
+            elif key == 'T' or key == 't':
+                for action in GameAssets.Player.positionENC.actions:
+                    if action.startswith('T - Pick up '):
+                        pickup_item = action[12:]
+                        for item in GameAssets.Player.dropped_items:
+                            if pickup_item == item.name:
+                                GameAssets.Player.add_item(item)
+                break
+
+            elif key == 'I' or key == 'i':
+                startPos = GameAssets.Player.positionENC.name
+                GameAssets.player.open_inventory(GameAssets.Player)
+                clr()
+                break
+
+            else:
+                startPos = GameAssets.Player.positionENC.name
+                break
+        continue
+#---------------------------------
 CRD_A2Z3_ulckGT = {
     (0,0) : GameAssets.A2Z3_Start,
     (0,-1) : GameAssets.A2Z3_3,
@@ -720,8 +786,16 @@ def game_A2Z3_lckGT():
                         userseq.append(3)
                         secret_sequence.append(3)
                         if secret_sequence == [3,3,3,3,3]:
-                                rainbow_type('33333\n', 0.2)
-                                #game_A2Z3_A2Z3_ALT
+                                rainbow_type('A Tunnel reveals itself...\n', 0.1)
+                                sleep(0.3)
+                                clr()
+                                sleep(0.5)
+                                GameAssets.A2Z3_1.actions.remove('E - Activate')
+                                GameAssets.A2Z3_2.actions.remove('E - Activate')
+                                GameAssets.A2Z3_3.actions.remove('E - Activate')
+                                GameAssets.A2Z3_4.actions.remove('E - Activate')
+                                GameAssets.A2Z3_5lck.actions.remove('E - Activate')
+                                game_A2Z3_ALT()
                                 return
                         
                         startPos = 'Switch 3'

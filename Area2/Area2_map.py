@@ -228,4 +228,6 @@ A2Z3_ALT = '''
                                                                  
                         [bold rgb(128,128,128)]│[/bold rgb(128,128,128)]                                        
 '''
+
+
 os.system('clear')
