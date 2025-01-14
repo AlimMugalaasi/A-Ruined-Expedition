@@ -131,6 +131,7 @@ def nav():
       S     
            
 ''')
+    questionary.press_any_key_to_continue().ask()
 
 #typing out a string in rainbow colors (made this for one cause only but put it as a function becausue why not?)
 def rainbow_type(string, speed):

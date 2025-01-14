@@ -17,12 +17,11 @@ check = input('\nIf you need to quit the programme, type QUIT, or If all the abo
 if check == 'QUIT':
     quit()
 
-import Area1.Area1_seq as A1, Area2.Area2_seq as A2
 import pyfiglet
 from time import sleep
 from rich.console import Console
 console = Console()
-from Functions import type, printc, clrline, clr, ld
+from Functions import type, printc, clrline, clr, ld, nav
 import questionary, random
 from rich.progress import track
 
@@ -84,6 +83,11 @@ import GameAssets
 GameAssets.Player.name = player_name
 
 #SHOW THE CONTROLS USING nav() BEFORE ALLOWING THE PLAYER TO CONTINUE TO A1Z1
+nav()
 
-
+import Area1.Area1_seq as A1, Area2.Area2_seq as A2
+A1
+A2
+clr()
+type('THANKS FOR PLAYING!\n\n', 'green')
 #-----------------------------------------------------------------------------------------GAME SEQUENCE
