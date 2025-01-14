@@ -31,6 +31,7 @@ class player:
         #-------------------------NECESSARY ONE-TIME ATTRIBUTES
         self.ReadNote = False
         self.A2Z1CRT_opened = False
+        self.secret_acheived = False
 
     def open_inventory(self):
         while True:
@@ -542,13 +543,11 @@ class position:
         self.options = options
 
 #---------------------------------------------------------CREATING ALL NECESSARY INSTANCES
-Player = player('ALIM', 'None') #PLAYER NAME TST
+Player = player('','None')
 BandAid = health('BandAid', 10)
 
 Area1 = area('Area 1')
 Area2 = area('Area 2')
-Area3 = area('Area 3')
-Area4 = area('Area 4')
 #--------------------------AREA 1--------------------------#
  
 #POSITONS----------------
@@ -644,6 +643,9 @@ A2Z3_Chest = position('Chest', 'A2Z3_Chest', ['E - Open Chest'], 'ALL')
 A2Z3_End = position('End', 'A2Z3_End', ['E - Continue to Zone 4'], 'AD')
 A2Z3_secret = position('Tunnel', 'A2Z3_Secret', ['E - Enter Tunnel'], 'SW')
 
+A2Z4_Start = position('Start', 'A2Z4_Start', [], 'ALL')
+A2Z4_bb = position('Artifact', 'A2Z4_bb', ['E - Take Artifact'], 'ALL')
+
 
 #SIDE QUESTS--------------
 SQ1 = side_quest('SQ1')
@@ -673,5 +675,11 @@ medium_attack_ZR = attack('swings a battle axe', 22)
 special_attack_ZR = attack('uses special attack', 30)
 heal_ZR = attack('Heal', 15, True)
 
+basic_attack_BH = attack('uses a crossbow', 22)
+medium_attack_BH = attack('swings a sledgehammer', 32)
+special_attack_BH = attack('uses special attack', 50)
+heal_BH = attack('Heal', 30, True)
 
 zexrash = boss('Zexrash', [basic_attack_ZR, medium_attack_ZR, special_attack_ZR, heal_ZR])
+chaser_hunter = boss('Bounty Hunter', [basic_attack_BH, medium_attack_BH, special_attack_BH, heal_BH])
+chaser_hunter.HP = 200

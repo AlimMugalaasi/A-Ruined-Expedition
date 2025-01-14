@@ -23,7 +23,6 @@ from time import sleep
 from rich.console import Console
 console = Console()
 from Functions import type, printc, clrline, clr, ld
-import AreaNavigation as anv
 import questionary, random
 from rich.progress import track
 
@@ -86,5 +85,5 @@ GameAssets.Player.name = player_name
 
 #SHOW THE CONTROLS USING nav() BEFORE ALLOWING THE PLAYER TO CONTINUE TO A1Z1
 
-timer = time.time()
+
 #-----------------------------------------------------------------------------------------GAME SEQUENCE

@@ -230,4 +230,28 @@ A2Z3_ALT = '''
 '''
 
 
-os.system('clear')
+
+
+
+
+A2Z4 = '''                                                     │
+                                                     │
+                                                      
+                                     [bold yellow]┌##┐[/bold yellow]            │
+                                     [bold yellow]####[/bold yellow]            │
+                ┌  ┐                 [bold yellow]└##┘[/bold yellow]             
+                 [bold red]!![/bold red]                 \    [white]/[/white]           │
+                └  ┘                 \  [white]/[/white]            │
+                                      ││             │
+                                    ┌────┐           │
+[bold green]START[/bold green]├──────────────────────────────┴────┴───────────┘
+
+'''
+
+printc(A2Z4)
+
+
+CRD_A2Z4 = {
+    (0,0) : GameAssets.A2Z4_Start,
+    (1,0) : GameAssets.A2Z4_bb
+}

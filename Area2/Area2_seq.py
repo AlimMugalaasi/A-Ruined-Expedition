@@ -796,6 +796,7 @@ def game_A2Z3_lckGT():
                                 GameAssets.A2Z3_4.actions.remove('E - Activate')
                                 GameAssets.A2Z3_5lck.actions.remove('E - Activate')
                                 game_A2Z3_ALT()
+                                GameAssets.Player.secret_acheived = True
                                 return
                         
                         startPos = 'Switch 3'
@@ -878,11 +879,74 @@ def game_A2Z3_lckGT():
 
 
 #-----------------------
+#--------------------------------------------------ZONE 4
 
+CRD_A2Z4 = {
+    (0,0) : GameAssets.A2Z4_Start,
+    (1,0) : GameAssets.A2Z4_bb
+}
 
-#ld(5)
-#game_A2Z1()
-#ld(5)
-#game_A2Z2_lckSQ2()
-#ld(5)
+def game_A2Z4():
+    global player_position
+    player_position = (0,0)
+    global startPos
+    startPos = 'Start'
+    global Actions
+    Actions = []
+    while True:
+        clr()
+        map = Area2_map.A2Z4
+        printc(map)
+        printc('[bold]I[/bold] - Open inventory\n')
+        printc(f'Position: [bold]{startPos}[/bold]')
+        Actions = []
+
+        while True:
+            if GameAssets.Player.positionDEC != 'None':
+                for action in GameAssets.Player.positionENC.actions:
+                        printc(f'{action}', 'bold')
+                        Actions.append(action)
+                clrlines(len(Actions))
+
+            key = get_key()
+            if key == 'W' or key == 'w' or key == 'A' or key == 'a' or key == 'S' or key == 's' or key == 'D' or key == 'd':
+                player_position = move_player(key, CRD_A2Z4, player_position)
+                Actions = []
+                
+            elif key == 'T' or key == 't':
+                for action in GameAssets.Player.positionENC.actions:
+                    if action.startswith('T - Pick up '):
+                        pickup_item = action[12:]
+                        for item in GameAssets.Player.dropped_items:
+                            if pickup_item == item.name:
+                                GameAssets.Player.add_item(item)
+                break
+
+            elif key == 'I' or key == 'i':
+                startPos = GameAssets.Player.positionENC.name
+                GameAssets.player.open_inventory(GameAssets.Player)
+                clr()
+                break
+            elif key == 'E' or key == 'e':
+                if 'E - Take Artifact' in Actions:
+                    bb = bossBattle(GameAssets.chaser_hunter)
+                    if bb == 'DEFEATED':
+                        return
+                    elif bb == 'UNDEFEATED':
+                         GameAssets.chaser_hunter.HP = 200
+                         break
+
+            else:
+                startPos = GameAssets.Player.positionENC.name
+                break
+        continue
+
+ld(5)
+game_A2Z1()
+ld(5)
+game_A2Z2_lckSQ2()
+ld(5)
 game_A2Z3_lckGT()
+ld(5)
+game_A2Z4()
+GameAssets.Player.complete_area(GameAssets.Area2)
