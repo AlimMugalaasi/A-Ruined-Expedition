@@ -229,25 +229,3 @@ A2Z3_ALT = '''
                         [bold rgb(128,128,128)]│[/bold rgb(128,128,128)]                                        
 '''
 os.system('clear')
-
-CRD_A2Z3_ALT = {
-    (0,0) : GameAssets.A2Z3_Start,
-    (0,-1) : GameAssets.A2Z3_3,
-    (0,-2) : GameAssets.A2Z3_secret,
-    (-1,-1): GameAssets.A2Z3_2,
-    (-2,-1): GameAssets.A2Z3_1,
-    (1,-1) : GameAssets.A2Z3_4,
-    (2,-1) : GameAssets.A2Z3_5lck
-}
-
-CRD_A2Z3_ulckGT = {
-    (0,0) : GameAssets.A2Z3_Start,
-    (0,-1) : GameAssets.A2Z3_3,
-    (-1,-1): GameAssets.A2Z3_2,
-    (-2,-1): GameAssets.A2Z3_1,
-    (1,-1) : GameAssets.A2Z3_4,
-    (2,-1) : GameAssets.A2Z3_5ulck,
-    (3,-1) : GameAssets.A2Z3_a,
-    (3,-2) : GameAssets.A2Z3_Chest,
-    (4,-1) : GameAssets.A2Z3_End
-}

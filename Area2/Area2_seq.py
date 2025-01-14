@@ -3,9 +3,9 @@ import sys,os, time
 parent_dir = os.path.abspath(os.path.join(os.path.dirname(__file__), '..'))
 sys.path.append(parent_dir)
 
-import questionary, GameAssets
+import questionary, GameAssets, random
 os.system('clear')
-from Functions import get_key, clrline, printc, clr, type, sleep, open_chest, clrlines,ld,firewood_minigame
+from Functions import get_key, clrline, printc, clr, type, sleep, open_chest, clrlines,ld,firewood_minigame, rainbow_type
 from ExtraFunctions import move_player, bossBattle
 import Area2.Area2_map as Area2_map
 
@@ -622,7 +622,9 @@ def game_A2Z3_lckGT():
     global Actions
     Actions = []
     global sequence
-    sequence = ['1','2','4','3','5']
+    sequence = random.sample(range(1, 6), 5)
+    global secret_sequence
+    secret_sequence = []
     global userseq
     userseq = []
     global index
@@ -665,7 +667,8 @@ def game_A2Z3_lckGT():
             elif key == 'E' or key == 'e':
                 if 'E - Activate' in Actions:
                     if GameAssets.Player.positionDEC == 'A2Z3_1':
-                        userseq.append('1')
+                        userseq.append(1)
+                        secret_sequence = []
                         startPos = 'Switch 1'
                         if userseq[index] == sequence[index]:
                             if userseq == sequence:
@@ -676,6 +679,7 @@ def game_A2Z3_lckGT():
                                 GameAssets.A2Z3_5ulck.actions.remove('E - Activate')
                                 game_A2Z3_ulckGT(startPos, player_position)
                                 return
+                            
                             else:
                                 sleep(0.2)
                                 index+=1
@@ -688,7 +692,8 @@ def game_A2Z3_lckGT():
                             break
                             
                     elif GameAssets.Player.positionDEC == 'A2Z3_2':
-                        userseq.append('2')
+                        userseq.append(2)
+                        secret_sequence = []
                         startPos = 'Switch 2'
                         if userseq[index] == sequence[index]:
                             if userseq == sequence:
@@ -712,7 +717,13 @@ def game_A2Z3_lckGT():
                             break
 
                     if GameAssets.Player.positionDEC == 'A2Z3_3':
-                        userseq.append('3')
+                        userseq.append(3)
+                        secret_sequence.append(3)
+                        if secret_sequence == [3,3,3,3,3]:
+                                rainbow_type('33333\n', 0.2)
+                                #game_A2Z3_A2Z3_ALT
+                                return
+                        
                         startPos = 'Switch 3'
                         if userseq[index] == sequence[index]:
                             if userseq == sequence:
@@ -722,12 +733,13 @@ def game_A2Z3_lckGT():
                                 GameAssets.A2Z3_4.actions.remove('E - Activate')
                                 GameAssets.A2Z3_5ulck.actions.remove('E - Activate')
                                 game_A2Z3_ulckGT(startPos, player_position)
-                                return
+                                return 
+
+                            
                             else:
                                 sleep(0.2)
                                 index+=1
                                 break
-                            
                         else:
                             printc(f'{userseq}', 'bold red')
                             sleep(0.5)
@@ -737,7 +749,8 @@ def game_A2Z3_lckGT():
                             
 
                     if GameAssets.Player.positionDEC == 'A2Z3_4':
-                        userseq.append('4')
+                        userseq.append(4)
+                        secret_sequence = []
                         startPos = 'Switch 4'
                         if userseq[index] == sequence[index]:
                             if userseq == sequence:
@@ -761,7 +774,8 @@ def game_A2Z3_lckGT():
                             break
 
                     if GameAssets.Player.positionDEC == 'A2Z3_5':
-                        userseq.append('5')
+                        userseq.append(5)
+                        secret_sequence = []
                         startPos = 'Switch 5'
                         if userseq[index] == sequence[index]:
                             if userseq == sequence:
@@ -786,8 +800,6 @@ def game_A2Z3_lckGT():
             else:
                 startPos = GameAssets.Player.positionENC.name
                 break
-
-                    
         continue
 
 
@@ -799,4 +811,4 @@ def game_A2Z3_lckGT():
 #ld(5)
 #game_A2Z2_lckSQ2()
 #ld(5)
-#game_A2Z3_lckGT()
+game_A2Z3_lckGT()
