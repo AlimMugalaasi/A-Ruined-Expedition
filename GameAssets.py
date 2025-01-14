@@ -295,11 +295,6 @@ class player:
             clrline()
             clrline()
 
-                
-    def win(self):
-        #WIN SEQENCE - PROGRAMME IS QUIT FROM HERE
-        pass
-
     def kill_check(self):
         if self.Alive == False:
             no_HP()
@@ -475,10 +470,6 @@ class entity:
     def __init__(self, name, position):
         self.name = name
         self.poition = position
-        self.approachable = True
-
-    def complete(self):
-        self.approachable = False
         
 class NPC(entity):
     def __init__(self, name, position, interactions):
