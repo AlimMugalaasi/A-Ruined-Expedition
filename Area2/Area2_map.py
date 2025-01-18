@@ -247,11 +247,3 @@ A2Z4 = '''                                                     │
 [bold green]START[/bold green]├──────────────────────────────┴────┴───────────┘
 
 '''
-
-printc(A2Z4)
-
-
-CRD_A2Z4 = {
-    (0,0) : GameAssets.A2Z4_Start,
-    (1,0) : GameAssets.A2Z4_bb
-}
