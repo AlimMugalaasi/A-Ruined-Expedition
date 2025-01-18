@@ -13,7 +13,10 @@ print('\n2. Please Make sure you have the terminal opened in a seperate window, 
 print("In VS code, just click the terminal name and click the option 'move terminal into new window'")
 print('I recommend you run this on Visual Studio Code (can be done via GitHub I believe) if you can, as some things might not work on other terminals.')
 print('\nYou may have to quit and reload the terminal again, then in the terminal you just type in python main.py to start the game again.')
-check = input('\nIf you need to quit the programme, type QUIT, or If all the above is done, set the window to full screen (f11) and press ENTER to play!: ')
+
+print('\n\nNOTE: Whilst playtestng the programme may slow down and maay even stop working without any error. I unfortunately have no clue how to fix this, however feel free to access the games from the Area1/2 Files and run them from there if the bug persists (or if you can, feel free to fix). Sorry!')
+
+check = input('\nIf you need to quit the programme, type QUIT, or If all the above is done, press ENTER to play!: ')
 if check == 'QUIT':
     quit()
 
