@@ -882,7 +882,4 @@ game_A1Z4()
 GameAssets.Player.complete_area(GameAssets.Area1)
 
 
-#AREA 2222222222
-
-
 
