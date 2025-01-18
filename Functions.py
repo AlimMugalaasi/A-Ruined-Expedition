@@ -133,7 +133,7 @@ def nav():
 ''')
     questionary.press_any_key_to_continue().ask()
 
-#typing out a string in rainbow colors (made this for one cause only but put it as a function becausue why not?)
+#typing out a string in rainbow colors (made this for one cause only but i put it as a function becausue why not?)
 def rainbow_type(string, speed):
     colors = ['red', 'rgb(255,165,0)', 'yellow', 'green', 'blue', 'rgb(75,0,130)', 'violet']
     count = 0
@@ -178,7 +178,7 @@ def no_HP():
     sleep(1)
 
 
-# checking the time that has been played (for the hunter mechanic)
+# checking the time that has been played (for the hunter mechanic)     UNUSED
 
 def time_elapsed(script_start_time):
     current_time = time.time()
@@ -187,7 +187,7 @@ def time_elapsed(script_start_time):
     time_el = print(f"Script runtime: {runtime:.2f} seconds")
     return time_el
 
-#Invisible typing (for some fun gimmicks)
+#Invisible typing (for some fun gimmicks)      UNUSED
 
 def invisiType():
     user_input = ""
